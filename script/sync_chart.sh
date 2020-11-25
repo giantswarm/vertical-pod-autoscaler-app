@@ -1,16 +1,16 @@
 #!/bin/bash
 #
-# This script generate the prometheus-operator helm chart
+# This script generate the vertical-pod-autoscaler helm chart
 # It does so by pulling the upstream chart and apply patches on top
 
-# prometheus-operator upstream git repository url
-upstream_repo_url="https://github.com/prometheus-community/helm-charts.git"
+# vertical-pod-autoscaler upstream git repository url
+upstream_repo_url="https://github.com/FairwindsOps/charts.git"
 
-# Path to helm chart in the prometheus-operator upstream repository
-upstream_chart_path="charts/kube-prometheus-stack/"
+# Path to helm chart in the vertical-pod-autoscaler upstream repository
+upstream_chart_path="stable/vpa/"
 
 # Path to helm chart in this repository, relative to this script
-local_chart_path="../helm/prometheus-operator-app/"
+local_chart_path="../helm/vertical-pod-autoscaler-app/"
 # Path to patch files in this repository, relative to this script
 patch_files="../patch/*.patch"
 
