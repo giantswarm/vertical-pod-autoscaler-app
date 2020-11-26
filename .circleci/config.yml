@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  # NOTE: release and bump the version here
   architect: giantswarm/architect@0.17.1
 
 workflows:
