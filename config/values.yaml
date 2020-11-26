@@ -1,0 +1,7 @@
+updater:
+  extraArgs:
+    min-replicas: 1
+    v: 2
+
+admissionController:
+  enabled: true
