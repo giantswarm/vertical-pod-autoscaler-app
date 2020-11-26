@@ -7,11 +7,59 @@ workflows:
     jobs:
       - architect/push-to-app-catalog:
           context: "architect"
-          name: "package and push vertical-pod-autoscaler-app chart"
+          name: playground-catalog
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
           chart: "vertical-pod-autoscaler-app"
           # Trigger job on git tag.
           filters:
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-app-collection:
+          context: architect
+          name: aws-app-collection
+          app_name: "vertical-pod-autoscaler-app"
+          app_namespace: "giantswarm"
+          app_collection_repo: "aws-app-collection"
+          disable_force_upgrade: true
+          unique: "true"
+          requires:
+            - playground-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-app-collection:
+          context: architect
+          name: azure-app-collection
+          app_name: "vertical-pod-autoscaler-app"
+          app_namespace: "giantswarm"
+          app_collection_repo: "azure-app-collection"
+          disable_force_upgrade: true
+          unique: "true"
+          requires:
+            - playground-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-app-collection:
+          context: architect
+          name: kvm-app-collection
+          app_name: "vertical-pod-autoscaler-app"
+          app_namespace: "giantswarm"
+          app_collection_repo: "kvm-app-collection"
+          disable_force_upgrade: true
+          unique: "true"
+          requires:
+            - playground-catalog
+          filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /^v.*/
