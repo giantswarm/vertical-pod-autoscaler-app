@@ -36,7 +36,11 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.updater.securityContext | nindent 12 }}
-          image: "{{ .Values.updater.image.repository }}:{{ .Values.updater.image.tag | default .Chart.AppVersion }}"
+          {{- if (.Values.Installation) }}
+          image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.updater.image.name }}:{{ .Values.updater.image.tag  | default .Chart.AppVersion }}"
+          {{ else }}
+          image: "{{ .Values.image.registry }}/{{ .Values.updater.image.name }}:{{ .Values.updater.image.tag | default .Chart.AppVersion }}"
+          {{- end }}
           imagePullPolicy: {{ .Values.updater.image.pullPolicy }}
           {{- if .Values.updater.extraArgs }}
           args:

@@ -14,6 +14,10 @@ rbac:
   # rbac.create -- If true, then rbac resources (clusterroles and clusterrolebindings) will be created for the selected components.
   create: true
 
+## Required for interchangability of image registry used for China
+image:
+  registry: quay.io
+
 serviceAccount:
   # serviceAccount.create -- Specifies whether a service account should be created for each component
   create: true
@@ -32,10 +36,10 @@ recommender:
     pod-recommendation-min-memory-mb: 100
   replicaCount: 1
   image:
-    # recommender.image.repository -- The location of the recommender image
-    repository: us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-recommender
+    # recommender.image.name -- The location of the recommender image
+    name: giantswarm/vpa-recommender
     # recommender.image.pullPolicy -- The pull policy for the recommender image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # recommender.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # recommender.podAnnotations -- Annotations to add to the recommender pod
@@ -65,10 +69,10 @@ updater:
   extraArgs: {}
   replicaCount: 1
   image:
-    # updater.image.repository -- The location of the updater image
-    repository: us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-updater
+    # updater.image.name -- The location of the updater image
+    name: giantswarm/vpa-updater
     # updater.image.pullPolicy -- The pull policy for the updater image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # updater.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # updater.podAnnotations -- Annotations to add to the updater pod
@@ -99,19 +103,19 @@ admissionController:
   certGen:
     image:
       # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
-      repository: quay.io/reactiveops/ci-images
-      # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
+      name: giantswarm/vpa-certgen-ci-images
+      # admissionController.certGen.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
+      pullPolicy: IfNotPresent
+      # admissionController.certGen.image.tag --  An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
       tag: v11-alpine
-      # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
-      pullPolicy: Always
   # admissionController.cleanupOnDelete -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
   cleanupOnDelete: true
   replicaCount: 1
   image:
-    # admissionController.image.repository -- The location of the vpa admission controller image
-    repository: us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-admission-controller
+    # admissionController.image.name -- The name of the vpa admission controller image
+    name: giantswarm/vpa-admission-controller
     # admissionController.image.pullPolicy -- The pull policy for the admission controller image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # admissionController.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # admissionController.podAnnotations -- Annotations to add to the admission controller pod

@@ -14,7 +14,11 @@ spec:
   serviceAccountName: {{ include "vpa.fullname" . }}-test
   containers:
     - name: test
-      image: quay.io/reactiveops/ci-images:v11-alpine
+      {{- if (.Values.Installation) }}
+      image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
+      {{ else }}
+      image: "{{ .Values.image.registry }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
+      {{- end }}
       command: ['kubectl']
       args:
         - get

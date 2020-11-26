@@ -36,7 +36,11 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.recommender.securityContext | nindent 12 }}
-          image: "{{ .Values.recommender.image.repository }}:{{ .Values.recommender.image.tag | default .Chart.AppVersion }}"
+          {{- if (.Values.Installation) }}
+          image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.recommender.image.name }}:{{ .Values.recommender.image.tag  | default .Chart.AppVersion }}"
+          {{ else }}
+          image: "{{ .Values.image.registry }}/{{ .Values.recommender.image.name }}:{{ .Values.recommender.image.tag | default .Chart.AppVersion }}"
+          {{- end }}
           imagePullPolicy: {{ .Values.recommender.image.pullPolicy }}
           {{- if .Values.recommender.extraArgs }}
           args:
