@@ -36,7 +36,11 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.admissionController.securityContext | nindent 12 }}
-          image: "{{ .Values.admissionController.image.repository }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
+          {{- if (.Values.Installation) }}
+          image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.admissionController.image.name }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
+          {{ else }}
+          image: "{{ .Values.image.registry }}/{{ .Values.admissionController.image.name }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
+          {{- end }}
           imagePullPolicy: {{ .Values.admissionController.image.pullPolicy }}
           volumeMounts:
             - name: tls-certs
