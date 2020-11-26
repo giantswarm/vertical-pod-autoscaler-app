@@ -4,6 +4,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-metrics-reader
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - "metrics.k8s.io"
@@ -17,6 +19,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-actor
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - ""
@@ -60,6 +64,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-checkpoint-actor
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - "poc.autoscaling.k8s.io"
@@ -95,6 +101,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-evictioner
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - "apps"
@@ -114,6 +122,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-target-reader
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
     - '*'
@@ -155,6 +165,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: vpa-status-reader
+  labels:
+    {{- include "vpa.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - "coordination.k8s.io"
