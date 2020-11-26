@@ -14,13 +14,16 @@ spec:
       {{- include "vpa.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
+        giantswarm.io/monitoring-path: "/metrics"
+        giantswarm.io/monitoring-port: "metrics"
       labels:
         app.kubernetes.io/component: recommender
-        {{- include "vpa.selectorLabels" . | nindent 8 }}
+        {{- include "vpa.labels" . | nindent 8 }}
+        giantswarm.io/monitoring: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -48,9 +51,27 @@ spec:
             - --{{ $key }}={{ $value }}
           {{- end }}
           {{- end }}
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /health-check
+              port: metrics
+              scheme: HTTP
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 3
+          readinessProbe:
+            failureThreshold: 120
+            httpGet:
+              path: /health-check
+              port: metrics
+              scheme: HTTP
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 3
           ports:
-            - name: http
-              containerPort: 8080
+            - name: metrics
+              containerPort: 8942
               protocol: TCP
           resources:
             {{- toYaml .Values.recommender.resources | nindent 12 }}
