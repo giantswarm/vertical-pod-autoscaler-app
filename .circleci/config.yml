@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  # NOTE: run it
+  # NOTE: bump this version
   architect: giantswarm/architect@dev:app-configmap-secret
 
 workflows:
@@ -31,7 +31,7 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: aws-app-collection
-          app_catalog: "control-plane-test-catalog"
+          app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "aws-app-collection"
@@ -42,6 +42,8 @@ workflows:
           requires:
             - control-plane-catalog
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /^v.*/
 
