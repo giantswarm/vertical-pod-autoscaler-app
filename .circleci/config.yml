@@ -17,10 +17,21 @@ workflows:
             tags:
               only: /^v.*/
 
+      - architect/push-to-app-catalog:
+          context: "architect"
+          name: control-plane-catalog
+          app_catalog: "giantswarm-control-plane-catalog"
+          app_catalog_test: "giantswarm-control-plane-test-catalog"
+          chart: "vertical-pod-autoscaler-app"
+          # Trigger job on git tag.
+          filters:
+            tags:
+              only: /^v.*/
+
       - architect/push-to-app-collection:
           context: architect
           name: aws-app-collection
-          app_catalog: "giantswarm-playground-test-catalog"
+          app_catalog: "giantswarm-control-plane-test-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "aws-app-collection"
@@ -29,7 +40,7 @@ workflows:
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
-            - playground-catalog
+            - control-plane-catalog
           filters:
             tags:
               only: /^v.*/
@@ -37,7 +48,7 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: azure-app-collection
-          app_catalog: "giantswarm-playground-catalog"
+          app_catalog: "giantswarm-control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "azure-app-collection"
@@ -46,7 +57,7 @@ workflows:
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
-            - playground-catalog
+            - control-plane-catalog
           filters:
             branches:
               ignore: /.*/
@@ -56,7 +67,7 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: kvm-app-collection
-          app_catalog: "giantswarm-playground-catalog"
+          app_catalog: "giantswarm-control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "kvm-app-collection"
@@ -65,7 +76,7 @@ workflows:
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
-            - playground-catalog
+            - control-plane-catalog
           filters:
             branches:
               ignore: /.*/
