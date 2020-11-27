@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
-  # NOTE: bump this version
-  architect: giantswarm/architect@dev:app-configmap-secret
+  architect: giantswarm/architect@0.18.0
 
 workflows:
   package-and-push-chart-on-tag:
