@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  # NOTE: run it
   architect: giantswarm/architect@dev:app-configmap-secret
 
 workflows:
