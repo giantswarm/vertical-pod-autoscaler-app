@@ -22,11 +22,11 @@ workflows:
           app_catalog: "giantswarm-playground-test-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
-          configmap_name: "vertical-pod-autoscaler"
-          configmap_path: "config/vertical-pod-autoscaler.yaml"
           app_collection_repo: "aws-app-collection"
           disable_force_upgrade: true
           unique: "true"
+          user_configmap_name: "vertical-pod-autoscaler"
+          user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
             - playground-catalog
           filters:
@@ -40,10 +40,10 @@ workflows:
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "azure-app-collection"
-          configmap_name: "vertical-pod-autoscaler"
-          configmap_path: "config/vertical-pod-autoscaler.yaml"
           disable_force_upgrade: true
           unique: "true"
+          user_configmap_name: "vertical-pod-autoscaler"
+          user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
             - playground-catalog
           filters:
@@ -59,10 +59,10 @@ workflows:
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "kvm-app-collection"
-          configmap_name: "vertical-pod-autoscaler"
-          configmap_path: "config/vertical-pod-autoscaler.yaml"
           disable_force_upgrade: true
           unique: "true"
+          user_configmap_name: "vertical-pod-autoscaler"
+          user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
             - playground-catalog
           filters:
