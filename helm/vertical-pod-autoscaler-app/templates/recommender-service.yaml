@@ -1,9 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "vpa.fullname" . }}-admission-controller-monitoring
+  name: {{ include "vpa.fullname" . }}-recommender
   labels:
-    app.kubernetes.io/component: admission-controller
     {{- include "vpa.labels" . | nindent 4 }}
     giantswarm.io/monitoring: "true"
   annotations:
@@ -16,5 +15,5 @@ spec:
     port: metrics
     targetPort: metrics
   selector:
-    app.kubernetes.io/component: admission-controller
+    app.kubernetes.io/component: recommender
     {{- include "vpa.selectorLabels" . | nindent 4 }}

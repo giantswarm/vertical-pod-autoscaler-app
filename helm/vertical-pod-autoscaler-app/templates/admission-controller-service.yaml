@@ -6,10 +6,18 @@ metadata:
   labels:
     app.kubernetes.io/component: admission-controller
     {{- include "vpa.labels" . | nindent 4 }}
+    giantswarm.io/monitoring: "true"
+  annotations:
+    giantswarm.io/monitoring-path: "/metrics"
+    giantswarm.io/monitoring-port: metrics
 spec:
   ports:
     - port: 443
-      targetPort: 8000
+      name: http
+      targetPort: http
+    - name: metrics
+      port: metrics
+      targetPort: metrics
   selector:
     app.kubernetes.io/component: admission-controller
     {{- include "vpa.selectorLabels" . | nindent 4 }}
