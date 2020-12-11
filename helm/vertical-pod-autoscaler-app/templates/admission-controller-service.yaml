@@ -16,7 +16,7 @@ spec:
       name: http
       targetPort: http
     - name: metrics
-      port: metrics
+      port: 8944
       targetPort: metrics
   selector:
     app.kubernetes.io/component: admission-controller
