@@ -12,7 +12,7 @@ spec:
   clusterIP: None
   ports:
   - name: metrics
-    port: metrics
+    port: 8942
     targetPort: metrics
   selector:
     app.kubernetes.io/component: recommender
