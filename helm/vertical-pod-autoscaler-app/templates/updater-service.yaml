@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: {{ include "vpa.fullname" . }}-updater
   labels:
+    app.kubernetes.io/component: updater
     {{- include "vpa.labels" . | nindent 4 }}
     giantswarm.io/monitoring: "true"
   annotations:
     giantswarm.io/monitoring-path: "/metrics"
-    giantswarm.io/monitoring-port: metrics
+    giantswarm.io/monitoring-port: "8943"
 spec:
   clusterIP: None
   ports:
