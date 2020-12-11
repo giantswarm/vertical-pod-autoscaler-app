@@ -1,24 +1,19 @@
-{{- if .Values.admissionController.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: vpa-webhook
+  name: {{ include "vpa.fullname" . }}-updater
   labels:
-    app.kubernetes.io/component: admission-controller
     {{- include "vpa.labels" . | nindent 4 }}
     giantswarm.io/monitoring: "true"
   annotations:
     giantswarm.io/monitoring-path: "/metrics"
     giantswarm.io/monitoring-port: metrics
 spec:
+  clusterIP: None
   ports:
-    - port: 443
-      name: http
-      targetPort: http
-    - name: metrics
-      port: metrics
-      targetPort: metrics
+  - name: metrics
+    port: metrics
+    targetPort: metrics
   selector:
-    app.kubernetes.io/component: admission-controller
+    app.kubernetes.io/component: updater
     {{- include "vpa.selectorLabels" . | nindent 4 }}
-{{- end }}

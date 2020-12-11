@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Moved monitoring labels and annotations to monitoring services
+
 ## [1.0.0] - 2020-11-27
 
 ### Added
