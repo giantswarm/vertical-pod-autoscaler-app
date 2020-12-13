@@ -9,7 +9,7 @@ metadata:
     giantswarm.io/monitoring: "true"
   annotations:
     giantswarm.io/monitoring-path: "/metrics"
-    giantswarm.io/monitoring-port: metrics
+    giantswarm.io/monitoring-port: "8944"
 spec:
   ports:
     - port: 443
