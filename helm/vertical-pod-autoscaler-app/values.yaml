@@ -35,6 +35,8 @@ recommender:
     pod-recommendation-min-cpu-millicores: 15
     pod-recommendation-min-memory-mb: 100
   replicaCount: 1
+  # recommender.maxUnavailable -- This is the max unavailable setting for the pod disruption budget
+  maxUnavailable: 1
   image:
     # recommender.image.name -- The location of the recommender image
     name: giantswarm/vpa-recommender
@@ -68,6 +70,8 @@ updater:
   # updater.extraArgs -- A key-value map of flags to pass to the updater
   extraArgs: {}
   replicaCount: 1
+  # updater.maxUnavailable -- This is the max unavailable setting for the pod disruption budget
+  maxUnavailable: 1
   image:
     # updater.image.name -- The location of the updater image
     name: giantswarm/vpa-updater
@@ -102,12 +106,14 @@ admissionController:
   generateCertificate: true
   certGen:
     image:
-      # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
+      # admissionController.certGen.image.name -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
       name: giantswarm/vpa-certgen-ci-images
-      # admissionController.certGen.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
-      pullPolicy: IfNotPresent
-      # admissionController.certGen.image.tag --  An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
+      # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.name image. Only used if admissionController.generateCertificate is true
       tag: v11-alpine
+      # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
+      pullPolicy: IfNotPresent
+    # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
+    env: {}
   # admissionController.cleanupOnDelete -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
   cleanupOnDelete: true
   replicaCount: 1
