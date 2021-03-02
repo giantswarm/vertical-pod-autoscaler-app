@@ -7,3 +7,13 @@ name: vertical-pod-autoscaler-app
 sources:
 - https://github.com/kubernetes/autoscaler
 version: [[ .Version ]]
+annotations:
+  application.giantswarm.io/owners: |
+    - catalog: control-plane-catalog
+      team: atlas
+    - catalog: control-plane-test-catalog
+      team: atlas
+    - catalog: giantswarm-playground
+      team: halo
+    - catalog: giantswarm-playground-test
+      team: halo
