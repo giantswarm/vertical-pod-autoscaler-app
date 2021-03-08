@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@0.18.0
+  architect: giantswarm/architect@2.2.0
 
 workflows:
   package-and-push-chart-on-tag:
@@ -35,7 +35,6 @@ workflows:
           app_namespace: "giantswarm"
           app_collection_repo: "aws-app-collection"
           disable_force_upgrade: true
-          unique: "true"
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
@@ -54,7 +53,6 @@ workflows:
           app_namespace: "giantswarm"
           app_collection_repo: "azure-app-collection"
           disable_force_upgrade: true
-          unique: "true"
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
@@ -73,7 +71,6 @@ workflows:
           app_namespace: "giantswarm"
           app_collection_repo: "kvm-app-collection"
           disable_force_upgrade: true
-          unique: "true"
           user_configmap_name: "vertical-pod-autoscaler"
           user_configmap_path: "config/vertical-pod-autoscaler.yaml"
           requires:
