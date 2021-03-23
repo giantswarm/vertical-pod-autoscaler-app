@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `application.giantswarm.io/owners` annotation to Chart.yaml for routing
 alerts.
 
+### Changed
+
+- Upgrade vertical-pod-autoscaler from 0.8.0 to 0.9.2
+  - https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.9.2
+  - https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.9.0
+  - https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.8.1
+
 ## [1.0.3] - 2020-12-13
 
 ### Fixed
