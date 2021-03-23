@@ -32,6 +32,18 @@ helm repo add fairwinds-stable https://charts.fairwinds.com/stable
 helm install vpa fairwinds-stable/vpa --namespace vpa --create-namespace
 ```
 
+## Utilize Prometheus for History
+
+In order to utilize prometheus for recommender history, you will need to pass some extra flags to the recommender. If you use prometheus operator installed in the `prometheus-operator` namespace, these values will do the trick.
+
+```
+recommender:
+  extraArgs:
+    prometheus-address: |
+      http://prometheus-operator-prometheus.prometheus-operator.svc.cluster.local:9090
+    storage: prometheus
+```
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -47,6 +59,7 @@ helm install vpa fairwinds-stable/vpa --namespace vpa --create-namespace
 | recommender.enabled | bool | `true` | If true, the vpa recommender component will be installed. |
 | recommender.extraArgs | object | `{"pod-recommendation-min-cpu-millicores":15,"pod-recommendation-min-memory-mb":100,"v":"4"}` | A set of key-value flags to be passed to the recommender |
 | recommender.replicaCount | int | `1` |  |
+| recommender.maxUnavailable | int | `1` | This is the max unavailable setting for the pod disruption budget |
 | recommender.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-recommender"` | The location of the recommender image |
 | recommender.image.pullPolicy | string | `"Always"` | The pull policy for the recommender image. Recommend not changing this |
 | recommender.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
@@ -61,6 +74,7 @@ helm install vpa fairwinds-stable/vpa --namespace vpa --create-namespace
 | updater.enabled | bool | `true` | If true, the updater component will be deployed |
 | updater.extraArgs | object | `{}` | A key-value map of flags to pass to the updater |
 | updater.replicaCount | int | `1` |  |
+| updater.maxUnavailable | int | `1` | This is the max unavailable setting for the pod disruption budget |
 | updater.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-updater"` | The location of the updater image |
 | updater.image.pullPolicy | string | `"Always"` | The pull policy for the updater image. Recommend not changing this |
 | updater.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
@@ -77,6 +91,7 @@ helm install vpa fairwinds-stable/vpa --namespace vpa --create-namespace
 | admissionController.certGen.image.repository | string | `"quay.io/reactiveops/ci-images"` | An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true |
 | admissionController.certGen.image.tag | string | `"v11-alpine"` | An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true |
 | admissionController.certGen.image.pullPolicy | string | `"Always"` | The pull policy for the certgen image. Recommend not changing this |
+| admissionController.certGen.env | object | `{}` | Additional environment variables to be added to the certgen container. Format is KEY: Value format |
 | admissionController.cleanupOnDelete | bool | `true` | If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller |
 | admissionController.replicaCount | int | `1` |  |
 | admissionController.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-admission-controller"` | The location of the vpa admission controller image |

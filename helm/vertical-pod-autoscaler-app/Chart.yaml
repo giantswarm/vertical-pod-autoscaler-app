@@ -1,11 +1,14 @@
-apiVersion: v1
-appVersion: 0.8.0
-description: A Helm chart for vertical-pod-autoscaler
+apiVersion: v2
+appVersion: 0.9.2
+description: A Helm chart for Kubernetes Vertical Pod Autoscaler
 engine: gotpl
 home: https://github.com/giantswarm/vertical-pod-autoscaler-app
+maintainers:
+- name: sudermanjr
 name: vertical-pod-autoscaler-app
 sources:
 - https://github.com/kubernetes/autoscaler
+type: application
 version: [[ .Version ]]
 annotations:
   application.giantswarm.io/owners: |
