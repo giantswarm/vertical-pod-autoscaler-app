@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-03-23
+
 ### Added
 
 - Add `application.giantswarm.io/owners` annotation to Chart.yaml for routing
@@ -43,7 +45,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.3...v1.1.0
 [1.0.3]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.0...v1.0.1
