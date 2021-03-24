@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@2.2.0
+  architect: giantswarm/architect@2.4.1
 
 workflows:
   package-and-push-chart-on-tag:
@@ -24,6 +24,24 @@ workflows:
           chart: "vertical-pod-autoscaler-app"
           # Trigger job on git tag.
           filters:
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-app-collection:
+          context: architect
+          name: shared-app-collection
+          app_catalog: "control-plane-catalog"
+          app_name: "vertical-pod-autoscaler-app"
+          app_namespace: "giantswarm"
+          app_collection_repo: "shared-app-collection"
+          disable_force_upgrade: true
+          user_configmap_name: "vertical-pod-autoscaler"
+          user_configmap_path: "config/vertical-pod-autoscaler.yaml"
+          requires:
+            - control-plane-catalog
+          filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /^v.*/
 
