@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Set updated namespace so the updater can find the lease.
+
 ## [1.1.0] - 2021-03-23
 
 ### Added

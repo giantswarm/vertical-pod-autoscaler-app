@@ -48,6 +48,9 @@ spec:
             - --{{ $key }}={{ $value }}
           {{- end }}
           {{- end }}
+          env:
+          - name: NAMESPACE
+            value: {{ .Release.Namespace }}
           livenessProbe:
             failureThreshold: 6
             httpGet:
