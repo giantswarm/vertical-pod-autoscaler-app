@@ -53,8 +53,8 @@ spec:
       serviceAccountName: {{ include "vpa.fullname" . }}-cleanup
       containers:
       - name: cleanup
-        {{- if (.Values.Installation) }}
-        image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
+        {{- if .Values.isManagementCluster }}
+        image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
         {{ else }}
         image: "{{ .Values.image.registry }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
         {{- end }}
