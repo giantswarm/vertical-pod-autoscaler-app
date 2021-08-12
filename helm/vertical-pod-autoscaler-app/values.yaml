@@ -143,3 +143,7 @@ admissionController:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+
+isManagementCluster: false
+registry:
+  domain: docker.io

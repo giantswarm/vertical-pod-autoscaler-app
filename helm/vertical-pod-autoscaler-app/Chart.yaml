@@ -20,3 +20,4 @@ annotations:
       team: halo
     - catalog: giantswarm-playground-test
       team: halo
+  config.giantswarm.io/version: 1.x.x

@@ -36,8 +36,8 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.recommender.securityContext | nindent 12 }}
-          {{- if (.Values.Installation) }}
-          image: "{{ .Values.Installation.V1.Registry.Domain }}/{{ .Values.recommender.image.name }}:{{ .Values.recommender.image.tag  | default .Chart.AppVersion }}"
+          {{- if .Values.isManagementCluster }}
+          image: "{{ .Values.registry.domain }}/{{ .Values.recommender.image.name }}:{{ .Values.recommender.image.tag  | default .Chart.AppVersion }}"
           {{ else }}
           image: "{{ .Values.image.registry }}/{{ .Values.recommender.image.name }}:{{ .Values.recommender.image.tag | default .Chart.AppVersion }}"
           {{- end }}
