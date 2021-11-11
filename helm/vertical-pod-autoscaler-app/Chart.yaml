@@ -11,13 +11,5 @@ sources:
 type: application
 version: [[ .Version ]]
 annotations:
-  application.giantswarm.io/owners: |
-    - catalog: control-plane-catalog
-      team: atlas
-    - catalog: control-plane-test-catalog
-      team: atlas
-    - catalog: giantswarm-playground
-      team: halo
-    - catalog: giantswarm-playground-test
-      team: halo
+  application.giantswarm.io/team: "atlas"
   config.giantswarm.io/version: 1.x.x
