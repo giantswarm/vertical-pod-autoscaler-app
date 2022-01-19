@@ -7,7 +7,7 @@ workflows:
     jobs:
       - architect/push-to-app-catalog:
           context: "architect"
-          name: playground-catalog
+          name: push-to-playground-catalog
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
           chart: "vertical-pod-autoscaler-app"
@@ -18,7 +18,7 @@ workflows:
 
       - architect/push-to-app-catalog:
           context: "architect"
-          name: control-plane-catalog
+          name: push-to-control-plane-catalog
           app_catalog: "control-plane-catalog"
           app_catalog_test: "control-plane-test-catalog"
           chart: "vertical-pod-autoscaler-app"
@@ -29,14 +29,14 @@ workflows:
 
       - architect/push-to-app-collection:
           context: architect
-          name: shared-app-collection
+          name: push-to-shared-app-collection
           app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "shared-app-collection"
           disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
@@ -45,14 +45,14 @@ workflows:
 
       - architect/push-to-app-collection:
           context: architect
-          name: aws-app-collection
+          name: push-to-aws-app-collection
           app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "aws-app-collection"
           disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
@@ -61,14 +61,14 @@ workflows:
 
       - architect/push-to-app-collection:
           context: architect
-          name: azure-app-collection
+          name: push-to-azure-app-collection
           app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "azure-app-collection"
           disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
@@ -77,30 +77,46 @@ workflows:
 
       - architect/push-to-app-collection:
           context: architect
-          name: kvm-app-collection
+          name: push-to-kvm-app-collection
           app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "kvm-app-collection"
           disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v.*/
-              
+
       - architect/push-to-app-collection:
           context: architect
-          name: vmware-app-collection
+          name: push-to-openstack-app-collection
+          app_catalog: "control-plane-catalog"
+          app_name: "vertical-pod-autoscaler-app"
+          app_namespace: "giantswarm"
+          app_collection_repo: "openstack-app-collection"
+          disable_force_upgrade: true
+          requires:
+            - push-to-control-plane-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+     
+      - architect/push-to-app-collection:
+          context: architect
+          name: push-to-vmware-app-collection
           app_catalog: "control-plane-catalog"
           app_name: "vertical-pod-autoscaler-app"
           app_namespace: "giantswarm"
           app_collection_repo: "vmware-app-collection"
           disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
