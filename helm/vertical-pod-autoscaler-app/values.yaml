@@ -132,7 +132,7 @@ admissionController:
       repository: giantswarm/vpa-certgen-ci-images
       # admissionController.cleanupOnDelete.image.tag -- The image tag to use for the admission controller cleanup image
       tag: v11-alpine
-  # admissionController.replicaCount -- The amount admission-controller pods which should run. 
+  # admissionController.replicaCount -- The amount admission-controller pods which should run
   replicaCount: 2
   # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
   podDisruptionBudget:
