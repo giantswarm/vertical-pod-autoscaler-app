@@ -72,9 +72,9 @@ updater:
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
   extraArgs:
-    #update.extraArgs.min-replicas -- Minimum number of replicas to perform update
+    # update.extraArgs.min-replicas -- Minimum number of replicas to perform update
     min-replicas: 1
-    #update.extraArgs.v -- Verbosity level for updater
+    # update.extraArgs.v -- Verbosity level for updater
     v: 2
   replicaCount: 1
   # updater.podDisruptionBudget -- This is the setting for the pod disruption budget
