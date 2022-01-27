@@ -71,7 +71,11 @@ updater:
   # updater.enabled -- If true, the updater component will be deployed
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
-  extraArgs: {}
+  extraArgs:
+    #update.extraArgs.min-replicas -- Minimum number of replicas to perform update
+    min-replicas: 1
+    #update.extraArgs.v -- Verbosity level for updater
+    v: 2
   replicaCount: 1
   # updater.podDisruptionBudget -- This is the setting for the pod disruption budget
   podDisruptionBudget: {}
@@ -105,7 +109,7 @@ updater:
 
 admissionController:
   # admissionController.enabled -- If true, will install the admission-controller component of vpa
-  enabled: false
+  enabled: true
   # admissionController.generateCertificate -- If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook
   generateCertificate: true
   certGen:
@@ -120,10 +124,12 @@ admissionController:
     env: {}
   # admissionController.cleanupOnDelete -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
   cleanupOnDelete: true
-  replicaCount: 1
+  # admissionController.replicaCount -- The amount admission-controller pods which should run.
+  replicaCount: 2
   # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
-  podDisruptionBudget: {}
+  podDisruptionBudget:
     # maxUnavailable: 1
+    maxAvailable: 1
   image:
     # admissionController.image.name -- The name of the vpa admission controller image
     name: giantswarm/vpa-admission-controller
