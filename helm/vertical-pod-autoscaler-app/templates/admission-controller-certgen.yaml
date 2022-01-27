@@ -9,17 +9,17 @@ metadata:
     "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation,hook-failed"
     "helm.sh/hook-weight": "-100"
   name: {{ include "vpa.fullname" . }}-certgen
+  labels:
+    app.kubernetes.io/component: certgen
+    {{- include "vpa.labels" . | nindent 4 }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: {{ include "vpa.fullname" . }}-certgen
   labels:
-    app.kubernetes.io/name: {{ include "vpa.name" . }}
-    helm.sh/chart: {{ include "vpa.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: certgen
+    {{- include "vpa.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
     "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation,hook-failed"
@@ -38,11 +38,8 @@ kind: Job
 metadata:
   name: {{ include "vpa.fullname" . }}-certgen
   labels:
-    app.kubernetes.io/name: {{ include "vpa.name" . }}
-    helm.sh/chart: {{ include "vpa.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: certgen
+    {{- include "vpa.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
     "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation"
@@ -52,17 +49,14 @@ spec:
     metadata:
       name: {{ include "vpa.fullname" . }}-certgen
       labels:
-        app.kubernetes.io/name: {{ include "vpa.name" . }}
-        helm.sh/chart: {{ include "vpa.chart" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/managed-by: {{ .Release.Service }}
         app.kubernetes.io/component: certgen
+        {{- include "vpa.labels" . | nindent 8 }}
     spec:
       restartPolicy: Never
       serviceAccountName: {{ include "vpa.fullname" . }}-certgen
       containers:
       - name: certgen
-        image: "{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag | default .Chart.AppVersion }}"
+        image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
         command: ["bash"]
         args:
           - -c

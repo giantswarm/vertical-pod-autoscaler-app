@@ -14,6 +14,10 @@ rbac:
   # rbac.create -- If true, then rbac resources (clusterroles and clusterrolebindings) will be created for the selected components.
   create: true
 
+## Required for interchangability of image registry used for China
+image:
+  registry: quay.io
+
 serviceAccount:
   # serviceAccount.create -- Specifies whether a service account should be created for each component
   create: true
@@ -38,9 +42,9 @@ recommender:
     # maxUnavailable: 1
   image:
     # recommender.image.repository -- The location of the recommender image
-    repository: k8s.gcr.io/autoscaling/vpa-recommender
+    repository: giantswarm/vpa-recommender
     # recommender.image.pullPolicy -- The pull policy for the recommender image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # recommender.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # recommender.podAnnotations -- Annotations to add to the recommender pod
@@ -67,16 +71,20 @@ updater:
   # updater.enabled -- If true, the updater component will be deployed
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
-  extraArgs: {}
+  extraArgs:
+    # update.extraArgs.min-replicas -- Minimum number of replicas to perform update
+    min-replicas: 1
+    # update.extraArgs.v -- Verbosity level for updater
+    v: 2
   replicaCount: 1
   # updater.podDisruptionBudget -- This is the setting for the pod disruption budget
   podDisruptionBudget: {}
     # maxUnavailable: 1
   image:
     # updater.image.repository -- The location of the updater image
-    repository: k8s.gcr.io/autoscaling/vpa-updater
+    repository: giantswarm/vpa-updater
     # updater.image.pullPolicy -- The pull policy for the updater image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # updater.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # updater.podAnnotations -- Annotations to add to the updater pod
@@ -101,17 +109,17 @@ updater:
 
 admissionController:
   # admissionController.enabled -- If true, will install the admission-controller component of vpa
-  enabled: false
+  enabled: true
   # admissionController.generateCertificate -- If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook
   generateCertificate: true
   certGen:
     image:
       # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
-      repository: quay.io/reactiveops/ci-images
+      repository: giantswarm/vpa-certgen-ci-images
       # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
       tag: v11-alpine
       # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
-      pullPolicy: Always
+      pullPolicy: IfNotPresent
       # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
     env: {}
     # admissionController.certGen.resources -- The resources block for the certgen pod
@@ -121,18 +129,20 @@ admissionController:
     enabled: true
     image:
       # admissionController.cleanupOnDelete.image.repository -- The repository of the post-delete image
-      repository: quay.io/reactiveops/ci-images
+      repository: giantswarm/vpa-certgen-ci-images
       # admissionController.cleanupOnDelete.image.tag -- The image tag to use for the admission controller cleanup image
       tag: v11-alpine
-  replicaCount: 1
+  # admissionController.replicaCount -- The amount admission-controller pods which should run. 
+  replicaCount: 2
   # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
-  podDisruptionBudget: {}
+  podDisruptionBudget:
     # maxUnavailable: 1
+    maxAvailable: 1
   image:
     # admissionController.image.repository -- The location of the vpa admission controller image
-    repository: k8s.gcr.io/autoscaling/vpa-admission-controller
+    repository: giantswarm/vpa-admission-controller
     # admissionController.image.pullPolicy -- The pull policy for the admission controller image. Recommend not changing this
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
     # admissionController.image.tag -- Overrides the image tag whose default is the chart appVersion
     tag: ""
   # admissionController.podAnnotations -- Annotations to add to the admission controller pod
@@ -154,3 +164,7 @@ admissionController:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+
+isManagementCluster: false
+registry:
+  domain: docker.io

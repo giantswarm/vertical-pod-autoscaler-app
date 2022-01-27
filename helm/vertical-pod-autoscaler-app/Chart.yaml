@@ -1,8 +1,16 @@
 apiVersion: v2
-name: vpa
-description: A Helm chart for Kubernetes Vertical Pod Autoscaler
-type: application
-version: 1.0.0
 appVersion: 0.9.2
+description: A Helm chart for Kubernetes Vertical Pod Autoscaler
+home: https://github.com/giantswarm/vertical-pod-autoscaler-app
 maintainers:
-  - name: sudermanjr
+- name: sudermanjr
+name: vertical-pod-autoscaler-app
+sources:
+- https://github.com/kubernetes/autoscaler
+type: application
+version: [[ .Version ]]
+annotations:
+  repository: https://github.com/FairwindsOps/charts/tree/master/stable/vpa
+  version: fb2ccec4228c26e366bd1ac96aade056f3db0151
+  application.giantswarm.io/team: "atlas"
+  config.giantswarm.io/version: 1.x.x

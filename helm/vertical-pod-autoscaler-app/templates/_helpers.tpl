@@ -34,12 +34,11 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "vpa.labels" -}}
-helm.sh/chart: {{ include "vpa.chart" . }}
 {{ include "vpa.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+giantswarm.io/service-type: "managed"
+helm.sh/chart: {{ include "vpa.chart" . }}
 {{- end }}
 
 {{/*
