@@ -6,32 +6,33 @@ workflows:
   package-and-push-chart-on-tag:
     jobs:
       - architect/push-to-app-catalog:
-          context: "architect"
+          context: architect
           name: playground-catalog
-          app_catalog: "giantswarm-playground-catalog"
-          app_catalog_test: "giantswarm-playground-test-catalog"
-          chart: "vertical-pod-autoscaler-app"
+          app_catalog: giantswarm-playground-catalog
+          app_catalog_test: giantswarm-playground-test-catalog
+          chart: vertical-pod-autoscaler-app
           # Trigger job on git tag.
           filters:
             tags:
               only: /^v.*/
 
       - architect/push-to-app-catalog:
-          context: "architect"
+          context: architect
           name: control-plane-catalog
-          app_catalog: "control-plane-catalog"
-          app_catalog_test: "control-plane-test-catalog"
-          chart: "vertical-pod-autoscaler-app"
+          app_catalog: control-plane-catalog
+          app_catalog_test: control-plane-test-catalog
+          chart: vertical-pod-autoscaler-app
           # Trigger job on git tag.
           filters:
             tags:
               only: /^v.*/
 
       - architect/push-to-app-catalog:
-          name: "package and push vertical-pod-autoscaler-app chart"
-          app_catalog: "default-catalog"
-          app_catalog_test: "default-test-catalog"
-          chart: "vertical-pod-autoscaler-app"
+          context: architect
+          name: default-catalog
+          app_catalog: default-catalog
+          app_catalog_test: default-test-catalog
+          chart: vertical-pod-autoscaler-app
           # Trigger job on git tag.
           filters:
             tags:
@@ -40,10 +41,10 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: shared-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "shared-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: shared-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
@@ -56,10 +57,10 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: aws-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "aws-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: aws-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
@@ -72,10 +73,10 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: azure-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "azure-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: azure-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
@@ -88,10 +89,10 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: kvm-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "kvm-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: kvm-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
@@ -104,10 +105,10 @@ workflows:
       - architect/push-to-app-collection:
           context: architect
           name: openstack-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "openstack-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: openstack-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
@@ -116,14 +117,14 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-     
+
       - architect/push-to-app-collection:
           context: architect
           name: vmware-app-collection
-          app_catalog: "control-plane-catalog"
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: "giantswarm"
-          app_collection_repo: "vmware-app-collection"
+          app_catalog: control-plane-catalog
+          app_name: vertical-pod-autoscaler-app
+          app_namespace: giantswarm
+          app_collection_repo: vmware-app-collection
           disable_force_upgrade: true
           requires:
             - control-plane-catalog
