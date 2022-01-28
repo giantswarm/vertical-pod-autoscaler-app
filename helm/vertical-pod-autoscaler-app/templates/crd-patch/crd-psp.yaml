@@ -1,15 +1,16 @@
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: {{ include "kube-prometheus-stack.crdInstall" . }}
+  name: {{ include "vpa.fullname" . }}-crd-patch
   annotations:
     # create hook dependencies in the right order
     "helm.sh/hook-weight": "-6"
-    {{- include "kube-prometheus-stack.CRDInstallAnnotations" . | nindent 4 }}
+    # run only on upgrade
+    "helm.sh/hook": "pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
   labels:
-    app.kubernetes.io/component: {{ include "kube-prometheus-stack.crdInstall" . | quote }}
-    {{- include "kube-prometheus-stack.selectorLabels" . | nindent 4 }}
-    role: {{ include "kube-prometheus-stack.CRDInstallSelector" . | quote }}
+    app.kubernetes.io/component: {{ include "vpa.fullname" . }}-crd-patch
+    {{- include "vpa.selectorLabels" . | nindent 4 }}
 spec:
   privileged: false
   runAsUser:
