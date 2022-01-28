@@ -21,13 +21,6 @@ rules:
   - create
   - delete
 - apiGroups:
-  - apps
-  resources:
-  - deployments
-  verbs:
-  - list
-  - delete
-- apiGroups:
   - application.giantswarm.io
   resources:
   - charts
