@@ -2,6 +2,7 @@
 {{- if .Values.admissionController.generateCertificate }}
 apiVersion: v1
 kind: ServiceAccount
+automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
 metadata:
   annotations:
     "helm.sh/hook": "pre-install,pre-upgrade"
@@ -12,7 +13,7 @@ metadata:
     app.kubernetes.io/component: certgen
     {{- include "vpa.labels" . | nindent 4 }}
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: {{ include "vpa.fullname" . }}-certgen
@@ -55,11 +56,7 @@ spec:
       serviceAccountName: {{ include "vpa.fullname" . }}-certgen
       containers:
       - name: certgen
-        {{- if .Values.isManagementCluster }}
-        image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
-        {{ else }}
-        image: "{{ .Values.image.registry }}/{{ .Values.admissionController.certGen.image.name }}:{{ .Values.admissionController.certGen.image.tag }}"
-        {{- end }}
+        image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
         command: ["bash"]
         args:
           - -c
@@ -115,5 +112,12 @@ spec:
             # Clean up after we're done.
             echo "Deleting ${TMP_DIR}."
             rm -rf ${TMP_DIR}
+        env:
+          {{- range $key, $value := .Values.admissionController.certGen.env }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end }}
+        resources:
+            {{- toYaml .Values.admissionController.certGen.resources | nindent 10 }}
 {{- end }}
 {{- end }}

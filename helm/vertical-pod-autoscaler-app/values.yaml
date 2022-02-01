@@ -25,6 +25,8 @@ serviceAccount:
   annotations: {}
   # serviceAccount.name -- The base name of the service account to use (appended with the component). If not set and create is true, a name is generated using the fullname template and appended for each component
   name: ""
+  # serviceAccount.automountServiceAccountToken -- Automount API credentials for the Service Account
+  automountServiceAccountToken: true
 
 recommender:
   # recommender.enabled -- If true, the vpa recommender component will be installed.
@@ -35,11 +37,12 @@ recommender:
     pod-recommendation-min-cpu-millicores: 15
     pod-recommendation-min-memory-mb: 100
   replicaCount: 1
-  # recommender.maxUnavailable -- This is the max unavailable setting for the pod disruption budget
-  maxUnavailable: 1
+  # recommender.podDisruptionBudget -- This is the setting for the pod disruption budget
+  podDisruptionBudget: {}
+    # maxUnavailable: 1
   image:
-    # recommender.image.name -- The location of the recommender image
-    name: giantswarm/vpa-recommender
+    # recommender.image.repository -- The location of the recommender image
+    repository: giantswarm/vpa-recommender
     # recommender.image.pullPolicy -- The pull policy for the recommender image. Recommend not changing this
     pullPolicy: IfNotPresent
     # recommender.image.tag -- Overrides the image tag whose default is the chart appVersion
@@ -68,13 +71,18 @@ updater:
   # updater.enabled -- If true, the updater component will be deployed
   enabled: true
   # updater.extraArgs -- A key-value map of flags to pass to the updater
-  extraArgs: {}
+  extraArgs:
+    # update.extraArgs.min-replicas -- Minimum number of replicas to perform update
+    min-replicas: 1
+    # update.extraArgs.v -- Verbosity level for updater
+    v: 2
   replicaCount: 1
-  # updater.maxUnavailable -- This is the max unavailable setting for the pod disruption budget
-  maxUnavailable: 1
+  # updater.podDisruptionBudget -- This is the setting for the pod disruption budget
+  podDisruptionBudget: {}
+    # maxUnavailable: 1
   image:
-    # updater.image.name -- The location of the updater image
-    name: giantswarm/vpa-updater
+    # updater.image.repository -- The location of the updater image
+    repository: giantswarm/vpa-updater
     # updater.image.pullPolicy -- The pull policy for the updater image. Recommend not changing this
     pullPolicy: IfNotPresent
     # updater.image.tag -- Overrides the image tag whose default is the chart appVersion
@@ -101,25 +109,38 @@ updater:
 
 admissionController:
   # admissionController.enabled -- If true, will install the admission-controller component of vpa
-  enabled: false
+  enabled: true
   # admissionController.generateCertificate -- If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook
   generateCertificate: true
   certGen:
     image:
-      # admissionController.certGen.image.name -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
-      name: giantswarm/vpa-certgen-ci-images
-      # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.name image. Only used if admissionController.generateCertificate is true
+      # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
+      repository: giantswarm/vpa-certgen-ci-images
+      # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
       tag: v11-alpine
       # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
       pullPolicy: IfNotPresent
-    # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
+      # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
     env: {}
-  # admissionController.cleanupOnDelete -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
-  cleanupOnDelete: true
-  replicaCount: 1
+    # admissionController.certGen.resources -- The resources block for the certgen pod
+    resources: {}
+  # admissionController.cleanupOnDelete.enabled -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
+  cleanupOnDelete:
+    enabled: true
+    image:
+      # admissionController.cleanupOnDelete.image.repository -- The repository of the post-delete image
+      repository: giantswarm/vpa-certgen-ci-images
+      # admissionController.cleanupOnDelete.image.tag -- The image tag to use for the admission controller cleanup image
+      tag: v11-alpine
+  # admissionController.replicaCount -- The amount admission-controller pods which should run
+  replicaCount: 2
+  # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
+  podDisruptionBudget:
+    # maxUnavailable: 1
+    maxAvailable: 1
   image:
-    # admissionController.image.name -- The name of the vpa admission controller image
-    name: giantswarm/vpa-admission-controller
+    # admissionController.image.repository -- The location of the vpa admission controller image
+    repository: giantswarm/vpa-admission-controller
     # admissionController.image.pullPolicy -- The pull policy for the admission controller image. Recommend not changing this
     pullPolicy: IfNotPresent
     # admissionController.image.tag -- Overrides the image tag whose default is the chart appVersion

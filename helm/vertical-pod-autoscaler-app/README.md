@@ -25,6 +25,19 @@ The admissionController is the only one that poses a stability consideration bec
 
 For more details, please see the values below, and the vertical pod autosclaer documentation.
 
+## *BREAKING* Upgrading from v0.x.x to v1.x.x
+
+In the previus version, when admissionController.cleanupOnDelete flag passed to true, mutatingwebhookconfiguration and the tls secret for the admission controller is removed. There was no chance to pass any image information to start remove process. Now, it could be passed custom image by version 1.0.0.
+
+```
+cleanupOnDelete:
+    enabled: true
+    image:
+      repository: quay.io/reactiveops/ci-images
+      tag: v11-alpine
+
+```
+
 ## Installation
 
 ```bash
@@ -56,11 +69,12 @@ recommender:
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created for each component |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service accounts for each component |
 | serviceAccount.name | string | `""` | The base name of the service account to use (appended with the component). If not set and create is true, a name is generated using the fullname template and appended for each component |
+| serviceAccount.automountServiceAccountToken | bool | `true` | Automount API credentials for the Service Account |
 | recommender.enabled | bool | `true` | If true, the vpa recommender component will be installed. |
 | recommender.extraArgs | object | `{"pod-recommendation-min-cpu-millicores":15,"pod-recommendation-min-memory-mb":100,"v":"4"}` | A set of key-value flags to be passed to the recommender |
 | recommender.replicaCount | int | `1` |  |
-| recommender.maxUnavailable | int | `1` | This is the max unavailable setting for the pod disruption budget |
-| recommender.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-recommender"` | The location of the recommender image |
+| recommender.podDisruptionBudget | object | `{}` | This is the setting for the pod disruption budget |
+| recommender.image.repository | string | `"k8s.gcr.io/autoscaling/vpa-recommender"` | The location of the recommender image |
 | recommender.image.pullPolicy | string | `"Always"` | The pull policy for the recommender image. Recommend not changing this |
 | recommender.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | recommender.podAnnotations | object | `{}` | Annotations to add to the recommender pod |
@@ -74,8 +88,8 @@ recommender:
 | updater.enabled | bool | `true` | If true, the updater component will be deployed |
 | updater.extraArgs | object | `{}` | A key-value map of flags to pass to the updater |
 | updater.replicaCount | int | `1` |  |
-| updater.maxUnavailable | int | `1` | This is the max unavailable setting for the pod disruption budget |
-| updater.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-updater"` | The location of the updater image |
+| updater.podDisruptionBudget | object | `{}` | This is the setting for the pod disruption budget |
+| updater.image.repository | string | `"k8s.gcr.io/autoscaling/vpa-updater"` | The location of the updater image |
 | updater.image.pullPolicy | string | `"Always"` | The pull policy for the updater image. Recommend not changing this |
 | updater.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | updater.podAnnotations | object | `{}` | Annotations to add to the updater pod |
@@ -92,9 +106,13 @@ recommender:
 | admissionController.certGen.image.tag | string | `"v11-alpine"` | An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true |
 | admissionController.certGen.image.pullPolicy | string | `"Always"` | The pull policy for the certgen image. Recommend not changing this |
 | admissionController.certGen.env | object | `{}` | Additional environment variables to be added to the certgen container. Format is KEY: Value format |
-| admissionController.cleanupOnDelete | bool | `true` | If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller |
+| admissionController.certGen.resources | object | `{}` | The resources block for the certgen pod |
+| admissionController.cleanupOnDelete.enabled | bool | `true` | If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller |
+| admissionController.cleanupOnDelete.image.repository | string | `"quay.io/reactiveops/ci-images"` | The repository of the post-delete image |
+| admissionController.cleanupOnDelete.image.tag | string | `"v11-alpine"` | The image tag to use for the admission controller cleanup image |
 | admissionController.replicaCount | int | `1` |  |
-| admissionController.image.repository | string | `"us.gcr.io/k8s-artifacts-prod/autoscaling/vpa-admission-controller"` | The location of the vpa admission controller image |
+| admissionController.podDisruptionBudget | object | `{}` | This is the setting for the pod disruption budget |
+| admissionController.image.repository | string | `"k8s.gcr.io/autoscaling/vpa-admission-controller"` | The location of the vpa admission controller image |
 | admissionController.image.pullPolicy | string | `"Always"` | The pull policy for the admission controller image. Recommend not changing this |
 | admissionController.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | admissionController.podAnnotations | object | `{}` | Annotations to add to the admission controller pod |

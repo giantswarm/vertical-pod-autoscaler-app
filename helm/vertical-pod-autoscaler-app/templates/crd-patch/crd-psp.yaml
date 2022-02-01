@@ -1,0 +1,35 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: {{ include "vpa.fullname" . }}-crd-patch
+  annotations:
+    # create hook dependencies in the right order
+    "helm.sh/hook-weight": "-6"
+    # run only on upgrade
+    "helm.sh/hook": "pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+  labels:
+    app.kubernetes.io/component: {{ include "vpa.fullname" . }}-crd-patch
+    {{- include "vpa.selectorLabels" . | nindent 4 }}
+spec:
+  privileged: false
+  runAsUser:
+    rule: MustRunAsNonRoot
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  volumes:
+  - 'configMap'
+  hostPID: false
+  hostIPC: false
+  hostNetwork: false
+  fsGroup:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  readOnlyRootFilesystem: false

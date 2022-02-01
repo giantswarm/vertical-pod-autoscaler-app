@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add VPA app to default catalog.
 
+### Removed
+
+- Move CRDs to giantswarm/vertical-pod-autoscaler-crd app.
+
 ## [1.2.0] - 2021-08-12
 
 ### Changed
