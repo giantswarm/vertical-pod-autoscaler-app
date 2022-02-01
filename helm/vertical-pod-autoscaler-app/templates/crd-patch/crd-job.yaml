@@ -40,6 +40,6 @@ spec:
           exec 2>&1
 
           namespace=$(kubectl get chart --namespace=giantswarm vertical-pod-autoscaler-crd --output=jsonpath="{.spec.namespace}")
-          kubectl api-resources --api-group=autoscaling.k8s.io -oname|tr '\n' ' '|xargs kubectl patch --record=false -p '{"metadata":{"annotations":{"meta.helm.sh/release-name": "vertical-pod-autoscaler-crd "'"${namespace}"'"},"labels":{"app.kubernetes.io/managed-by": "Helm"}}}' crd
+          kubectl api-resources --api-group=autoscaling.k8s.io -oname|tr '\n' ' '|xargs kubectl patch --record=false -p '{"metadata":{"annotations":{"meta.helm.sh/release-name": "vertical-pod-autoscaler-crd","meta.helm.sh/release-namespace": "'"${namespace}"'"},"labels":{"app.kubernetes.io/managed-by": "Helm"}}}' crd
       restartPolicy: Never
   backoffLimit: 4
