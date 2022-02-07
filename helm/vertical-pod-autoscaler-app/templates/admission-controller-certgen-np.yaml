@@ -15,7 +15,7 @@ spec:
   - {}
   podSelector:
     matchLabels:
-      {{- include "vpa.labels" . | nindent 6 }}
       app.kubernetes.io/component: certgen
+      {{- include "vpa.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Egress

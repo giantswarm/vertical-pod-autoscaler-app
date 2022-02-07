@@ -16,6 +16,6 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/component: admission-controller
-      {{- include "vpa.labels" . | nindent 6 }}
+      {{- include "vpa.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Ingress
