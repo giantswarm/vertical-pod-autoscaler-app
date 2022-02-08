@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1] - 2022-02-08
+
 ### Fixed
 
 - Fix naming of VPA deployments in workload clusters.
@@ -78,7 +80,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/giantswarm/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/giantswarm/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/giantswarm/giantswarm/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/giantswarm/giantswarm/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/giantswarm/giantswarm/compare/v1.2.0...v2.0.0
 [1.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.1.1...v1.2.0
