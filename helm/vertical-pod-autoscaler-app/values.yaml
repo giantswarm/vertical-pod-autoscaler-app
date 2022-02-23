@@ -137,7 +137,7 @@ admissionController:
   # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
   podDisruptionBudget:
     # maxUnavailable: 1
-    maxAvailable: 1
+    minAvailable: 1
   image:
     # admissionController.image.repository -- The location of the vpa admission controller image
     repository: giantswarm/vpa-admission-controller
