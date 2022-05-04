@@ -3,7 +3,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-metrics-reader
+  name: {{ include "vpa.fullname" . }}-metrics-reader
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
@@ -18,7 +18,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-actor
+  name: {{ include "vpa.fullname" . }}-actor
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
@@ -63,7 +63,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-checkpoint-actor
+  name: {{ include "vpa.fullname" . }}-checkpoint-actor
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
@@ -100,7 +100,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-evictioner
+  name: {{ include "vpa.fullname" . }}-evictioner
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
@@ -121,7 +121,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-target-reader
+  name: {{ include "vpa.fullname" . }}-target-reader
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
@@ -164,7 +164,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: vpa-status-reader
+  name: {{ include "vpa.fullname" . }}-status-reader
   labels:
     {{- include "vpa.labels" . | nindent 4 }}
 rules:
