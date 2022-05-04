@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Change log-level from default=4 to 3.
+- Rename resources to include release name as prefix and avoid name collision.
 
 ## [2.1.2] - 2022-02-23
 
