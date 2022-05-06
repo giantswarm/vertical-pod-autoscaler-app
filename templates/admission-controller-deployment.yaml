@@ -19,6 +19,9 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
+      {{- with .Values.admissionController.podLabels }}
+          {{- toYaml . | nindent 8 }}
+      {{- end }}
         app.kubernetes.io/component: admission-controller
         {{- include "vpa.selectorLabels" . | nindent 8 }}
     spec:
@@ -38,6 +41,12 @@ spec:
             {{- toYaml .Values.admissionController.securityContext | nindent 12 }}
           image: "{{ .Values.admissionController.image.repository }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.admissionController.image.pullPolicy }}
+          {{- if .Values.admissionController.extraArgs }}
+          args:
+          {{- range $key, $value := .Values.admissionController.extraArgs }}
+            - --{{ $key }}={{ $value }}
+          {{- end }}
+          {{- end }}
           volumeMounts:
             - name: tls-certs
               mountPath: "/etc/tls-certs"
@@ -78,6 +87,10 @@ spec:
         - name: tls-certs
           secret:
             secretName: vpa-tls-certs
+            {{- with .Values.admissionController.tlsSecretKeys }}
+            items:
+              {{- toYaml . | nindent 14 }}
+            {{- end }}
       {{- with .Values.admissionController.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

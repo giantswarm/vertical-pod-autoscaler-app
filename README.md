@@ -65,6 +65,7 @@ recommender:
 | priorityClassName | string | `""` | To set the priorityclass for all pods |
 | nameOverride | string | `""` | A template override for the name |
 | fullnameOverride | string | `""` | A template override for the fullname |
+| podLabels | object | `{}` | Labels to add to all pods |
 | rbac.create | bool | `true` | If true, then rbac resources (clusterroles and clusterrolebindings) will be created for the selected components. |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created for each component |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service accounts for each component |
@@ -78,6 +79,7 @@ recommender:
 | recommender.image.pullPolicy | string | `"Always"` | The pull policy for the recommender image. Recommend not changing this |
 | recommender.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | recommender.podAnnotations | object | `{}` | Annotations to add to the recommender pod |
+| recommender.podLabels | object | `{}` | Labels to add to the recommender pod |
 | recommender.podSecurityContext.runAsNonRoot | bool | `true` |  |
 | recommender.podSecurityContext.runAsUser | int | `65534` |  |
 | recommender.securityContext | object | `{}` | The security context for the containers inside the recommender pod |
@@ -93,6 +95,7 @@ recommender:
 | updater.image.pullPolicy | string | `"Always"` | The pull policy for the updater image. Recommend not changing this |
 | updater.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | updater.podAnnotations | object | `{}` | Annotations to add to the updater pod |
+| updater.podLabels | object | `{}` | Labels to add to the updater pod |
 | updater.podSecurityContext.runAsNonRoot | bool | `true` |  |
 | updater.podSecurityContext.runAsUser | int | `65534` |  |
 | updater.securityContext | object | `{}` | The security context for the containers inside the updater pod |
@@ -101,6 +104,7 @@ recommender:
 | updater.tolerations | list | `[]` |  |
 | updater.affinity | object | `{}` |  |
 | admissionController.enabled | bool | `false` | If true, will install the admission-controller component of vpa |
+| admissionController.extraArgs | object | `{}` | A key-value map of flags to pass to the admissionController |
 | admissionController.generateCertificate | bool | `true` | If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook |
 | admissionController.certGen.image.repository | string | `"quay.io/reactiveops/ci-images"` | An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true |
 | admissionController.certGen.image.tag | string | `"v11-alpine"` | An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true |
@@ -116,10 +120,12 @@ recommender:
 | admissionController.image.pullPolicy | string | `"Always"` | The pull policy for the admission controller image. Recommend not changing this |
 | admissionController.image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion |
 | admissionController.podAnnotations | object | `{}` | Annotations to add to the admission controller pod |
+| admissionController.podLabels | object | `{}` | Labels to add to the admission controller pod |
 | admissionController.podSecurityContext.runAsNonRoot | bool | `true` |  |
 | admissionController.podSecurityContext.runAsUser | int | `65534` |  |
 | admissionController.securityContext | object | `{}` | The security context for the containers inside the admission controller pod |
 | admissionController.resources | object | `{"limits":{"cpu":"200m","memory":"500Mi"},"requests":{"cpu":"50m","memory":"200Mi"}}` | The resources block for the admission controller pod |
+| admissionController.tlsSecretKeys | list | `[]` | The keys in the vpa-tls-certs secret to map in to the admission controller |
 | admissionController.nodeSelector | object | `{}` |  |
 | admissionController.tolerations | list | `[]` |  |
 | admissionController.affinity | object | `{}` |  |
