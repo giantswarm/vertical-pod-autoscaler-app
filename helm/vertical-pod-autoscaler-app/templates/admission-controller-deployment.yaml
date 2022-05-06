@@ -42,14 +42,13 @@ spec:
           image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.image.repository }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
           args:
           - -v=3
-          imagePullPolicy: {{ .Values.admissionController.image.pullPolicy }}
-          args:
-            - --webhook-service: {{ include "vpa.fullname" . }}-webhook
+          - --webhook-service: {{ include "vpa.fullname" . }}-webhook
           {{- if .Values.admissionController.extraArgs }}
           {{- range $key, $value := .Values.admissionController.extraArgs }}
-            - --{{ $key }}={{ $value }}
+          - --{{ $key }}={{ $value }}
           {{- end }}
           {{- end }}
+          imagePullPolicy: {{ .Values.admissionController.image.pullPolicy }}
           volumeMounts:
             - name: tls-certs
               mountPath: "/etc/tls-certs"
