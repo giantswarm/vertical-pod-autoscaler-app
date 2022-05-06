@@ -39,6 +39,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 giantswarm.io/service-type: "managed"
 helm.sh/chart: {{ include "vpa.chart" . }}
+{{- if .Values.podLabels }}
+{{ toYaml .Values.podLabels }}
+{{- end }}
 {{- end }}
 
 {{/*
