@@ -42,7 +42,7 @@ spec:
           image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.image.repository }}:{{ .Values.admissionController.image.tag | default .Chart.AppVersion }}"
           args:
           - -v=3
-          - --webhook-service: {{ include "vpa.fullname" . }}-webhook
+          - --webhook-service={{ include "vpa.fullname" . }}-webhook
           {{- if .Values.admissionController.extraArgs }}
           {{- range $key, $value := .Values.admissionController.extraArgs }}
           - --{{ $key }}={{ $value }}
