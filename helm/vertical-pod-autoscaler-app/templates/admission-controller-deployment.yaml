@@ -88,7 +88,7 @@ spec:
       volumes:
         - name: tls-certs
           secret:
-            secretName: vpa-tls-certs
+            secretName: {{ include "vpa.fullname" . }}-tls-certs
             {{- with .Values.admissionController.tlsSecretKeys }}
             items:
               {{- toYaml . | nindent 14 }}
