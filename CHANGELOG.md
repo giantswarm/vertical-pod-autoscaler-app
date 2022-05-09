@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgrade vertical-pod-autoscaler to 0.10.0
 
+### Fixed
+
+- Fix admission-controller webhook-service name.
+
 ## [2.2.0] - 2022-05-04
 
 ### Changed
