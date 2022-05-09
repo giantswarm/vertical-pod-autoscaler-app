@@ -9,7 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade vertical-pod-autoscaler to 0.10.0
+- Upgrade vertical-pod-autoscaler to [0.10.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.10.0)
+  API changes:
+      Added support for alternative recommenders.
+      Added support for per-VPA Object MinReplicas.
+
+  Other notable changes:
+      Added support for running VPA out of cluster.
+      Use v1 API for storage instead of v1beta2.
+      Allow configuring default update threshold.
+      Use v1 API to register admission webhook.
+
+  Bug fixes:
+      Use correct timestamp for checkpoints.
+      Issues with setting limits.
+      Deploying VPA in different namespaces.
+      Loading history.
+
 
 ### Fixed
 
