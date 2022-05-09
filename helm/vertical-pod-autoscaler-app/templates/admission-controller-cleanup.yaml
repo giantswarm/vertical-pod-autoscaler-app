@@ -66,5 +66,5 @@ spec:
             # From https://github.com/kubernetes/autoscaler/blob/vertical-pod-autoscaler-0.8.0/vertical-pod-autoscaler/pkg/admission-controller/delete-webhook.sh
             echo "Unregistering VPA admission controller webhook"
             kubectl delete -n {{ .Release.Namespace}} mutatingwebhookconfiguration.v1beta1.admissionregistration.k8s.io vpa-webhook-config || true
-            kubectl delete -n {{ .Release.Namespace}} secret vpa-tls-certs || true
+            kubectl delete -n {{ .Release.Namespace}} secret {{ include "vpa.fullname" . }}-tls-certs || true
 {{- end }}
