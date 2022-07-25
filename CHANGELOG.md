@@ -10,13 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade vertical-pod-autoscaler to [0.11.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.11.0)
+
   Potentially breaking change:
+
     Added validation - CPU values will be accepted only with resolution of 1 mCPU, memory with resolution of 1 b
 
   Other changes:
+
     Switch to go 1.16
+
     Admission controller now logs when it fails to start
+
     Increase resolution of admission_latency_seconds metric
+
     Reduce verbosity of some logs
 
 ## [2.4.1] - 2022-07-05
