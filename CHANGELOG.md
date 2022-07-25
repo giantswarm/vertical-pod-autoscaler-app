@@ -12,8 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade vertical-pod-autoscaler to [0.11.0](https://github.com/kubernetes/autoscaler/releases/tag/vertical-pod-autoscaler-0.11.0)
 
   Potentially breaking change:
-
-    Added validation - CPU values will be accepted only with resolution of 1 mCPU, memory with resolution of 1 b
+  - Added validation - CPU values will be accepted only with resolution of 1 mCPU, memory with resolution of 1 b
 
   Other changes:
 
