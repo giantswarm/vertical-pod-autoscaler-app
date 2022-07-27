@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.4.2] - 2022-07-27
 
+- Change default webhook timeout to 5 seconds
+
 ## [2.4.1] - 2022-07-05
 
 ### Fixed
