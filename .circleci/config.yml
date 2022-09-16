@@ -134,19 +134,4 @@ workflows:
             tags:
               only: /^v.*/
 
-      - architect/push-to-app-collection:
-          context: architect
-          name: push-to-capa-app-collection
-          app_catalog: control-plane-catalog
-          app_name: "vertical-pod-autoscaler-app"
-          app_namespace: giantswarm
-          app_collection_repo: "capa-app-collection"
-          disable_force_upgrade: true
-          requires:
-            - control-plane-catalog
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
 
