@@ -9,7 +9,7 @@ name: vertical-pod-autoscaler-app
 sources:
 - https://github.com/kubernetes/autoscaler
 type: application
-version: 1.2.3
+version: [[ .Version ]]
 annotations:
   repository: https://github.com/FairwindsOps/charts/tree/master/stable/vpa
   version: fb2ccec4228c26e366bd1ac96aade056f3db0151
