@@ -58,6 +58,13 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
+        - key: node.kubernetes.io/not-ready
+          effect: NoSchedule
       containers:
       - name: certgen
         image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
@@ -117,6 +124,8 @@ spec:
             echo "Deleting ${TMP_DIR}."
             rm -rf ${TMP_DIR}
         env:
+          - name: KUBERNETES_SERVICE_HOST
+            value: 127.0.0.1
           {{- range $key, $value := .Values.admissionController.certGen.env }}
           - name: {{ $key }}
             value: {{ $value | quote }}

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Run the CRD patch job in master nodes and tolerate not ready nodes.
+- Run the certgen job in master nodes and tolerate not ready nodes.
 
 ## [2.5.0] - 2022-08-08
 
