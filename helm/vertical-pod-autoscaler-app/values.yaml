@@ -187,3 +187,8 @@ admissionController:
 isManagementCluster: false
 registry:
   domain: docker.io
+
+# provider (aws|kvm|azure|gcp|capa)
+# The provider that the cluster is running on.
+# This value is set automatically, Do not overwrite this value.
+provider: ""

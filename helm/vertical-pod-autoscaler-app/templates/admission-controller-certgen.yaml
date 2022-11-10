@@ -127,6 +127,8 @@ spec:
         env:
           - name: KUBERNETES_SERVICE_HOST
             value: 127.0.0.1
+          - name: KUBERNETES_SERVICE_PORT
+            value: "{{ include "vpa.apiServerListenPort" . }}"
           {{- range $key, $value := .Values.admissionController.certGen.env }}
           - name: {{ $key }}
             value: {{ $value | quote }}

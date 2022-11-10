@@ -62,3 +62,14 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Returns the API server pods' listen pod based on the provider.
+*/}}
+{{- define "vpa.apiServerListenPort" -}}
+{{- if has .Values.provider (list "aws" "azure" "kvm") -}}
+443
+{{- else -}}
+6443
+{{- end -}}
+{{- end -}}
