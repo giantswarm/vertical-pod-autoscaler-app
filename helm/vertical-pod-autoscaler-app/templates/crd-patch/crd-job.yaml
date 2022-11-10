@@ -25,6 +25,7 @@ spec:
         runAsGroup: 2000
       nodeSelector:
         node-role.kubernetes.io/master: ""
+      hostNetwork: true
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
