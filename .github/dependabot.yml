@@ -15,3 +15,11 @@ updates:
     ignore:
       - dependency-name: zricethezav/gitleaks-action
       - dependency-name: actions/setup-go
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "04:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - giantswarm/team-atlas
