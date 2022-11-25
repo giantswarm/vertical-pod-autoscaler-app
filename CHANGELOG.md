@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Adding `application.giantswarm.io/team` label to kubernetes resources
+- Ignore error when updating openssl in `vertical-pod-autoscaler-certgen` container (private environment)
 
 ## [2.5.0] - 2022-08-08
 
