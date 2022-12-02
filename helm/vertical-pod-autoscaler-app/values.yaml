@@ -126,7 +126,7 @@ admissionController:
       # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
       repository: giantswarm/vpa-certgen-ci-images
       # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
-      tag: v11-alpine
+      tag: v11-alpine-openssl
       # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
       pullPolicy: IfNotPresent
       # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
@@ -140,7 +140,7 @@ admissionController:
       # admissionController.cleanupOnDelete.image.repository -- The repository of the post-delete image
       repository: giantswarm/vpa-certgen-ci-images
       # admissionController.cleanupOnDelete.image.tag -- The image tag to use for the admission controller cleanup image
-      tag: v11-alpine
+      tag: v11-alpine-openssl
   # admissionController.replicaCount -- The amount admission-controller pods which should run
   replicaCount: 2
   # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
