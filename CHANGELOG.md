@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Using custom docker image with openssl to fix vpa-certgen job
+
 ## [2.5.1] - 2022-11-29
 
 ### Changed
