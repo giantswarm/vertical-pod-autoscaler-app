@@ -63,7 +63,7 @@ recommender:
   resources:
     limits:
       cpu: 200m
-      memory: 1000Mi
+      memory: 3000Mi
     requests:
       cpu: 50m
       memory: 500Mi
@@ -105,7 +105,7 @@ updater:
   resources:
     limits:
       cpu: 200m
-      memory: 1000Mi
+      memory: 3000Mi
     requests:
       cpu: 50m
       memory: 500Mi
@@ -168,7 +168,7 @@ admissionController:
   resources:
     limits:
       cpu: 200m
-      memory: 500Mi
+      memory: 2000Mi
     requests:
       cpu: 50m
       memory: 200Mi

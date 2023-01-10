@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Increased memory limits for updater, recommender and admissionController
+
 ## [2.5.2] - 2022-12-02
 
 - Using custom docker image with openssl to fix vpa-certgen job
