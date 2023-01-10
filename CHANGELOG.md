@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.3] - 2023-01-10
+
 ### Changed
 
 - Increased memory limits for updater, recommender and admissionController
@@ -169,7 +171,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.2...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.3...HEAD
+[2.5.3]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.2...v2.5.3
 [2.5.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.4.2...v2.5.0
