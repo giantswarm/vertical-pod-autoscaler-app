@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Remove `push-to-app-collection` jobs for onprem providers since this app became a part of default apps bundle. 
+
 ## [2.5.3] - 2023-01-10
 
 ### Changed
