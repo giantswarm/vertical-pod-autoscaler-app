@@ -2,7 +2,7 @@
 Expand the name of the chart.
 */}}
 {{- define "vpa.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- default .Chart.Name .Values.vertical-pod-autoscaler.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -11,10 +11,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 If release name contains chart name it will be used as a full name.
 */}}
 {{- define "vpa.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- if .Values.vertical-pod-autoscaler.fullnameOverride }}
+{{- .Values.vertical-pod-autoscaler.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride | trimSuffix "-app" }}
+{{- $name := default .Chart.Name .Values.vertical-pod-autoscaler.nameOverride | trimSuffix "-app" }}
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -40,8 +40,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 giantswarm.io/service-type: "managed"
 helm.sh/chart: {{ include "vpa.chart" . }}
-{{- if .Values.podLabels }}
-{{ toYaml .Values.podLabels }}
+{{- if .Values.vertical-pod-autoscaler.podLabels }}
+{{ toYaml .Values.vertical-pod-autoscaler.podLabels }}
 {{- end }}
 {{- end }}
 
@@ -57,9 +57,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "vpa.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "vpa.fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.vertical-pod-autoscaler.serviceAccount.create }}
+{{- default (include "vpa.fullname" .) .Values.vertical-pod-autoscaler.serviceAccount.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.vertical-pod-autoscaler.serviceAccount.name }}
 {{- end }}
 {{- end }}
