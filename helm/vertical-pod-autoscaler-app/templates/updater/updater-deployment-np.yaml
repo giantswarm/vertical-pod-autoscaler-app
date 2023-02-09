@@ -3,8 +3,8 @@ kind: NetworkPolicy
 metadata:
   labels:
     app.kubernetes.io/component: updater
-    {{- include "vpa.labels" . | nindent 4 }}
-  name: {{ include "vpa.fullname" . }}-updater
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-updater
   namespace: {{ .Release.Namespace }}
 spec:
   ingress:
@@ -14,6 +14,6 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/component: updater
-      {{- include "vpa.selectorLabels" . | nindent 6 }}
+      {{- include "vertical-pod-autoscaler.updater.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Ingress

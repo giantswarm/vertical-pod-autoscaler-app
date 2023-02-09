@@ -3,8 +3,8 @@ kind: NetworkPolicy
 metadata:
   labels:
     app.kubernetes.io/component: admission-controller
-    {{- include "vpa.labels" . | nindent 4 }}
-  name: {{ include "vpa.fullname" . }}-admission-controller
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}-admission-controller
   namespace: {{ .Release.Namespace }}
 spec:
   ingress:
@@ -16,6 +16,6 @@ spec:
   podSelector:
     matchLabels:
       app.kubernetes.io/component: admission-controller
-      {{- include "vpa.selectorLabels" . | nindent 6 }}
+      {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Ingress
