@@ -1,24 +1,26 @@
-# Default values for vertical-pod-autoscaler.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# Override Kubernetes version
-kubeVersion: ""
-
-imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# Annotations to add to all deployed objects
-commonAnnotations: {}
-
-# Labels to add to all deployed objects
-commonLabels: {}
-
-# Array of extra objects to deploy with the release
-extraDeploy: []
-
 vertical-pod-autoscaler:
+  # Default values for vertical-pod-autoscaler.
+  # This is a YAML-formatted file.
+  # Declare variables to be passed into your templates.
+
+  # Override Kubernetes version
+  kubeVersion: ""
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # Annotations to add to all deployed objects
+  commonAnnotations: {}
+
+  # Labels to add to all deployed objects
+  commonLabels: {}
+
+  # Array of extra objects to deploy with the release
+  extraDeploy: []
   admissionController:
     # Enable the component
     enabled: true

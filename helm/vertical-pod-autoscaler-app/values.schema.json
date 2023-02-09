@@ -2,22 +2,7 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
-        "commonAnnotations": {
-            "type": "object"
-        },
-        "commonLabels": {
-            "type": "object"
-        },
-        "extraDeploy": {
-            "type": "array"
-        },
         "fullnameOverride": {
-            "type": "string"
-        },
-        "imagePullSecrets": {
-            "type": "array"
-        },
-        "kubeVersion": {
             "type": "string"
         },
         "nameOverride": {
@@ -274,6 +259,12 @@
                         }
                     }
                 },
+                "commonAnnotations": {
+                    "type": "object"
+                },
+                "commonLabels": {
+                    "type": "object"
+                },
                 "crds": {
                     "type": "object",
                     "properties": {
@@ -304,6 +295,21 @@
                             "type": "array"
                         }
                     }
+                },
+                "extraDeploy": {
+                    "type": "array"
+                },
+                "fullnameOverride": {
+                    "type": "string"
+                },
+                "imagePullSecrets": {
+                    "type": "array"
+                },
+                "kubeVersion": {
+                    "type": "string"
+                },
+                "nameOverride": {
+                    "type": "string"
                 },
                 "recommender": {
                     "type": "object",
