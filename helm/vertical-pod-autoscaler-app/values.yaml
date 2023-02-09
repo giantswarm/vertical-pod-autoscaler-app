@@ -124,7 +124,7 @@ vertical-pod-autoscaler:
       # Service port
       # port: 8000
 
-    resources: 
+    resources:
       limits:
         cpu: 200m
         memory: 2000Mi
@@ -281,7 +281,7 @@ vertical-pod-autoscaler:
       # Minimum consecutive successes for the readiness probe to be considered successful after having failed
       successThreshold: 1
 
-    resources: 
+    resources:
       limits:
         cpu: 200m
         memory: 3000Mi
@@ -464,7 +464,7 @@ vertical-pod-autoscaler:
       # Minimum consecutive successes for the readiness probe to be considered successful after having failed
       successThreshold: 1
 
-    resources: 
+    resources:
       limits:
         cpu: 200m
         memory: 3000Mi
