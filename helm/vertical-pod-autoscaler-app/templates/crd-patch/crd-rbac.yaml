@@ -8,7 +8,7 @@ metadata:
     "helm.sh/hook-weight": "-3"
     # run only on upgrade
     "helm.sh/hook": "pre-upgrade"
-    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
   labels:
     app.kubernetes.io/component: {{ include "vpa.fullname" . }}-crd-patch
     {{- include "vpa.selectorLabels" . | nindent 4 }}
