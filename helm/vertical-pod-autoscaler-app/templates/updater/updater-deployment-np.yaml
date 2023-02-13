@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   labels:
-    app.kubernetes.io/component: updater
     {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
   name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-updater
   namespace: {{ .Release.Namespace }}
