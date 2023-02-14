@@ -1,5 +1,6 @@
 nameOverride: ""
 fullnameOverride: ""
+registry: docker.io
 
 vertical-pod-autoscaler:
   # Default values for vertical-pod-autoscaler.
