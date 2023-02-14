@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove `push-to-app-collection` jobs for onprem providers since this app became a part of default apps bundle.
 - Moved to chart dependency
 - ⚠ Major upgrade, breaking changes
-  - values structure changes. We rely on a subchart, meaning all of previous setup goes to a `vpa` section
+  - values structure changes. We rely on a subchart, meaning all of previous setup goes to a `vertical-pod-autoscaler` section
+  - the upstream repo has changed and thus as did the helm chart config
 
 ## [2.5.3] - 2023-01-10
 
