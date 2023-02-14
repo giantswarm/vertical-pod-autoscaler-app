@@ -14,12 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Remove `push-to-app-collection` jobs for onprem providers since this app became a part of default apps bundle.
-<<<<<<< HEAD
 - Moved to chart dependency
 - ⚠ Major upgrade, breaking changes
   - values structure changes. We rely on a subchart, meaning all of previous setup goes to a `vpa` section
-=======
->>>>>>> fa2f1ec6f041b825ae131b9cab9c5b6a4cb40590
 
 ## [2.5.3] - 2023-01-10
 
