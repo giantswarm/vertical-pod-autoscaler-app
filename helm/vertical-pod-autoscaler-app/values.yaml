@@ -3,25 +3,6 @@ fullnameOverride: ""
 registry: docker.io
 
 vertical-pod-autoscaler:
-  # Default values for vertical-pod-autoscaler.
-  # This is a YAML-formatted file.
-  # Declare variables to be passed into your templates.
-
-  # Override Kubernetes version
-  kubeVersion: ""
-
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
-
-  # Annotations to add to all deployed objects
-  commonAnnotations: {}
-
-  # Labels to add to all deployed objects
-  commonLabels: {}
-
-  # Array of extra objects to deploy with the release
-  extraDeploy: []
   admissionController:
     # Enable the component
     enabled: true
@@ -33,98 +14,6 @@ vertical-pod-autoscaler:
       tag: 0.11.0
       pullPolicy: IfNotPresent
 
-    pdb:
-      # Specifies whether a pod disruption budget should be created
-      create: false
-
-      # Minimum number/percentage of pods that should remain scheduled
-      minAvailable: 1
-
-      # Maximum number/percentage of pods that may be made unavailable
-      # maxUnavailable: 1
-
-    serviceAccount:
-      # Specifies whether a service account should be created
-      create: true
-      # Annotations to add to the service account
-      annotations: {}
-      # The name of the service account to use.
-      # If not set and create is true, a name is generated using the fullname template
-      name:
-
-    # Additional pod annotations
-    podAnnotations: {}
-
-    # Additional pod labels
-    podLabels: {}
-
-    podSecurityContext:
-      # fsGroup: 2000
-      runAsNonRoot: true
-      runAsUser: 65534
-
-    # Priority class name
-    # priorityClassName : high-priority
-
-    securityContext: {}
-      # capabilities:
-      #   drop:
-      #   - ALL
-      # readOnlyRootFilesystem: true
-      # runAsNonRoot: true
-      # runAsUser: 1000
-
-    livenessProbe:
-      # Enable liveness probe
-      enabled: true
-
-      # Delay before the liveness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the liveness probe
-      periodSeconds: 10
-
-      # When the liveness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the liveness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the liveness probe to be considered successful after having failed
-      successThreshold: 1
-
-    readinessProbe:
-      # Enable readiness probe
-      enabled: true
-
-      # Delay before the readiness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the readiness probe
-      periodSeconds: 10
-
-      # When the readiness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the readiness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the readiness probe to be considered successful after having failed
-      successThreshold: 1
-
-    service:
-      # Service annotations
-      annotations: {}
-
-      # Service type
-      type: ClusterIP
-
-      # Static cluster IP address or None for headless service when service type is ClusterIP
-      # clusterIP: 10.43.0.100
-
-      # Service port
-      # port: 8000
-
     resources:
       limits:
         cpu: 200m
@@ -132,12 +21,6 @@ vertical-pod-autoscaler:
       requests:
         cpu: 50m
         memory: 200Mi
-
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
 
     extraArgs:
       # kube-api-burst: 10
@@ -151,26 +34,7 @@ vertical-pod-autoscaler:
     #  - name: MY-NAME
     #    value: "MY-VALUE"
 
-    # Name of existing ConfigMap containing additional container environment variables
-    extraEnvVarsCM:
-
-    # Name of existing Secret containing additional container environment variables
-    extraEnvVarsSecret:
-
     metrics:
-      service:
-        # Metrics service annotations
-        annotations: {}
-
-        # Metrics service type
-        type: ClusterIP
-
-        # Metrics static cluster IP address or None for headless service when service type is ClusterIP
-        # clusterIP: 10.43.0.100
-
-        # Metrics service port
-        port: 8944
-
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
@@ -189,12 +53,6 @@ vertical-pod-autoscaler:
         # Specify general relabeling
         relabelings: []
 
-    tls:
-      caCert: ""
-      cert: ""
-      key: ""
-      existingSecret: ""
-
   recommender:
     replicaCount: 1
 
@@ -203,85 +61,6 @@ vertical-pod-autoscaler:
       tag: 0.11.0
       pullPolicy: IfNotPresent
 
-    pdb:
-      # Specifies whether a pod disruption budget should be created
-      create: false
-
-      # Minimum number/percentage of pods that should remain scheduled
-      minAvailable: 1
-
-      # Maximum number/percentage of pods that may be made unavailable
-      # maxUnavailable: 1
-
-    serviceAccount:
-      # Specifies whether a service account should be created
-      create: true
-      # Annotations to add to the service account
-      annotations: {}
-      # The name of the service account to use.
-      # If not set and create is true, a name is generated using the fullname template
-      name:
-
-    # Additional pod annotations
-    podAnnotations: {}
-
-    # Additional pod labels
-    podLabels: {}
-
-    podSecurityContext:
-      # fsGroup: 2000
-      runAsNonRoot: true
-      runAsUser: 65534
-
-    # Priority class name
-    # priorityClassName : high-priority
-
-    securityContext: {}
-      # capabilities:
-      #   drop:
-      #   - ALL
-      # readOnlyRootFilesystem: true
-      # runAsNonRoot: true
-      # runAsUser: 1000
-
-    livenessProbe:
-      # Enable liveness probe
-      enabled: true
-
-      # Delay before the liveness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the liveness probe
-      periodSeconds: 10
-
-      # When the liveness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the liveness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the liveness probe to be considered successful after having failed
-      successThreshold: 1
-
-    readinessProbe:
-      # Enable readiness probe
-      enabled: true
-
-      # Delay before the readiness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the readiness probe
-      periodSeconds: 10
-
-      # When the readiness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the readiness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the readiness probe to be considered successful after having failed
-      successThreshold: 1
-
     resources:
       limits:
         cpu: 200m
@@ -289,12 +68,6 @@ vertical-pod-autoscaler:
       requests:
         cpu: 50m
         memory: 500Mi
-
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
 
     extraArgs:
       # checkpoints-gc-interval: 10m0s
@@ -337,26 +110,7 @@ vertical-pod-autoscaler:
     #  - name: MY-NAME
     #    value: "MY-VALUE"
 
-    # Name of existing ConfigMap containing additional container environment variables
-    extraEnvVarsCM:
-
-    # Name of existing Secret containing additional container environment variables
-    extraEnvVarsSecret:
-
     metrics:
-      service:
-        # Metrics service annotations
-        annotations: {}
-
-        # Metrics service type
-        type: ClusterIP
-
-        # Metrics static cluster IP address or None for headless service when service type is ClusterIP
-        # clusterIP: 10.43.0.100
-
-        # Metrics service port
-        port: 8942
-
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
@@ -386,85 +140,6 @@ vertical-pod-autoscaler:
       tag: 0.11.0
       pullPolicy: IfNotPresent
 
-    pdb:
-      # Specifies whether a pod disruption budget should be created
-      create: false
-
-      # Minimum number/percentage of pods that should remain scheduled
-      minAvailable: 1
-
-      # Maximum number/percentage of pods that may be made unavailable
-      # maxUnavailable: 1
-
-    serviceAccount:
-      # Specifies whether a service account should be created
-      create: true
-      # Annotations to add to the service account
-      annotations: {}
-      # The name of the service account to use.
-      # If not set and create is true, a name is generated using the fullname template
-      name:
-
-    # Additional pod annotations
-    podAnnotations: {}
-
-    # Additional pod labels
-    podLabels: {}
-
-    podSecurityContext:
-      # fsGroup: 2000
-      runAsNonRoot: true
-      runAsUser: 65534
-
-    # Priority class name
-    # priorityClassName : high-priority
-
-    securityContext: {}
-      # capabilities:
-      #   drop:
-      #   - ALL
-      # readOnlyRootFilesystem: true
-      # runAsNonRoot: true
-      # runAsUser: 1000
-
-    livenessProbe:
-      # Enable liveness probe
-      enabled: true
-
-      # Delay before the liveness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the liveness probe
-      periodSeconds: 10
-
-      # When the liveness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the liveness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the liveness probe to be considered successful after having failed
-      successThreshold: 1
-
-    readinessProbe:
-      # Enable readiness probe
-      enabled: true
-
-      # Delay before the readiness probe is initiated
-      initialDelaySeconds: 0
-
-      # How often to perform the readiness probe
-      periodSeconds: 10
-
-      # When the readiness probe times out
-      timeoutSeconds: 1
-
-      # Minimum consecutive failures for the readiness probe to be considered failed after having succeeded
-      failureThreshold: 3
-
-      # Minimum consecutive successes for the readiness probe to be considered successful after having failed
-      successThreshold: 1
-
     resources:
       limits:
         cpu: 200m
@@ -472,12 +147,6 @@ vertical-pod-autoscaler:
       requests:
         cpu: 50m
         memory: 500Mi
-
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
 
     extraArgs:
       # evict-after-oom-threshold: 10m0s
@@ -499,25 +168,7 @@ vertical-pod-autoscaler:
     #  - name: MY-NAME
     #    value: "MY-VALUE"
 
-    # Name of existing ConfigMap containing additional container environment variables
-    extraEnvVarsCM:
-
-    # Name of existing Secret containing additional container environment variables
-    extraEnvVarsSecret:
-
     metrics:
-      service:
-        # Metrics service annotations
-        annotations: {}
-
-        # Metrics service type
-        type: ClusterIP
-
-        # Metrics static cluster IP address or None for headless service when service type is ClusterIP
-        # clusterIP: 10.43.0.100
-
-        # Metrics service port
-        port: 8943
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
@@ -546,15 +197,6 @@ vertical-pod-autoscaler:
 
       # Image pull policy
       pullPolicy: IfNotPresent
-
-    # Additional pod annotations
-    podAnnotations: {}
-
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
 
   tests:
     image:
