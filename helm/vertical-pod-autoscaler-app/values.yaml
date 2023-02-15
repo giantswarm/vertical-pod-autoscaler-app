@@ -1,6 +1,6 @@
 nameOverride: ""
 fullnameOverride: ""
-registry: docker.io
+registry: quay.io
 
 vertical-pod-autoscaler:
   admissionController:
