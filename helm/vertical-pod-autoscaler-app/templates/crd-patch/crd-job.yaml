@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "vertical-pod-autoscaler.fullname" . }}-crd-patch
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    # create hook dependencies in the right order
+    "helm.sh/hook-weight": "-1"
+    # run only on upgrade
+    "helm.sh/hook": "pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
+  labels:
+    app.kubernetes.io/component: {{ include "vertical-pod-autoscaler.fullname" . }}-crd-patch
+    {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 4 }}
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: {{ include "vertical-pod-autoscaler.fullname" . }}-crd-patch
+        {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "vertical-pod-autoscaler.fullname" . }}-crd-patch
+      securityContext:
+        runAsUser: 2000
+        runAsGroup: 2000
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: kubectl
+        image: "{{ .Values.registry }}/giantswarm/docker-kubectl:latest"
+        command:
+        - sh
+        - -c
+        - |
+          set -o errexit ; set -o xtrace ; set -o nounset
+          # piping stderr to stdout means kubectl's errors are surfaced
+          # in the pod's logs.
+          exec 2>&1
+          namespace=$(kubectl get chart --namespace=giantswarm vertical-pod-autoscaler-crd --output=jsonpath="{.spec.namespace}")
+          kubectl api-resources --api-group=autoscaling.k8s.io -oname|tr '\n' ' '|xargs kubectl patch --record=false -p '{"metadata":{"annotations":{"meta.helm.sh/release-name": "vertical-pod-autoscaler-crd","meta.helm.sh/release-namespace": "'"${namespace}"'"},"labels":{"app.kubernetes.io/managed-by": "Helm"}}}' crd
+      restartPolicy: Never
+  backoffLimit: 4
