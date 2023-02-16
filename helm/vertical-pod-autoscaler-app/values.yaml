@@ -1,8 +1,12 @@
 nameOverride: ""
 fullnameOverride: ""
+# Warning: this value is only for Giantswarm additional containers. The core VPA containers won't use it. Use `.vertical-pod-autoscaler.[component].image.repository` for core VPA components.
 registry: docker.io
 
 vertical-pod-autoscaler:
+  nameOverride: ""
+  fullnameOverride: ""
+
   admissionController:
     # Enable the component
     enabled: true
