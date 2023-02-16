@@ -31,9 +31,6 @@
                                 }
                             }
                         },
-                        "extraEnvVars": {
-                            "type": "array"
-                        },
                         "image": {
                             "type": "object",
                             "properties": {
@@ -54,29 +51,8 @@
                                 "serviceMonitor": {
                                     "type": "object",
                                     "properties": {
-                                        "annotations": {
-                                            "type": "object"
-                                        },
                                         "enabled": {
                                             "type": "boolean"
-                                        },
-                                        "interval": {
-                                            "type": "string"
-                                        },
-                                        "jobLabel": {
-                                            "type": "string"
-                                        },
-                                        "labels": {
-                                            "type": "object"
-                                        },
-                                        "metricRelabelings": {
-                                            "type": "array"
-                                        },
-                                        "relabelings": {
-                                            "type": "array"
-                                        },
-                                        "scrapeTimeout": {
-                                            "type": "string"
                                         }
                                     }
                                 }
@@ -109,25 +85,6 @@
                                             "type": "string"
                                         }
                                     }
-                                }
-                            }
-                        }
-                    }
-                },
-                "crds": {
-                    "type": "object",
-                    "properties": {
-                        "image": {
-                            "type": "object",
-                            "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
-                                "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
-                                    "type": "string"
                                 }
                             }
                         }
@@ -150,9 +107,6 @@
                                 }
                             }
                         },
-                        "extraEnvVars": {
-                            "type": "array"
-                        },
                         "image": {
                             "type": "object",
                             "properties": {
@@ -173,29 +127,8 @@
                                 "serviceMonitor": {
                                     "type": "object",
                                     "properties": {
-                                        "annotations": {
-                                            "type": "object"
-                                        },
                                         "enabled": {
                                             "type": "boolean"
-                                        },
-                                        "interval": {
-                                            "type": "string"
-                                        },
-                                        "jobLabel": {
-                                            "type": "string"
-                                        },
-                                        "labels": {
-                                            "type": "object"
-                                        },
-                                        "metricRelabelings": {
-                                            "type": "array"
-                                        },
-                                        "relabelings": {
-                                            "type": "array"
-                                        },
-                                        "scrapeTimeout": {
-                                            "type": "string"
                                         }
                                     }
                                 }
@@ -233,25 +166,6 @@
                         }
                     }
                 },
-                "tests": {
-                    "type": "object",
-                    "properties": {
-                        "image": {
-                            "type": "object",
-                            "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
-                                "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
-                                    "type": "string"
-                                }
-                            }
-                        }
-                    }
-                },
                 "updater": {
                     "type": "object",
                     "properties": {
@@ -265,9 +179,6 @@
                                     "type": "integer"
                                 }
                             }
-                        },
-                        "extraEnvVars": {
-                            "type": "array"
                         },
                         "image": {
                             "type": "object",
@@ -289,29 +200,8 @@
                                 "serviceMonitor": {
                                     "type": "object",
                                     "properties": {
-                                        "annotations": {
-                                            "type": "object"
-                                        },
                                         "enabled": {
                                             "type": "boolean"
-                                        },
-                                        "interval": {
-                                            "type": "string"
-                                        },
-                                        "jobLabel": {
-                                            "type": "string"
-                                        },
-                                        "labels": {
-                                            "type": "object"
-                                        },
-                                        "metricRelabelings": {
-                                            "type": "array"
-                                        },
-                                        "relabelings": {
-                                            "type": "array"
-                                        },
-                                        "scrapeTimeout": {
-                                            "type": "string"
                                         }
                                     }
                                 }

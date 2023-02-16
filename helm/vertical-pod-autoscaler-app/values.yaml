@@ -23,35 +23,13 @@ vertical-pod-autoscaler:
         memory: 200Mi
 
     extraArgs:
-      # kube-api-burst: 10
-      # kube-api-qps: 5
       v: 2
-      # vpa-object-namespace: ""
       webhook-timeout-seconds: 5
-
-    # Additional container environment variables
-    extraEnvVars: []
-    #  - name: MY-NAME
-    #    value: "MY-VALUE"
 
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
-        # Extra annotations for the ServiceMonitor
-        annotations: {}
-        # Extra labels for the ServiceMonitor
-        labels: {}
-        # The name of the label on the target service to use as the job name in Prometheus
-        jobLabel: ""
-        # How frequently to scrape metrics
-        interval: ""
-        # Timeout after which the scrape is ended
-        scrapeTimeout: ""
-        # Specify additional relabeling of metrics
-        metricRelabelings: []
-        # Specify general relabeling
-        relabelings: []
 
   recommender:
     replicaCount: 1
@@ -70,64 +48,14 @@ vertical-pod-autoscaler:
         memory: 500Mi
 
     extraArgs:
-      # checkpoints-gc-interval: 10m0s
-      # checkpoints-timeout: 1m0s
-      # container-name-label: name
-      # container-namespace-label: namespace
-      # container-pod-name-label: pod_name
-      # cpu-histogram-decay-half-life: 24h0m0s
-      # cpu-integer-post-processor-enabled: false
-      # history-length: 8d
-      # history-resolution: 1h
-      # kube-api-burst: 10
-      # kube-api-qps: 5
-      # memory-aggregation-interval: 24h0m0s
-      # memory-aggregation-interval-count: 8
-      # memory-histogram-decay-half-life: 24h0m0s
-      # memory-saver: false
-      # metric-for-pod-labels: up{job="kubernetes-pods"}
-      # min-checkpoints: 10
-      # oom-bump-up-ratio: 1.2
-      # oom-min-bump-up-bytes: 104857600
-      # pod-label-prefix: pod_label_
-      # pod-name-label: kubernetes_pod_name
-      # pod-namespace-label: kubernetes_namespace
       pod-recommendation-min-cpu-millicores: 15
       pod-recommendation-min-memory-mb: 100
-      # prometheus-address: ""
-      # prometheus-cadvisor-job-name: kubernetes-cadvisor
-      # prometheus-query-timeout: 5m
-      # recommendation-margin-fraction: 0.15
-      # recommender-interval: 1m0s
-      # recommender-name: default
-      # storage: checkpoint
-      # target-cpu-percentile: 0.9
       v: 2
-      # vpa-object-namespace: ""
-
-    # Additional container environment variables
-    extraEnvVars: []
-    #  - name: MY-NAME
-    #    value: "MY-VALUE"
 
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
-        # Extra annotations for the ServiceMonitor
-        annotations: {}
-        # Extra labels for the ServiceMonitor
-        labels: {}
-        # The name of the label on the target service to use as the job name in Prometheus
-        jobLabel: ""
-        # How frequently to scrape metrics
-        interval: ""
-        # Timeout after which the scrape is ended
-        scrapeTimeout: ""
-        # Specify additional relabeling of metrics
-        metricRelabelings: []
-        # Specify general relabeling
-        relabelings: []
 
   updater:
     # Enable the component
@@ -149,62 +77,9 @@ vertical-pod-autoscaler:
         memory: 500Mi
 
     extraArgs:
-      # evict-after-oom-threshold: 10m0s
-      # eviction-rate-burst: 1
-      # eviction-rate-limit: -1
-      # eviction-tolerance: 0.5
-      # in-recommendation-bounds-eviction-lifetime-threshold: 12h0m0s
-      # kube-api-burst: 10
-      # kube-api-qps: 5
-      # min-replicas: 2
-      # pod-update-threshold: 0.1
-      # updater-interval: 1m0s
-      # use-admission-controller-status: true
       v: 2
-      # vpa-object-namespace: ""
-
-    # Additional container environment variables
-    extraEnvVars: []
-    #  - name: MY-NAME
-    #    value: "MY-VALUE"
 
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: false
-        # Extra annotations for the ServiceMonitor
-        annotations: {}
-        # Extra labels for the ServiceMonitor
-        labels: {}
-        # The name of the label on the target service to use as the job name in Prometheus
-        jobLabel: ""
-        # How frequently to scrape metrics
-        interval: ""
-        # Timeout after which the scrape is ended
-        scrapeTimeout: ""
-        # Specify additional relabeling of metrics
-        metricRelabelings: []
-        # Specify general relabeling
-        relabelings: []
-
-  crds:
-    image:
-      # Image name
-      repository: bitnami/kubectl
-
-      # Image tag
-      tag: 1.23.1
-
-      # Image pull policy
-      pullPolicy: IfNotPresent
-
-  tests:
-    image:
-      # Image name
-      repository: ghcr.io/cowboysysop/pytest
-
-      # Image tag
-      tag: 1.0.35
-
-      # Image pull policy
-      pullPolicy: IfNotPresent
