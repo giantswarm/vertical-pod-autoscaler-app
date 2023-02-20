@@ -3,8 +3,10 @@
 Expand the name of the chart.
 */}}
 {{- define "vertical-pod-autoscaler.name" -}}
+{{- with index .Values "vertical-pod-autoscaler" -}}
 {{- $default := "vertical-pod-autoscaler" -}}
-{{- coalesce .Values.nameOverride .Values.vertical-pod-autoscaler.nameOverride $default | trunc 63 | trimSuffix "-" -}}
+{{- coalesce $.Values.nameOverride .nameOverride $default | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
@@ -14,7 +16,9 @@ If release name contains chart name it will be used as a full name.
 */}}
 {{- define "vertical-pod-autoscaler.fullname" -}}
 {{- if .Values.fullnameOverride -}}
-{{- coalesce .Values.fullnameOverride .Values.vertical-pod-autoscaler.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- with index .Values "vertical-pod-autoscaler" -}}
+{{- coalesce $.Values.fullnameOverride .fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 {{- else -}}
 {{- $name := default .Chart.Name .Values.nameOverride | trimSuffix "-app" -}}
 {{- if contains $name .Release.Name -}}
