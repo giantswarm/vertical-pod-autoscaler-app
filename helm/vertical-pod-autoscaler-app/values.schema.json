@@ -8,9 +8,6 @@
         "nameOverride": {
             "type": "string"
         },
-        "registry": {
-            "type": "string"
-        },
         "vertical-pod-autoscaler": {
             "type": "object",
             "properties": {
