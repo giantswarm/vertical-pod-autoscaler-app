@@ -1,10 +1,8 @@
+# Overrides the upstream nameOverride and fullnameOverride
 nameOverride: ""
 fullnameOverride: ""
 
 vertical-pod-autoscaler:
-  nameOverride: ""
-  fullnameOverride: ""
-
   admissionController:
     # Enable the component
     enabled: true

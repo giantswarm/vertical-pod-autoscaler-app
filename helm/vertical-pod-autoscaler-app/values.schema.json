@@ -87,12 +87,6 @@
                         }
                     }
                 },
-                "fullnameOverride": {
-                    "type": "string"
-                },
-                "nameOverride": {
-                    "type": "string"
-                },
                 "recommender": {
                     "type": "object",
                     "properties": {
