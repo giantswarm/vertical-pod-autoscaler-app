@@ -3,7 +3,7 @@
 Expand the name of the chart.
 */}}
 {{- define "vertical-pod-autoscaler.name" -}}
-{{- $default := "vertical-pod-autoscaler" -}}
+{{- $default := "vertical-pod-autoscaler-app" -}}
 {{- coalesce .Values.nameOverride $default | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
