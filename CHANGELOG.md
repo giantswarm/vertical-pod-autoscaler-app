@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ⚠ Major upgrade, breaking changes
   - values structure changes. We rely on a subchart, meaning all of previous setup goes to a `vertical-pod-autoscaler` section
   - the upstream repo has changed and thus as did the helm chart config
+  - for more detailed explanations, check the README
 
 ## [2.5.3] - 2023-01-10
 
