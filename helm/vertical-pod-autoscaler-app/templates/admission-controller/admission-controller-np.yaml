@@ -14,7 +14,6 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      app.kubernetes.io/component: admission-controller
       {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Ingress

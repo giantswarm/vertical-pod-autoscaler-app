@@ -2,12 +2,6 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
-        "fullnameOverride": {
-            "type": "string"
-        },
-        "nameOverride": {
-            "type": "string"
-        },
         "vertical-pod-autoscaler": {
             "type": "object",
             "properties": {

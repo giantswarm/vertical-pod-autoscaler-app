@@ -1,9 +1,4 @@
-# Overrides the name for custom resources in the templates folder
-nameOverride: ""
-fullnameOverride: ""
-
 vertical-pod-autoscaler:
-  # Overrides the name for upstream resources
   nameOverride: ""
   fullnameOverride: ""
 
