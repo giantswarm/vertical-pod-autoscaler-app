@@ -3,7 +3,7 @@ kind: NetworkPolicy
 metadata:
   labels:
     {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
-  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-updater
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   ingress:

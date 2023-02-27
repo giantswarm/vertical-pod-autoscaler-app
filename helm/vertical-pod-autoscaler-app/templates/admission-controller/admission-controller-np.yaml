@@ -3,7 +3,7 @@ kind: NetworkPolicy
 metadata:
   labels:
     {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
-  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}-admission-controller
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   ingress:

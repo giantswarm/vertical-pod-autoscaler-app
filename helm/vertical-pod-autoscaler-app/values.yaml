@@ -15,11 +15,28 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 200m
-        memory: 2000Mi
+        cpu: 50m
+        memory: 250Mi
       requests:
         cpu: 50m
         memory: 200Mi
+
+    pdb:
+      create: true
+
+    verticalPodAutoscaler:
+      enabled: true
+      containerPolicies:
+        controlledResources:
+        - cpu
+        - memory
+        maxAllowed:
+          cpu: 200m
+          memory: 2000Mi
+        minAllowed:
+          cpu: 50m
+          memory: 200Mi
+        mode: Auto
 
     extraArgs:
       v: 2
@@ -40,11 +57,28 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 200m
-        memory: 3000Mi
+        cpu: 50m
+        memory: 250Mi
       requests:
         cpu: 50m
-        memory: 500Mi
+        memory: 200Mi
+
+    pdb:
+      create: true
+
+    verticalPodAutoscaler:
+      enabled: true
+      containerPolicies:
+        controlledResources:
+        - cpu
+        - memory
+        maxAllowed:
+          cpu: 200m
+          memory: 3000Mi
+        minAllowed:
+          cpu: 50m
+          memory: 200Mi
+        mode: Auto
 
     extraArgs:
       pod-recommendation-min-cpu-millicores: 15
@@ -69,11 +103,28 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 200m
-        memory: 3000Mi
+        cpu: 50m
+        memory: 250Mi
       requests:
         cpu: 50m
-        memory: 500Mi
+        memory: 200Mi
+
+    pdb:
+      create: true
+
+    verticalPodAutoscaler:
+      enabled: true
+      containerPolicies:
+        controlledResources:
+        - cpu
+        - memory
+        maxAllowed:
+          cpu: 200m
+          memory: 3000Mi
+        minAllowed:
+          cpu: 50m
+          memory: 200Mi
+        mode: Auto
 
     extraArgs:
       v: 2

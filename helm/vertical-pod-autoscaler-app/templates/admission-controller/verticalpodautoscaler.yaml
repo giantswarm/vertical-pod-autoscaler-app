@@ -1,0 +1,26 @@
+{{- if .Capabilities.APIVersions.Has "autoscaling.k8s.io/v1" -}}
+{{- if index .Values "vertical-pod-autoscaler" "admissionController" "verticalPodAutoscaler" "enabled" -}}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: admission-controller
+    {{- if index .Values "vertical-pod-autoscaler" "admissionController" "verticalPodAutoscaler" "containerPolicies" }}
+      {{- with index .Values "vertical-pod-autoscaler" "admissionController" "verticalPodAutoscaler" "containerPolicies" -}}
+        {{ tpl (toYaml .) $ | nindent 6 }}
+      {{- end }}
+    {{- end }}
+  targetRef:
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
+  updatePolicy:
+    updateMode: Auto
+{{- end -}}
+{{- end -}}
