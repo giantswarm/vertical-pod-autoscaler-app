@@ -5,13 +5,13 @@
 Giant Swarm offers a vertical-pod-autoscaler Managed App which can be installed in tenant clusters.
 Here we define the vertical-pod-autoscaler chart with its templates and default configuration.
 
-You should read (upstream documentation)[https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler], but here is an overview.
+You should read [upstream documentation](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler), but here is an overview.
 
 ## Architecture overview
 
 ![VPA Architecture Diagram](images/vpa-architecture.png "VPA architecture overview")
 
-(credit: https://github.com/kubernetes/design-proposals-archive/blob/main/autoscaling/vertical-pod-autoscaler.md#architecture-overview)
+(credit: [upstream design proposal](https://github.com/kubernetes/design-proposals-archive/blob/main/autoscaling/vertical-pod-autoscaler.md#architecture-overview))
 
 
 ## basic syntax
