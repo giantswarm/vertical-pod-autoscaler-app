@@ -6,12 +6,12 @@ metadata:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
-    # helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: annotate-job-clusterrole
+  name: vpa-annotate-job-clusterrole
 subjects:
   - kind: ServiceAccount
-    name: annotate-job-sa
-    namespace: default
+    name: vpa-annotate-job-sa
+    namespace:  {{ .Release.Namespace }}
