@@ -6,7 +6,7 @@ metadata:
     {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 4 }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+    # helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 spec:
   template:
     spec:
@@ -20,6 +20,11 @@ spec:
             - verticalpodautoscalers.autoscaling.k8s.io
             - meta.helm.sh/release-name-
             - meta.helm.sh/release-namespace-
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
         - name: kubectl2
           image: "giantswarm/kubectl:1.26.1"
           args:
@@ -28,4 +33,9 @@ spec:
             - verticalpodautoscalercheckpoints.autoscaling.k8s.io
             - meta.helm.sh/release-name-
             - meta.helm.sh/release-namespace-
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
       restartPolicy: Never
