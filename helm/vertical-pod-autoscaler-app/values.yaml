@@ -28,7 +28,7 @@ vertical-pod-autoscaler:
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
-        enabled: false
+        enabled: true
 
   recommender:
     replicaCount: 1
@@ -54,7 +54,7 @@ vertical-pod-autoscaler:
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
-        enabled: false
+        enabled: true
 
   updater:
     # Enable the component
@@ -81,4 +81,4 @@ vertical-pod-autoscaler:
     metrics:
       serviceMonitor:
         # Specifies whether a service monitor should be created
-        enabled: false
+        enabled: true

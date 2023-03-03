@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: vpa-remove-crd-ownership
   labels:
-    {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
