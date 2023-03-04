@@ -13,7 +13,7 @@ spec:
   serviceAccountName:  {{ include "vpa.fullname" . }}-test
   containers:
     - name: test
-      image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
+      image: "{{ .Values.image.registry }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
       command: ['kubectl']
       args:
         - get
@@ -35,7 +35,7 @@ spec:
   serviceAccountName: {{ include "vpa.fullname" . }}-test
   containers:
     - name: test
-      image: "{{ .Values.registry.domain }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
+      image: "{{ .Values.image.registry }}/{{ .Values.admissionController.certGen.image.repository }}:{{ .Values.admissionController.certGen.image.tag }}"
       command: ['kubectl']
       args:
         - get

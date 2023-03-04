@@ -185,5 +185,3 @@ admissionController:
   affinity: {}
 
 isManagementCluster: false
-registry:
-  domain: docker.io

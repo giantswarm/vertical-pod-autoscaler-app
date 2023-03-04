@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Remove `push-to-app-collection` jobs for onprem providers since this app became a part of default apps bundle.
+- Values: Remove `registry.domain`, use `image.registry` instead. ([#159](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/158))
 
 ## [2.5.3] - 2023-01-10
 

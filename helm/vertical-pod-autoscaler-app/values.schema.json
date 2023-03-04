@@ -281,14 +281,6 @@
                 }
             }
         },
-        "registry": {
-            "type": "object",
-            "properties": {
-                "domain": {
-                    "type": "string"
-                }
-            }
-        },
         "serviceAccount": {
             "type": "object",
             "properties": {
