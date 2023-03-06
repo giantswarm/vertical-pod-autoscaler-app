@@ -13,7 +13,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      {{- include "vertical-pod-autoscaler.crds.labels" . | nindent 6 }}
+      job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
   # allow egress traffic to the Kubernetes API
   egress:
   - ports:
