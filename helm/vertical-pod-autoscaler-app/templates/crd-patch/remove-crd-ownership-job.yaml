@@ -4,6 +4,7 @@ metadata:
   name: vpa-remove-crd-ownership
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+    app.kubernetes.io/component: crd-removal
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
@@ -23,8 +24,6 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
-            seccompProfile:
-              type: "RuntimeDefault"
         - name: kubectl2
           image: "giantswarm/kubectl:1.26.1"
           args:
@@ -36,6 +35,4 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
-            seccompProfile:
-              type: "RuntimeDefault"
       restartPolicy: Never

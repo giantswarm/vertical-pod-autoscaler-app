@@ -5,9 +5,11 @@
 Giant Swarm offers a vertical-pod-autoscaler Managed App which can be installed in tenant clusters.
 Here we define the vertical-pod-autoscaler chart with its templates and default configuration.
 
-Please note that this app is based on this [upstream chart](https://github.com/cowboysysop/charts/tree/master/charts/vertical-pod-autoscaler) so if some changes need to be applied to the vpa configuration, one may check the upstream values file to check out the additional fields that can be added to our own values.
+## Moving from 2.X.X to 3.X.X - Breaking change
 
-## Changes since migration to new upstream repo
+Please note that this app is now based on this [upstream chart](https://github.com/cowboysysop/charts/tree/master/charts/vertical-pod-autoscaler) so if some changes need to be applied to the vpa configuration, one may check the upstream values file to check out the additional fields that can be added to our own values.
+
+### Changes since migration to new upstream repo
 
 Up until mid-february 2023, the vertical-pod-autoscaler-app was using [this upstream chart](https://github.com/FairwindsOps/charts/tree/master/stable/vpa) but since it was not maintained anymore, we decided to move to our current upstream chart as precised above.
 
@@ -50,8 +52,8 @@ There are significant changes with this migration :
 ```
 
 Among the changes, the most notable ones are :
-- Having folder for each VPA components (admission-controller, recommender and updater) whereas in the previous repository all components were defined directly in the `templates` folder.
-- We got rid of the crd-patch folder which was using a job to patch the crd.
+- Having a folder for each VPA components (admission-controller, recommender and updater) whereas in the previous repository all components were defined directly in the `templates` folder.
+- The crd-patch components were updated. It now consists of a job patching the VPA CRDs to remove the following annotations : `meta.helm.sh/release-name` and `meta.helm.sh/release-namespace` so that we will be able to get rid of the `giantswarm/vertical-pod-autoscaler-crd` repository and rely solely on this `vertical-pod-autoscaler-app` one to deploy the CRDs.
 
 ## Credit
 
