@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add cilium network policy so that the crd-install job can reach the k8s api to install the CRDs.
+- README: doc improvements
 
 ### Changed
 
