@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    {{- include "vertical-pod-autoscaler.recommender.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-recommender
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingress:
+  - ports:
+    - port: 8942
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 6 }}
+  policyTypes:
+  - Ingress

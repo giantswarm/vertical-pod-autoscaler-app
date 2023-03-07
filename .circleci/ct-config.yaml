@@ -1,0 +1,3 @@
+---
+chart-repos:
+- vertical-pod-autoscaler=https://cowboysysop.github.io/charts/

@@ -1,0 +1,18 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vpa-annotate-job-clusterrolebinding
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-weight: "-3"
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: vpa-annotate-job-clusterrole
+subjects:
+  - kind: ServiceAccount
+    name: vpa-annotate-job-sa
+    namespace:  {{ .Release.Namespace }}
