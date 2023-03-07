@@ -4,14 +4,14 @@ metadata:
   name: vpa-annotate-job-np
   annotations:
     helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-weight: "-7"
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 spec:
   podSelector:
     matchLabels:
-      {{- include "vertical-pod-autoscaler.labels" . | nindent 6 }}
-      app.kubernetes.io/component: crd-removal
+      job-name: vpa-remove-crd-ownership
   # allow egress traffic to the Kubernetes API
   egress:
   - ports:
