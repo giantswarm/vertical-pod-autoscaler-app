@@ -10,7 +10,7 @@ vertical-pod-autoscaler:
 
     image:
       repository: docker.io/giantswarm/vpa-admission-controller
-      tag: 0.11.0
+      tag: 0.13.0
       pullPolicy: IfNotPresent
 
     resources:
@@ -35,7 +35,7 @@ vertical-pod-autoscaler:
 
     image:
       repository: docker.io/giantswarm/vpa-recommender
-      tag: 0.11.0
+      tag: 0.13.0
       pullPolicy: IfNotPresent
 
     resources:
@@ -64,7 +64,7 @@ vertical-pod-autoscaler:
 
     image:
       repository: docker.io/giantswarm/vpa-updater
-      tag: 0.11.0
+      tag: 0.13.0
       pullPolicy: IfNotPresent
 
     resources:
@@ -77,6 +77,8 @@ vertical-pod-autoscaler:
 
     extraArgs:
       v: 2
+      # min-replicas set to 1 to prevent the updater from throwing errors concerning prometheus only having 1 replica
+      min-replicas: 1
 
     metrics:
       serviceMonitor:
