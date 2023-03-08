@@ -172,6 +172,9 @@
                         "extraArgs": {
                             "type": "object",
                             "properties": {
+                                "min-replicas": {
+                                    "type": "integer"
+                                },
                                 "v": {
                                     "type": "integer"
                                 }
