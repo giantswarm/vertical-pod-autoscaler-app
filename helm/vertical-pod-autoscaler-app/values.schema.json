@@ -49,6 +49,14 @@
                                 }
                             }
                         },
+                        "pdb": {
+                            "type": "object",
+                            "properties": {
+                                "create": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -76,6 +84,50 @@
                                             "type": "string"
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "verticalPodAutoscaler": {
+                            "type": "object",
+                            "properties": {
+                                "containerPolicies": {
+                                    "type": "object",
+                                    "properties": {
+                                        "controlledResources": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "maxAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "minAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "mode": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
                                 }
                             }
                         }
@@ -131,6 +183,14 @@
                                 }
                             }
                         },
+                        "pdb": {
+                            "type": "object",
+                            "properties": {
+                                "create": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -158,6 +218,50 @@
                                             "type": "string"
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "verticalPodAutoscaler": {
+                            "type": "object",
+                            "properties": {
+                                "containerPolicies": {
+                                    "type": "object",
+                                    "properties": {
+                                        "controlledResources": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "maxAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "minAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "mode": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
                                 }
                             }
                         }
@@ -207,6 +311,14 @@
                                 }
                             }
                         },
+                        "pdb": {
+                            "type": "object",
+                            "properties": {
+                                "create": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -234,6 +346,50 @@
                                             "type": "string"
                                         }
                                     }
+                                }
+                            }
+                        },
+                        "verticalPodAutoscaler": {
+                            "type": "object",
+                            "properties": {
+                                "containerPolicies": {
+                                    "type": "object",
+                                    "properties": {
+                                        "controlledResources": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "maxAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "minAllowed": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cpu": {
+                                                    "type": "string"
+                                                },
+                                                "memory": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "mode": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
                                 }
                             }
                         }
