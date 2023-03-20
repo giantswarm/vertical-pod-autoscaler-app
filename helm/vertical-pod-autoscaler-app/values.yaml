@@ -141,3 +141,9 @@ vertical-pod-autoscaler:
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: true
+
+  crds:
+    image:
+      registry: docker.io
+      repository: giantswarm/kubectl
+      tag: 1.23.1
