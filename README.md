@@ -91,6 +91,13 @@ Among the changes, the most notable ones are :
 - Having a folder for each VPA components (admission-controller, recommender and updater) whereas in the previous repository all components were defined directly in the `templates` folder.
 - The crd-patch components were updated. It now consists of a job patching the VPA CRDs to remove the following annotations : `meta.helm.sh/release-name` and `meta.helm.sh/release-namespace` so that we will be able to get rid of the `giantswarm/vertical-pod-autoscaler-crd` repository and rely solely on this `vertical-pod-autoscaler-app` one to deploy the CRDs.
 
+## Migration
+
+When migrating this chart to the new upstream, it included a job to apply the VPA CRDs so we decided to go without the vertical-pod-autoscaler-crd in the future.
+To do so, we added a job to remove the helm ownership labels from the crds so we can remove the vertical-pod-autoscaler-crd app from clusters in a subsequent release.
+
+As we need to wait for customers to upgrade to any VPA 3.x+ version before we remove the crd app, we will only do so in the next major release of our product.
+
 ## Credit
 
 * https://github.com/kubernetes/autoscaler
