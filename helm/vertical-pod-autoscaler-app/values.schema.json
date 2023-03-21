@@ -2,6 +2,14 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "global": {
+            "type": "object",
+            "properties": {
+                "imageRegistry": {
+                    "type": "string"
+                }
+            }
+        },
         "vertical-pod-autoscaler": {
             "type": "object",
             "properties": {
@@ -26,6 +34,9 @@
                             "type": "object",
                             "properties": {
                                 "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
@@ -133,6 +144,25 @@
                         }
                     }
                 },
+                "crds": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "registry": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
                 "fullnameOverride": {
                     "type": "string"
                 },
@@ -160,6 +190,9 @@
                             "type": "object",
                             "properties": {
                                 "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
@@ -288,6 +321,9 @@
                             "type": "object",
                             "properties": {
                                 "pullPolicy": {
+                                    "type": "string"
+                                },
+                                "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
