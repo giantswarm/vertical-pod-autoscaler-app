@@ -1,3 +1,6 @@
+global:
+  imageRegistry: docker.io
+
 vertical-pod-autoscaler:
   nameOverride: ""
   fullnameOverride: ""
