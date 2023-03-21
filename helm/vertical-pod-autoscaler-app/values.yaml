@@ -1,7 +1,7 @@
-vertical-pod-autoscaler:
-  global:
-    imageRegistry: docker.io
+global:
+  imageRegistry: docker.io
 
+vertical-pod-autoscaler:
   nameOverride: ""
   fullnameOverride: ""
 

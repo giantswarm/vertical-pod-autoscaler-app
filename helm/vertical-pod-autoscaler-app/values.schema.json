@@ -2,6 +2,14 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "global": {
+            "type": "object",
+            "properties": {
+                "imageRegistry": {
+                    "type": "string"
+                }
+            }
+        },
         "vertical-pod-autoscaler": {
             "type": "object",
             "properties": {
@@ -136,16 +144,27 @@
                         }
                     }
                 },
-                "fullnameOverride": {
-                    "type": "string"
-                },
-                "global": {
+                "crds": {
                     "type": "object",
                     "properties": {
-                        "imageRegistry": {
-                            "type": "string"
+                        "image": {
+                            "type": "object",
+                            "properties": {
+                                "registry": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "tag": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
+                },
+                "fullnameOverride": {
+                    "type": "string"
                 },
                 "nameOverride": {
                     "type": "string"
