@@ -1,3 +1,6 @@
+global:
+  imageRegistry: docker.io
+
 vertical-pod-autoscaler:
   nameOverride: ""
   fullnameOverride: ""
@@ -9,7 +12,8 @@ vertical-pod-autoscaler:
     replicaCount: 2
 
     image:
-      repository: docker.io/giantswarm/vpa-admission-controller
+      registry: docker.io
+      repository: giantswarm/vpa-admission-controller
       tag: 0.13.0
       pullPolicy: IfNotPresent
 
@@ -51,7 +55,8 @@ vertical-pod-autoscaler:
     replicaCount: 1
 
     image:
-      repository: docker.io/giantswarm/vpa-recommender
+      registry: docker.io
+      repository: giantswarm/vpa-recommender
       tag: 0.13.0
       pullPolicy: IfNotPresent
 
@@ -97,7 +102,8 @@ vertical-pod-autoscaler:
     replicaCount: 1
 
     image:
-      repository: docker.io/giantswarm/vpa-updater
+      registry: docker.io
+      repository: giantswarm/vpa-updater
       tag: 0.13.0
       pullPolicy: IfNotPresent
 
@@ -135,3 +141,9 @@ vertical-pod-autoscaler:
       serviceMonitor:
         # Specifies whether a service monitor should be created
         enabled: true
+
+  crds:
+    image:
+      registry: docker.io
+      repository: giantswarm/kubectl
+      tag: 1.23.1
