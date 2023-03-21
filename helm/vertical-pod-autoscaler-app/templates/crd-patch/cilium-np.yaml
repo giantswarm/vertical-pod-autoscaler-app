@@ -1,4 +1,4 @@
-{{- if .Capabilities.APIVersions.Has "cilium.io/v2" }}
+{{ if .Values.ciliumNetworkPolicy.enabled }}
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:

@@ -11,7 +11,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      job-name: vpa-remove-crd-ownership
+      job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
   egress:
     - toEntities:
         - kube-apiserver
