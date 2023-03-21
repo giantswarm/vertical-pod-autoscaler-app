@@ -15,7 +15,7 @@ dependencies:
     version: 6.1.0
     repository: https://cowboysysop.github.io/charts/
 type: application
-version: 3.2.0
+version: 3.3.0
 annotations:
   repository: https://github.com/giantswarm/vertical-pod-autoscaler-app
   version: fb2ccec4228c26e366bd1ac96aade056f3db0151
