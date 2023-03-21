@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.3.0] - 2023-03-21
-
-## [3.3.0] - 2023-03-21
-
 ### Changed
 
 - Sync with upstream update concerning image.registry
@@ -207,9 +203,7 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.0...HEAD
-[3.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.0...v3.3.0
-[3.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.2.0...v3.3.0
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.2.0...HEAD
 [3.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v2.5.3...v3.0.0
