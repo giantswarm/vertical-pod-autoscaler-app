@@ -1,6 +1,3 @@
-global:
-  imageRegistry: docker.io
-
 vertical-pod-autoscaler:
   nameOverride: ""
   fullnameOverride: ""
@@ -147,3 +144,6 @@ vertical-pod-autoscaler:
       registry: docker.io
       repository: giantswarm/kubectl
       tag: 1.23.1
+
+ciliumNetworkPolicy:
+  enabled: false
