@@ -1,3 +1,4 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
@@ -5,7 +6,6 @@ metadata:
   annotations:
     helm.sh/hook: pre-install,pre-upgrade
   labels:
-    whites: yeah
     {{- include "vertical-pod-autoscaler.crds.labels" . | nindent 4 }}
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
@@ -22,3 +22,4 @@ spec:
             - port: "443"
         - ports:
             - port: "6443"
+{{- end }}

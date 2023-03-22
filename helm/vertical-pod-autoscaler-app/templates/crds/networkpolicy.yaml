@@ -5,7 +5,6 @@ metadata:
   annotations:
     helm.sh/hook: pre-install,pre-upgrade
   labels:
-    whites: yeah
     {{- include "vertical-pod-autoscaler.crds.labels" . | nindent 4 }}
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
