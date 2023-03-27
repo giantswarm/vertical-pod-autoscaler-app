@@ -7,200 +7,6 @@ vertical-pod-autoscaler:
   admissionController:
     # Enable the component
     enabled: true
-# imagePullSecrets -- A list of image pull secrets to be used for all pods
-imagePullSecrets: []
-# priorityClassName -- To set the priorityclass for all pods
-priorityClassName: ""
-# nameOverride -- A template override for the name
-nameOverride: ""
-# fullnameOverride -- A template override for the fullname
-fullnameOverride: ""
-# podLabels -- Labels to add to all pods
-podLabels: {}
-rbac:
-  # rbac.create -- If true, then rbac resources (clusterroles and clusterrolebindings) will be created for the selected components.
-  create: true
-
-## Required for interchangability of image registry used for China
-image:
-  registry: quay.io
-
-serviceAccount:
-  # serviceAccount.create -- Specifies whether a service account should be created for each component
-  create: true
-  # serviceAccount.annotations -- Annotations to add to the service accounts for each component
-  annotations: {}
-  # serviceAccount.name -- The base name of the service account to use (appended with the component). If not set and create is true, a name is generated using the fullname template and appended for each component
-  name: ""
-  # serviceAccount.automountServiceAccountToken -- Automount API credentials for the Service Account
-  automountServiceAccountToken: true
-
-recommender:
-  # recommender.enabled -- If true, the vpa recommender component will be installed.
-  enabled: true
-  # recommender.extraArgs -- A set of key-value flags to be passed to the recommender
-  extraArgs:
-    v: "4"
-    pod-recommendation-min-cpu-millicores: 15
-    pod-recommendation-min-memory-mb: 100
-  replicaCount: 1
-  # recommender.podDisruptionBudget -- This is the setting for the pod disruption budget
-  podDisruptionBudget: {}
-    # maxUnavailable: 1
-  image:
-    # recommender.image.repository -- The location of the recommender image
-    repository: giantswarm/vpa-recommender
-    # recommender.image.pullPolicy -- The pull policy for the recommender image. Recommend not changing this
-    pullPolicy: IfNotPresent
-    # recommender.image.tag -- Overrides the image tag whose default is the chart appVersion
-    tag: ""
-  # recommender.podAnnotations -- Annotations to add to the recommender pod
-  podAnnotations: {}
-  # recommender.podLabels -- Labels to add to the recommender pod
-  podLabels: {}
-  # recommender.podSecurityContetxt -- The security context for the recommender pod
-  podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 65534
-    seccompProfile:
-      type: RuntimeDefault
-  # recommender.securityContext -- The security context for the containers inside the recommender pod
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-  # recommender.resources -- The resources block for the recommender pod
-  resources:
-    limits:
-      cpu: 200m
-      memory: 3000Mi
-    requests:
-      cpu: 50m
-      memory: 500Mi
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
-
-updater:
-  # updater.enabled -- If true, the updater component will be deployed
-  enabled: true
-  # updater.extraArgs -- A key-value map of flags to pass to the updater
-  extraArgs:
-    # update.extraArgs.min-replicas -- Minimum number of replicas to perform update
-    min-replicas: 1
-    # update.extraArgs.v -- Verbosity level for updater
-    v: 2
-  replicaCount: 1
-  # updater.podDisruptionBudget -- This is the setting for the pod disruption budget
-  podDisruptionBudget: {}
-    # maxUnavailable: 1
-  image:
-    # updater.image.repository -- The location of the updater image
-    repository: giantswarm/vpa-updater
-    # updater.image.pullPolicy -- The pull policy for the updater image. Recommend not changing this
-    pullPolicy: IfNotPresent
-    # updater.image.tag -- Overrides the image tag whose default is the chart appVersion
-    tag: ""
-  # updater.podAnnotations -- Annotations to add to the updater pod
-  podAnnotations: {}
-  # updater.podLabels -- Labels to add to the updater pod
-  podLabels: {}
-  # updater.podSecurityContetxt -- The security context for the updater pod
-  podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 65534
-    seccompProfile:
-      type: RuntimeDefault
-  # updater.securityContext -- The security context for the containers inside the updater pod
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-  # updater.resources -- The resources block for the updater pod
-  resources:
-    limits:
-      cpu: 200m
-      memory: 3000Mi
-    requests:
-      cpu: 50m
-      memory: 500Mi
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
-
-admissionController:
-  # admissionController.enabled -- If true, will install the admission-controller component of vpa
-  enabled: true
-  # admissionController.extraArgs -- A key-value map of flags to pass to the admissionController
-  extraArgs:
-    webhook-timeout-seconds: 5
-  # admissionController.generateCertificate -- If true and admissionController is enabled, a pre-install hook will run to create the certificate for the webhook
-  generateCertificate: true
-  certGen:
-    image:
-      # admissionController.certGen.image.repository -- An image that contains certgen for creating certificates. Only used if admissionController.generateCertificate is true
-      repository: giantswarm/vpa-certgen-ci-images
-      # admissionController.certGen.image.tag -- An image tag for the admissionController.certGen.image.repository image. Only used if admissionController.generateCertificate is true
-      tag: v11-alpine-openssl
-      # admissionController.certGen.image.pullPolicy -- The pull policy for the certgen image. Recommend not changing this
-      pullPolicy: IfNotPresent
-      # admissionController.certGen.env -- Additional environment variables to be added to the certgen container. Format is KEY: Value format
-    env: {}
-    # admissionController.certGen.resources -- The resources block for the certgen pod
-    resources: {}
-  # admissionController.cleanupOnDelete.enabled -- If true, a post-delete job will remove the mutatingwebhookconfiguration and the tls secret for the admission controller
-  cleanupOnDelete:
-    enabled: true
-    image:
-      # admissionController.cleanupOnDelete.image.repository -- The repository of the post-delete image
-      repository: giantswarm/vpa-certgen-ci-images
-      # admissionController.cleanupOnDelete.image.tag -- The image tag to use for the admission controller cleanup image
-      tag: v11-alpine-openssl
-  # admissionController.replicaCount -- The amount admission-controller pods which should run
-  replicaCount: 2
-  # admissionController.podDisruptionBudget -- This is the setting for the pod disruption budget
-  podDisruptionBudget:
-    # maxUnavailable: 1
-    minAvailable: 1
-  image:
-    # admissionController.image.repository -- The location of the vpa admission controller image
-    repository: giantswarm/vpa-admission-controller
-    # admissionController.image.pullPolicy -- The pull policy for the admission controller image. Recommend not changing this
-    pullPolicy: IfNotPresent
-    # admissionController.image.tag -- Overrides the image tag whose default is the chart appVersion
-    tag: ""
-  # admissionController.podAnnotations -- Annotations to add to the admission controller pod
-  podAnnotations: {}
-  # admissionController.podLabels -- Labels to add to the admission controller pod
-  podLabels: {}
-  # admissionController.podSecurityContetxt -- The security context for the admission controller pod
-  podSecurityContext:
-    runAsNonRoot: true
-    runAsUser: 65534
-    seccompProfile:
-      type: RuntimeDefault
-  # admissionController.securityContext -- The security context for the containers inside the admission controller pod
-  securityContext:
-    seccompProfile:
-      type: RuntimeDefault
-  # admissionController.resources -- The resources block for the admission controller pod
-  resources:
-    limits:
-      cpu: 200m
-      memory: 2000Mi
-    requests:
-      cpu: 50m
-      memory: 200Mi
-  # admissionController.tlsSecretKeys -- The keys in the vpa-tls-certs secret to map in to the admission controller
-  tlsSecretKeys: []
-    # - key: ca.crt
-    #   path: caCert.pem
-    # - key: tls.crt
-    #   path: serverCert.pem
-    # - key: tls.key
-    #   path: serverKey.pem
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
-    replicaCount: 2
 
     image:
       registry: docker.io
@@ -210,6 +16,18 @@ admissionController:
 
     pdb:
       create: true
+
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
+
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+
+    replicaCount: 2
 
     resources:
       limits:
@@ -253,6 +71,16 @@ admissionController:
 
     pdb:
       create: true
+
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
+
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
 
     resources:
       limits:
@@ -300,6 +128,16 @@ admissionController:
 
     pdb:
       create: true
+
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
+
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
 
     resources:
       limits:
