@@ -68,6 +68,25 @@
                                 }
                             }
                         },
+                        "podSecurityContext": {
+                            "type": "object",
+                            "properties": {
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -92,6 +111,19 @@
                                             "type": "string"
                                         },
                                         "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "properties": {
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
                                             "type": "string"
                                         }
                                     }
@@ -224,6 +256,25 @@
                                 }
                             }
                         },
+                        "podSecurityContext": {
+                            "type": "object",
+                            "properties": {
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -248,6 +299,19 @@
                                             "type": "string"
                                         },
                                         "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "properties": {
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
                                             "type": "string"
                                         }
                                     }
@@ -355,6 +419,25 @@
                                 }
                             }
                         },
+                        "podSecurityContext": {
+                            "type": "object",
+                            "properties": {
+                                "runAsNonRoot": {
+                                    "type": "boolean"
+                                },
+                                "runAsUser": {
+                                    "type": "integer"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
@@ -379,6 +462,19 @@
                                             "type": "string"
                                         },
                                         "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "properties": {
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
                                             "type": "string"
                                         }
                                     }
