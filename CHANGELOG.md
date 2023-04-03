@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add cilium network policies.
 
+## [3.3.1] - 2023-03-27
+
+### Added
+
+- Added the use of the runtime default seccomp profile.
+
 ## [3.3.0] - 2023-03-21
 
 ### Changed
@@ -209,7 +215,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.1...HEAD
+[3.3.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.0...v3.3.1
 [3.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.0.0...v3.1.0
