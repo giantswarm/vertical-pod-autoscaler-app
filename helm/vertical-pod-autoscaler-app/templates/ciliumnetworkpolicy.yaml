@@ -1,0 +1,16 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  endpointSelector:
+    matchLabels:
+      {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 6 }}
+  egress:
+    - toEntities:
+        - kube-apiserver
+{{ end }}

@@ -1,8 +1,8 @@
-{{- if .Capabilities.APIVersions.Has "cilium.io/v2" }}
+{{ if .Values.ciliumNetworkPolicy.enabled }}
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: vpa-annotate-job-cilium-np
+  name: vpa-annotate-job-np
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-weight: "-7"
