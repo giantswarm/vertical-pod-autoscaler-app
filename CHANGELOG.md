@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Disable PDB for recommender and updater since we only run 1 replica of those pods. 
+
 ## [3.4.0] - 2023-04-04
 
 ### Added
