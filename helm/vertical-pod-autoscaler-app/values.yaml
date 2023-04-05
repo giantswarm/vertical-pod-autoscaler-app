@@ -62,15 +62,15 @@ vertical-pod-autoscaler:
 
   recommender:
     replicaCount: 1
+    # Do not create PDB when replica is 1
+    pdb:
+      create: false
 
     image:
       registry: docker.io
       repository: giantswarm/vpa-recommender
       tag: 0.13.0
       pullPolicy: IfNotPresent
-
-    pdb:
-      create: true
 
     podSecurityContext:
       runAsNonRoot: true
@@ -119,15 +119,15 @@ vertical-pod-autoscaler:
     enabled: true
 
     replicaCount: 1
+    # Do not create PDB when replica is 1
+    pdb:
+      create: false
 
     image:
       registry: docker.io
       repository: giantswarm/vpa-updater
       tag: 0.13.0
       pullPolicy: IfNotPresent
-
-    pdb:
-      create: true
 
     podSecurityContext:
       runAsNonRoot: true
