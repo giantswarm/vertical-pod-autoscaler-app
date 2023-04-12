@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Remove circleci job for pushing to shared app collection
+
 ## [3.4.1] - 2023-04-05
 
 ### Changed
