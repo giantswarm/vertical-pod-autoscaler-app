@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `Drop all CAPabilities` in container SecurityContext for Kyverno Policy compliance
+- Set `AllowPrivilegeEscalation=false` in container SecurityContext for Kyverno Policy compliance
+
 ## [3.4.2] - 2023-04-12
 
 ### Changed
