@@ -24,8 +24,12 @@ vertical-pod-autoscaler:
         type: RuntimeDefault
 
     securityContext:
+      allowPrivilegeEscalation: false
       seccompProfile:
         type: RuntimeDefault
+      capabilities:
+        drop:
+          - ALL
 
     replicaCount: 2
 
@@ -79,8 +83,12 @@ vertical-pod-autoscaler:
         type: RuntimeDefault
 
     securityContext:
+      allowPrivilegeEscalation: false
       seccompProfile:
         type: RuntimeDefault
+      capabilities:
+        drop:
+          - ALL
 
     resources:
       limits:
@@ -136,8 +144,12 @@ vertical-pod-autoscaler:
         type: RuntimeDefault
 
     securityContext:
+      allowPrivilegeEscalation: false
       seccompProfile:
         type: RuntimeDefault
+      capabilities:
+        drop:
+          - ALL
 
     resources:
       limits:
