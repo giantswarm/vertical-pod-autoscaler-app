@@ -96,6 +96,9 @@ vertical-pod-autoscaler:
         controlledResources:
         - cpu
         - memory
+        maxAllowed:
+          cpu: 200m
+          memory: 3000Mi
         minAllowed:
           cpu: 100m
           memory: 250Mi
@@ -150,6 +153,9 @@ vertical-pod-autoscaler:
         controlledResources:
         - cpu
         - memory
+        maxAllowed:
+          cpu: 200m
+          memory: 3000Mi
         minAllowed:
           cpu: 100m
           memory: 250Mi
