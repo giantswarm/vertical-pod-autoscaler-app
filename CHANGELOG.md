@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Raised resources for updater and recommender.
 
+## [3.5.0] - 2023-06-13
+
+### Changed
+
+- `Drop all CAPabilities` in container SecurityContext for Kyverno Policy compliance
+- Set `AllowPrivilegeEscalation=false` in container SecurityContext for Kyverno Policy compliance
+
 ## [3.4.2] - 2023-04-12
 
 ### Changed
@@ -233,7 +240,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.4.2...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.4.2...v3.5.0
 [3.4.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.4.1...v3.4.2
 [3.4.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.4.0...v3.4.1
 [3.4.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.3.1...v3.4.0
