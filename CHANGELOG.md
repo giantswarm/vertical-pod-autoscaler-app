@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `cluster-autoscaler safe-to-evict` annotation to `recommender` and `updater`
+
 ## [3.5.1] - 2023-06-14
 
 ### Changed
