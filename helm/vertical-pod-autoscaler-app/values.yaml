@@ -48,7 +48,7 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         maxAllowed:
-          cpu: 50m
+          cpu: 200m
           memory: 3000Mi
         minAllowed:
           cpu: 50m
