@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Changed
+
+- Raised limits for all components.
+
 ## [3.5.1] - 2023-06-14
 
 ### Changed
