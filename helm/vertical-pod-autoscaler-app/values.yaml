@@ -36,7 +36,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 50m
-        memory: 250Mi
+        memory: 2000Mi
       requests:
         cpu: 50m
         memory: 200Mi
@@ -96,7 +96,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 100m
-        memory: 300Mi
+        memory: 2000Mi
       requests:
         cpu: 100m
         memory: 250Mi
@@ -160,7 +160,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 100m
-        memory: 300Mi
+        memory: 2000Mi
       requests:
         cpu: 100m
         memory: 250Mi
