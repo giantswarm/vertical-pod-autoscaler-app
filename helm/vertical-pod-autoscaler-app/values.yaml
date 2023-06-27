@@ -69,6 +69,9 @@ vertical-pod-autoscaler:
     # Do not create PDB when replica is 1
     pdb:
       create: false
+    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
+    podAnnotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
       registry: docker.io
@@ -130,6 +133,9 @@ vertical-pod-autoscaler:
     # Do not create PDB when replica is 1
     pdb:
       create: false
+    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
+    podAnnotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
       registry: docker.io
