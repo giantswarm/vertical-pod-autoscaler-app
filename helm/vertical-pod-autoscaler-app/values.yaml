@@ -76,7 +76,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/vpa-recommender
-      tag: 0.13.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     podSecurityContext:
