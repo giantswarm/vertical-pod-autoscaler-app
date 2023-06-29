@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade dependency chart to 7.1.0.
+- Upgrade VPA components to 0.14.0
+
 ## [3.5.3] - 2023-06-28
 
 ### Added
