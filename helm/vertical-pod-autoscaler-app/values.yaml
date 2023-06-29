@@ -193,7 +193,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/kubectl
-      tag: 1.23.1
+      tag: 1.27.3
 
 ciliumNetworkPolicy:
   enabled: false
