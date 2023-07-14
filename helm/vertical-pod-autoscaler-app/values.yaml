@@ -35,10 +35,10 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 50m
+        cpu: 100m
         memory: 2000Mi
       requests:
-        cpu: 50m
+        cpu: 100m
         memory: 200Mi
 
     verticalPodAutoscaler:
@@ -51,11 +51,13 @@ vertical-pod-autoscaler:
           cpu: 200m
           memory: 3000Mi
         minAllowed:
-          cpu: 50m
+          cpu: 100m
           memory: 200Mi
         mode: Auto
 
     extraArgs:
+      kube-api-burst: 50
+      kube-api-qps: 25
       v: 2
       webhook-timeout-seconds: 5
 
@@ -95,8 +97,8 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 100m
-        memory: 2000Mi
+        cpu: 400m
+        memory: 4000Mi
       requests:
         cpu: 100m
         memory: 250Mi
@@ -112,16 +114,27 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         maxAllowed:
-          cpu: 200m
-          memory: 3000Mi
+          cpu: 400m
+          memory: 4000Mi
         minAllowed:
           cpu: 100m
           memory: 250Mi
         mode: Auto
 
     extraArgs:
-      pod-recommendation-min-cpu-millicores: 15
-      pod-recommendation-min-memory-mb: 100
+      # CPU usage percentile that will be used as a base for CPU target recommendation.
+      # Doesn't affect CPU lower bound, CPU upper bound nor memory recommendations.
+      # Sets however a CPU value which matches the 95% percentile of the workload consumption
+      target-cpu-percentile: 0.95
+      # Allow the recommender to execute more requests against the api
+      kube-api-burst: 50
+      kube-api-qps: 25
+      # Double the memory during the next Pod resource update, to speed up the recovery from an OOMKilled
+      oom-bump-up-ratio: 2.0
+      # The lowest setting for the CPU
+      pod-recommendation-min-cpu-millicores: 50
+      # This is the recommended default for the memory
+      pod-recommendation-min-memory-mb: 250
       v: 2
 
     metrics:
@@ -163,8 +176,8 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 100m
-        memory: 2000Mi
+        cpu: 500m
+        memory: 4000Mi
       requests:
         cpu: 100m
         memory: 250Mi
@@ -176,14 +189,16 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         maxAllowed:
-          cpu: 200m
-          memory: 3000Mi
+          cpu: 500m
+          memory: 4000Mi
         minAllowed:
           cpu: 100m
           memory: 250Mi
         mode: Auto
 
     extraArgs:
+      kube-api-burst: 50
+      kube-api-qps: 25
       v: 2
       # min-replicas set to 1 to prevent the updater from throwing errors concerning prometheus only having 1 replica
       min-replicas: 1
