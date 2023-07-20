@@ -123,8 +123,8 @@ vertical-pod-autoscaler:
       # Allow the recommender to execute more requests against the api
       kube-api-burst: 50
       kube-api-qps: 25
-      # Double the memory during the next Pod resource update, to speed up the recovery from an OOMKilled
-      oom-bump-up-ratio: 2.0
+      # Increase of 70% during the next Pod resource update, to speed up the recovery from an OOMKilled
+      oom-bump-up-ratio: 1.7
       # The lowest setting for the CPU
       pod-recommendation-min-cpu-millicores: 50
       # This is the recommended default for the memory
