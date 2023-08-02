@@ -1,0 +1,13 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: vertical-pod-autoscaler-crd
+  namespace: kube-system
+spec:
+  egress:
+  - toEntities:
+    - kube-apiserver
+    - cluster
+  endpointSelector:
+    matchLabels:      
+      job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
