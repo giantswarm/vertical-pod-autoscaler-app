@@ -1,0 +1,20 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}-admission-controller
+  namespace: {{ .Release.Namespace }}
+specs:
+  - endpointSelector:
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
+    ingress:
+      toPorts:
+      - ports:
+        - port: "8943"
+          protocol: "TCP"
+        - port: "8000"
+          protocol: "TCP"
+{{- end }}
