@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Specified `failureThreshold` and `periodSeconds` for recommender's liveness probe.
 - Upgrade dependency chart to 7.1.0.
 - Upgrade VPA components to 0.14.0
 
