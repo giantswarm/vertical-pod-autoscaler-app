@@ -11,7 +11,7 @@ specs:
       matchLabels:
         {{- include "vertical-pod-autoscaler.updater.selectorLabels" . | nindent 8 }}
     ingress:
-      toPorts:
+      - toPorts:
         - ports:
           - port: "8943"
             protocol: "TCP"

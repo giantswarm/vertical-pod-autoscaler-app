@@ -3,7 +3,6 @@ apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
   name: {{ include "vertical-pod-autoscaler.fullname" . }}
-  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 specs:
@@ -12,12 +11,12 @@ specs:
       matchLabels:
         {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 8 }}
     ingress:
-      toPorts:
+      - toPorts:
         - ports:
           - port: "8942"
             protocol: "TCP"
           rules:
             http:
-              - method: "GET"
-                path: "/metrics"
+            - method: "GET"
+              path: "/metrics"
 {{ end }}

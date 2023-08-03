@@ -9,9 +9,9 @@ specs:
   - description: "Allow the admission controller access to port 8943 (Prometheus) and 8000 (Admission)"
     endpointSelector:
       matchLabels:
-        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
+        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 8 }}
     ingress:
-      toPorts:
+      - toPorts:
         - ports:
           - port: "8943"
             protocol: "TCP"
