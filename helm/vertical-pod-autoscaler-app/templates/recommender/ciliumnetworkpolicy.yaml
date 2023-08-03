@@ -19,6 +19,6 @@ specs:
             http:
             - method: "GET"
               path: "/metrics"
-            - methid: "GET"
+            - method: "GET"
               path: "/health-check"
 {{ end }}
