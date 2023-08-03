@@ -257,6 +257,17 @@
                                 }
                             }
                         },
+                        "livenessProbe": {
+                            "type": "object",
+                            "properties": {
+                                "failureThreshold": {
+                                    "type": "integer"
+                                },
+                                "periodSeconds": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
                         "metrics": {
                             "type": "object",
                             "properties": {
@@ -275,6 +286,14 @@
                             "properties": {
                                 "create": {
                                     "type": "boolean"
+                                }
+                            }
+                        },
+                        "podAnnotations": {
+                            "type": "object",
+                            "properties": {
+                                "cluster-autoscaler.kubernetes.io/safe-to-evict": {
+                                    "type": "string"
                                 }
                             }
                         },
@@ -452,6 +471,14 @@
                             "properties": {
                                 "create": {
                                     "type": "boolean"
+                                }
+                            }
+                        },
+                        "podAnnotations": {
+                            "type": "object",
+                            "properties": {
+                                "cluster-autoscaler.kubernetes.io/safe-to-evict": {
+                                    "type": "string"
                                 }
                             }
                         },
