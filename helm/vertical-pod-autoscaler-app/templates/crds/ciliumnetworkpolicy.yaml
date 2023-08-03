@@ -2,7 +2,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
+  name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
   helm.sh/hook: pre-install,pre-upgrade
   helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
   labels:

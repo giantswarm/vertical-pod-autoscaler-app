@@ -2,10 +2,10 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  labels:
-    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
   name: {{ include "vertical-pod-autoscaler.fullname" . }}
   namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 spec:
   endpointSelector:
     matchLabels:
