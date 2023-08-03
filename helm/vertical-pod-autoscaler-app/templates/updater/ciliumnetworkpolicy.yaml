@@ -2,7 +2,7 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}  
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}
   labels:
     {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
 specs:
