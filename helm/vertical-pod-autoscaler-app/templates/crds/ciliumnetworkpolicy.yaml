@@ -14,8 +14,12 @@ metadata:
 specs:
   - description: "Allow the Job to access the K8s API Server"
     endpointSelector:
-      matchLabels:
-        job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
+      # Since we are excluding the job-name from the matched resources from cilium identity evaluation
+      # we simply can't use it, because the policy will never be matched against the job
+      # If and when this will be reverted: https://github.com/giantswarm/cilium-app/pull/80/files#diff-19d6b2fc3287f6aa81dac49278df30124546319c557f738958b6f4b1326e4867R1422
+      # we can use the job name once again
+      matchLabels: {}
+        # job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
     egress:
     - toEntities:
       - kube-apiserver
