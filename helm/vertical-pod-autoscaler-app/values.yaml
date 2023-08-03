@@ -101,7 +101,7 @@ vertical-pod-autoscaler:
         cpu: 100m
         memory: 250Mi
 
-    livenessProbe: 
+    livenessProbe:
       failureThreshold: 5
       periodSeconds: 20
 
