@@ -11,10 +11,11 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
 specs:
-  - endpointSelector:
+  - description: "Allow the Job to access the K8s API Server"
+    endpointSelector:
       matchLabels:
         job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
-  - egress:
+    egress:
     - toEntities:
       - kube-apiserver
 {{ end }}

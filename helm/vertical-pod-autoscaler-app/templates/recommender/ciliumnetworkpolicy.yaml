@@ -7,10 +7,11 @@ metadata:
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 specs:
-  - endpointSelector:
+  - description: "Allow access to the VPA Recommender Prometheus metrics endpoint"
+    endpointSelector:
       matchLabels:
         {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 8 }}
-  - ingress:
+    ingress:
       toPorts:
         - ports:
           - port: "8942"

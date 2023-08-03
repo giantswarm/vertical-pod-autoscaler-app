@@ -9,8 +9,12 @@ metadata:
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
-spec:
-  - egress:
+specs:
+  - description: "Allow the Job to access the K8s API Server"
+    endpointSelector:
+      matchLabels:
+        job-name: vpa-remove-crd-ownership
+    egress:
     - toEntities:
       - kube-apiserver
 {{- end }}
