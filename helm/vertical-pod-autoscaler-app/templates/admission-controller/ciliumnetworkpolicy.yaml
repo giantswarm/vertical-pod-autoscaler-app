@@ -7,8 +7,8 @@ metadata:
     {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
 specs:
   - endpointSelector:
-    matchLabels:
-      {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 6 }}
   - ingress:
       toPorts:
         - ports:
