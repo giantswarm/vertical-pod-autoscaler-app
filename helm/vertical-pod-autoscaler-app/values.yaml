@@ -98,6 +98,10 @@ vertical-pod-autoscaler:
         cpu: 100m
         memory: 250Mi
 
+    livenessProbe: 
+      failureThreshold: 5
+      periodSeconds: 20
+
     verticalPodAutoscaler:
       enabled: true
       containerPolicies:
