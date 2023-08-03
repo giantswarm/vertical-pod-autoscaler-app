@@ -1,0 +1,22 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  labels:
+    {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-updater
+  namespace: {{ .Release.Namespace }}
+specs:
+  - endpointSelector:
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.updater.selectorLabels" . | nindent 6 }}
+    ingress:
+      toPorts:
+      - ports:
+        - port: "8943"
+          protocol: "TCP"
+        rules:
+          http:
+          - method: "GET"
+            path: "/metrics"
+{{ end }}

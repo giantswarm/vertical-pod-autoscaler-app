@@ -1,3 +1,4 @@
+{{ if not .Values.ciliumNetworkPolicy.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -15,3 +16,4 @@ spec:
       {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 6 }}
   policyTypes:
   - Ingress
+{{ end }}
