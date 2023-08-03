@@ -10,7 +10,7 @@ metadata:
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
 spec:
-  egress:
+  - egress:
     - toEntities:
-        - kube-apiserver
+      - kube-apiserver
 {{- end }}

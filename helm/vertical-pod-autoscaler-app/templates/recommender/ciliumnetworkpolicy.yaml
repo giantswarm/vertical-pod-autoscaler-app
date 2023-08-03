@@ -9,14 +9,14 @@ metadata:
 specs:
   - endpointSelector:
       matchLabels:
-        {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 6 }}
-    ingress:
+        {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 8 }}
+  - ingress:
       toPorts:
-      - ports:
-        - port: "8942"
-          protocol: "TCP"
-        rules:
-          http:
-          - method: "GET"
-            path: "/metrics"
+        - ports:
+          - port: "8942"
+            protocol: "TCP"
+          rules:
+            http:
+              - method: "GET"
+                path: "/metrics"
 {{ end }}

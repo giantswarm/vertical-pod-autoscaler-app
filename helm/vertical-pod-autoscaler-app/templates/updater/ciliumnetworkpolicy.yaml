@@ -2,21 +2,20 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
-  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}-updater
-  namespace: {{ .Release.Namespace }}
+  name: {{ include "vertical-pod-autoscaler.updater.fullname" . }}  
   labels:
     {{- include "vertical-pod-autoscaler.updater.labels" . | nindent 4 }}
 specs:
   - endpointSelector:
       matchLabels:
-        {{- include "vertical-pod-autoscaler.updater.selectorLabels" . | nindent 6 }}
-    ingress:
+        {{- include "vertical-pod-autoscaler.updater.selectorLabels" . | nindent 8 }}
+  - ingress:
       toPorts:
-      - ports:
-        - port: "8943"
-          protocol: "TCP"
-        rules:
-          http:
-          - method: "GET"
-            path: "/metrics"
+        - ports:
+          - port: "8943"
+            protocol: "TCP"
+          rules:
+            http:
+            - method: "GET"
+              path: "/metrics"
 {{ end }}

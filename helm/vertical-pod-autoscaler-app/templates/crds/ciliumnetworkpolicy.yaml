@@ -14,7 +14,7 @@ specs:
   - endpointSelector:
       matchLabels:
         job-name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
-    egress:
-      - toEntities:
-          - kube-apiserver
+  - egress:
+    - toEntities:
+      - kube-apiserver
 {{ end }}
