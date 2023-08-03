@@ -11,7 +11,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/vpa-admission-controller
-      tag: 0.13.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     pdb:
@@ -36,7 +36,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 50m
-        memory: 250Mi
+        memory: 2000Mi
       requests:
         cpu: 50m
         memory: 200Mi
@@ -69,11 +69,14 @@ vertical-pod-autoscaler:
     # Do not create PDB when replica is 1
     pdb:
       create: false
+    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
+    podAnnotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
       registry: docker.io
       repository: giantswarm/vpa-recommender
-      tag: 0.13.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     podSecurityContext:
@@ -93,7 +96,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 100m
-        memory: 300Mi
+        memory: 2000Mi
       requests:
         cpu: 100m
         memory: 250Mi
@@ -134,11 +137,14 @@ vertical-pod-autoscaler:
     # Do not create PDB when replica is 1
     pdb:
       create: false
+    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
+    podAnnotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
       registry: docker.io
       repository: giantswarm/vpa-updater
-      tag: 0.13.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     podSecurityContext:
@@ -158,7 +164,7 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 100m
-        memory: 300Mi
+        memory: 2000Mi
       requests:
         cpu: 100m
         memory: 250Mi
@@ -191,7 +197,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/kubectl
-      tag: 1.23.1
+      tag: 1.27.4
 
 ciliumNetworkPolicy:
   enabled: false
