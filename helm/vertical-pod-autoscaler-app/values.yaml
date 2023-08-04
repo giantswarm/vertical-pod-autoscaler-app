@@ -36,9 +36,8 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 400m
-        memory: 2000Mi
       requests:
-        cpu: 100m
+        cpu: 200m
         memory: 250Mi
 
     verticalPodAutoscaler:
@@ -48,13 +47,13 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         minAllowed:
-          cpu: 100m
+          cpu: 200m
           memory: 250Mi
         mode: Auto
 
     extraArgs:
-      kube-api-burst: 50
-      kube-api-qps: 25
+      kube-api-burst: 75
+      kube-api-qps: 50
       v: 2
       webhook-timeout-seconds: 5
 
@@ -94,10 +93,9 @@ vertical-pod-autoscaler:
 
     resources:
       limits:
-        cpu: 400m
-        memory: 4000Mi
+        cpu: 500m
       requests:
-        cpu: 100m
+        cpu: 250m
         memory: 250Mi
 
     livenessProbe:
@@ -111,7 +109,7 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         minAllowed:
-          cpu: 100m
+          cpu: 250m
           memory: 250Mi
         mode: Auto
 
@@ -121,8 +119,8 @@ vertical-pod-autoscaler:
       # Sets however a CPU value which matches the 95% percentile of the workload consumption
       target-cpu-percentile: 0.95
       # Allow the recommender to execute more requests against the api
-      kube-api-burst: 50
-      kube-api-qps: 25
+      kube-api-burst: 75
+      kube-api-qps: 50
       # Double the memory during the next Pod resource update, to speed up the recovery from an OOMKilled
       oom-bump-up-ratio: 2.0
       # The lowest setting for the CPU
@@ -171,9 +169,8 @@ vertical-pod-autoscaler:
     resources:
       limits:
         cpu: 500m
-        memory: 4000Mi
       requests:
-        cpu: 100m
+        cpu: 250m
         memory: 250Mi
 
     verticalPodAutoscaler:
@@ -183,13 +180,13 @@ vertical-pod-autoscaler:
         - cpu
         - memory
         minAllowed:
-          cpu: 100m
+          cpu: 250m
           memory: 250Mi
         mode: Auto
 
     extraArgs:
-      kube-api-burst: 50
-      kube-api-qps: 25
+      kube-api-burst: 75
+      kube-api-qps: 50
       v: 2
       # min-replicas set to 1 to prevent the updater from throwing errors concerning prometheus only having 1 replica
       min-replicas: 1
