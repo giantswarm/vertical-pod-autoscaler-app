@@ -108,12 +108,12 @@ vertical-pod-autoscaler:
         cpu: 500m
         memory: 250Mi
 
-    livenessProbe:
-      failureThreshold: 5
-      periodSeconds: 20
-
+    # Disable the recommender VPA
+    # The issue is that the VPA keeps on re-scheduling the pod because the memory
+    # consumption of the recommender varies a lot between when it's idle and when
+    # it calculated the recommendations
     verticalPodAutoscaler:
-      enabled: true
+      enabled: false
       containerPolicies:
         controlledResources:
         - cpu
