@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - doubling the memory in case of an OOMKilled event
   - Using the 95% percentile for the calculation of the CPU usage: should allow to scale up more precisely to account for spikes in CPU consumption of the workload
   - Adjusted the resource and limits to accomodate larger clusters by default
+  - Calculating recommendations only for workloads which do have a VPA custom resource, instead of all wowrkloads
 
 ## [3.5.3] - 2023-06-28
 
