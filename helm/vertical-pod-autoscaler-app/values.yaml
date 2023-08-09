@@ -127,6 +127,8 @@ vertical-pod-autoscaler:
       pod-recommendation-min-cpu-millicores: 50
       # This is the recommended default for the memory
       pod-recommendation-min-memory-mb: 250
+      # If true, only track pods which have an associated VPA
+      memory-saver: true
       v: 2
 
     metrics:
