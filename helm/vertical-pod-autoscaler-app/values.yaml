@@ -178,6 +178,18 @@ vertical-pod-autoscaler:
         drop:
           - ALL
 
+    # The updater pod is often evicted by VPA itself
+    # In large clusters it takes some seconds to process all the VPA resources
+    # so delay the initial checks
+    livenessProbe:
+      initialDelaySeconds: 45
+      periodSeconds: 15
+      failureThreshold: 5
+    readinessProbe:
+      initialDelaySeconds: 30
+      periodSeconds: 15
+      failureThreshold: 5
+
     resources:
       requests:
         cpu: 500m
