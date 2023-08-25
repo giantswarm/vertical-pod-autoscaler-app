@@ -1,0 +1,20 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
+  annotations:
+  labels:
+    {{- include "vertical-pod-autoscaler.crds.labels" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+specs:
+  - description: "Allow the Job to access the K8s API Server"
+    endpointSelector:
+      matchLabels:
+        app.kubernetes.io/component: crds
+    egress:
+    - toEntities:
+      - kube-apiserver
+{{ end }}
