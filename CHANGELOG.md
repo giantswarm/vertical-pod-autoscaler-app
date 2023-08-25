@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix unallowed `job-name` label in Cilium network policy for crd patch job.
+
 ## [3.5.4] - 2023-08-03
 
 ### Changed

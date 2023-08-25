@@ -12,7 +12,7 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      job-name: vpa-remove-crd-ownership
+      app.kubernetes.io/component: crd-removal
   egress:
     - toEntities:
         - kube-apiserver
