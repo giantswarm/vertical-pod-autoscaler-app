@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Adjusted the resource and limits to accomodate larger clusters by default
   - Calculating recommendations only for workloads which do have a VPA custom resource, instead of all workloads
   - Removed standard network policies to decrease maintenance burden
-  - Fixed Cilium Network Policie to allow CRD jobs execution
+  - Fixed Cilium Network Policy to allow CRD jobs execution
+  - Added Cilium Network Policy weight for an early execution
 
 ## [3.5.3] - 2023-06-28
 
