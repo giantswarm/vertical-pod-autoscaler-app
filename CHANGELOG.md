@@ -7,12 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.5.4] - 2023-08-03
-
 ### Changed
 
+WARNING: this version requires Cilium to run because of the dependency on the CiliumNetworkPolicy CRD
+
 - Upgrade dependency chart to 9.2.0.
-- Upgrade VPA components to 0.14.0
 - Adjusted the resource and limits to accomodate larger clusters by default
 - Adjusted the admission controller to give it more QPS against the API
 - Adjusted the updater to give it more QPS against the API
@@ -25,6 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed standard network policies to decrease maintenance burden
   - Fixed Cilium Network Policy to allow CRD jobs execution
   - Added Cilium Network Policy weight for an early execution
+  - Disabled VPA for the updater pod otherwise it keeps on getting re-scheduled because the memory consumption varies a lot between reconsiling resources and idle
+  - Disabled VPA for the recommender pod otherwise it keeps on getting re-scheduled because the memory consumption varies a lot between reconsiling resources and idle
+
+## [3.5.4] - 2023-08-03
+
+- Specified failureThreshold and periodSeconds for recommender's liveness probe.
+- Upgrade dependency chart to 7.1.0.
+- Upgrade VPA components to 0.14.0
+
 
 ## [3.5.3] - 2023-06-28
 
