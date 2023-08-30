@@ -195,8 +195,12 @@ vertical-pod-autoscaler:
         cpu: 500m
         memory: 250Mi
 
+    # Disable the updater VPA
+    # The issue is that the VPA keeps on re-scheduling the pod because the memory
+    # consumption of the updater varies a lot between when it's idle and when
+    # it's applying changes
     verticalPodAutoscaler:
-      enabled: true
+      enabled: false
       containerPolicies:
         controlledResources:
         - cpu
