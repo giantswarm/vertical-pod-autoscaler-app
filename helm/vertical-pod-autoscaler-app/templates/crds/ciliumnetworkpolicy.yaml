@@ -4,6 +4,8 @@ kind: CiliumNetworkPolicy
 metadata:
   name: {{ include "vertical-pod-autoscaler.crds.fullname" . }}
   annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
   labels:
     {{- include "vertical-pod-autoscaler.crds.labels" . | nindent 4 }}
     {{- if .Values.commonLabels }}
