@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2023-08-30
+
 ### Changed
 
 WARNING: this version requires Cilium to run because of the dependency on the CiliumNetworkPolicy CRD
@@ -281,7 +283,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.4...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.4...v4.0.0
 [3.5.4]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.3...v3.5.4
 [3.5.3]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.2...v3.5.3
 [3.5.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.1...v3.5.2
