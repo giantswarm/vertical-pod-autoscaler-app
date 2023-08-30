@@ -1,0 +1,24 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}
+  labels:
+    {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
+specs:
+  - description: "Allow access to the VPA Recommender Prometheus metrics endpoint"
+    endpointSelector:
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 8 }}
+    ingress:
+      - toPorts:
+        - ports:
+          - port: "8942"
+            protocol: "TCP"
+          rules:
+            http:
+            - method: "GET"
+              path: "/metrics"
+            - method: "GET"
+              path: "/health-check"
+{{ end }}

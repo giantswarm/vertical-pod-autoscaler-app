@@ -11,6 +11,10 @@ metadata:
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 spec:
   template:
+    metadata:
+      labels:
+        {{- include "vertical-pod-autoscaler.labels" . | nindent 8 }}
+        app.kubernetes.io/component: crd-removal
     spec:
       serviceAccountName: vpa-annotate-job-sa
       containers:

@@ -2,15 +2,15 @@
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
+  name: {{ include "vertical-pod-autoscaler.fullname" . }}
   labels:
     {{- include "vertical-pod-autoscaler.labels" . | nindent 4 }}
-  name: {{ include "vertical-pod-autoscaler.fullname" . }}
-  namespace: {{ .Release.Namespace }}
-spec:
-  endpointSelector:
-    matchLabels:
-      {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 6 }}
-  egress:
+specs:
+  - description: "Allow VPA access to the K8s API Server"
+    endpointSelector:
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.selectorLabels" . | nindent 8 }}
+    egress:
     - toEntities:
-        - kube-apiserver
+      - kube-apiserver
 {{ end }}

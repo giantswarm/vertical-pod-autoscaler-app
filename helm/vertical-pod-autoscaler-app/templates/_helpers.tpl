@@ -31,7 +31,7 @@ If release name contains chart name it will be used as a full name.
 Common labels
 */}}
 {{- define "vertical-pod-autoscaler.labels" -}}
-application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "turtles" | quote }}
 {{ include "vertical-pod-autoscaler.selectorLabels" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

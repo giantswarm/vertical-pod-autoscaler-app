@@ -1,0 +1,20 @@
+{{ if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "vertical-pod-autoscaler.admissionController.fullname" . }}
+  labels:
+    {{- include "vertical-pod-autoscaler.admissionController.labels" . | nindent 4 }}
+specs:
+  - description: "Allow the admission controller access to port 8944 (Prometheus) and 8000 (Admission)"
+    endpointSelector:
+      matchLabels:
+        {{- include "vertical-pod-autoscaler.admissionController.selectorLabels" . | nindent 8 }}
+    ingress:
+      - toPorts:
+        - ports:
+          - port: "8944"
+            protocol: "TCP"
+          - port: "8000"
+            protocol: "TCP"
+{{- end }}
