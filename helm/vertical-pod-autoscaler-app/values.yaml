@@ -196,7 +196,7 @@ vertical-pod-autoscaler:
         memory: 250Mi
 
     verticalPodAutoscaler:
-      enabled: true
+      enabled: false
       containerPolicies:
         controlledResources:
         - cpu
