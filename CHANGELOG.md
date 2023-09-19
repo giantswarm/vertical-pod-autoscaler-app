@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0] - 2023-09-19
+
 ### Changed
 
 - Updated to upstream char version 9.3.0 which allows to set the `topologySpreadConstraints` for all 3 VPA components (updater, recommender and admission controller)
@@ -288,7 +290,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.4...v4.0.0
 [3.5.4]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.3...v3.5.4
 [3.5.3]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.2...v3.5.3
