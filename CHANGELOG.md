@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated to upstream char version 9.3.0 which allows to set the `topologySpreadConstraints` for all 3 VPA components (updater, recommender and admission controller)
-- Removed `/metrics` rule in the updater and recommender cilium network policy because it can cause delays in the application availability when switching from a different CNI over to Cilium
+- Removed `/metrics` rule in the updater cilium network policy because it can cause delays in the application availability when switching from a different CNI over to Cilium
 
 ## [4.0.0] - 2023-08-30
 
