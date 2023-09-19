@@ -15,10 +15,4 @@ specs:
         - ports:
           - port: "8942"
             protocol: "TCP"
-          rules:
-            http:
-            - method: "GET"
-              path: "/metrics"
-            - method: "GET"
-              path: "/health-check"
 {{ end }}
