@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- In order to facilitate the migration from aws-cni to cilium we need to keep the standard network policies in place so that VPA can communicate with the k8s API while the clusters are being upgraded
+
 ## [4.1.0] - 2023-09-19
 
 ### Changed
