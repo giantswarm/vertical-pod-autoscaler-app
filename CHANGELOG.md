@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.0] - 2023-09-19
+
 ### Changed
 
 - In order to facilitate the migration from aws-cni to cilium we need to keep the standard network policies in place so that VPA can communicate with the k8s API while the clusters are being upgraded
@@ -294,7 +296,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.4...v4.0.0
 [3.5.4]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.3...v3.5.4
