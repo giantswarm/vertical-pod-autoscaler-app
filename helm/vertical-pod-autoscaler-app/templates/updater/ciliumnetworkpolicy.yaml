@@ -15,8 +15,4 @@ specs:
         - ports:
           - port: "8943"
             protocol: "TCP"
-          rules:
-            http:
-            - method: "GET"
-              path: "/metrics"
 {{ end }}
