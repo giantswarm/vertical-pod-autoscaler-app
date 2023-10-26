@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.3.0] - 2023-10-26
+
 ### Added
 
 - Added PSS Exceptions.
@@ -300,7 +302,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.2.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.3.0...HEAD
+[4.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v3.5.4...v4.0.0
