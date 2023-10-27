@@ -1,3 +1,4 @@
+{{- if .Capabilities.APIVersions.Has "kyverno.io/v2alpha1/PolicyException" }}
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
@@ -47,3 +48,4 @@ spec:
         - {{ .Release.Namespace }}
         names:
         - vpa-remove-crd-ownership*
+{{- end }}
