@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.5.0] - 2023-10-31
+
 ### Changed
 
 - Revert chart dependency to `9.3.0`.
@@ -312,7 +314,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.4.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.5.0...HEAD
+[4.5.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.3.0...v4.4.0
 [4.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.2.0...v4.3.0
 [4.2.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.1.0...v4.2.0
