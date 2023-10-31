@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+## [4.6.0] - 2023-10-31
+
 ### Changed
 
 - Revert docker image to `0.14.0`
@@ -318,7 +320,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.5.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.6.0...HEAD
+[4.6.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.3.0...v4.4.0
 [4.3.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.2.0...v4.3.0
