@@ -11,7 +11,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/vpa-admission-controller
-      tag: 1.0.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     pdb:
@@ -74,7 +74,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/vpa-recommender
-      tag: 1.0.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     podSecurityContext:
@@ -161,7 +161,7 @@ vertical-pod-autoscaler:
     image:
       registry: docker.io
       repository: giantswarm/vpa-updater
-      tag: 1.0.0
+      tag: 0.14.0
       pullPolicy: IfNotPresent
 
     podSecurityContext:
