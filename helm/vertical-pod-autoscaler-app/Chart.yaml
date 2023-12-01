@@ -12,7 +12,7 @@ sources:
   - https://github.com/cowboysysop/charts/blob/master/charts/vertical-pod-autoscaler/
 dependencies:
   - name: vertical-pod-autoscaler
-    version: 9.3.0
+    version: 9.5.0
     repository: https://cowboysysop.github.io/charts/
 type: application
 version: 4.6.0
