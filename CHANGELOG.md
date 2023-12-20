@@ -72,7 +72,6 @@ WARNING: this version requires Cilium to run because of the dependency on the Ci
 - Upgrade dependency chart to 7.1.0.
 - Upgrade VPA components to 0.14.0
 
-
 ## [3.5.3] - 2023-06-28
 
 ### Added
@@ -361,3 +360,9 @@ alerts.
 [1.0.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/releases/tag/v1.0.0
+
+## [Unreleased]
+
+### Changed
+
+- Configure `gsoci.azurecr.io` as the default container image registry.
