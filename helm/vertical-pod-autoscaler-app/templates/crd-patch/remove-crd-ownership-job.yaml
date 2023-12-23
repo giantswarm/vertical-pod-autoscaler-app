@@ -19,7 +19,7 @@ spec:
       serviceAccountName: vpa-annotate-job-sa
       containers:
         - name: kubectl1
-          image: "giantswarm/kubectl:1.28.5"
+          image: "giantswarm/kubectl:1.29.0"
           args:
             - annotate
             - customresourcedefinitions.apiextensions.k8s.io
@@ -30,7 +30,7 @@ spec:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
         - name: kubectl2
-          image: "giantswarm/kubectl:1.28.5"
+          image: "giantswarm/kubectl:1.29.0"
           args:
             - annotate
             - customresourcedefinitions.apiextensions.k8s.io
