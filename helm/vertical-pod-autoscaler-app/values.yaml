@@ -1,5 +1,5 @@
 global:
-  imageRegistry: docker.io
+  imageRegistry: gsoci.azurecr.io
 
 vertical-pod-autoscaler:
   nameOverride: ""
@@ -9,7 +9,7 @@ vertical-pod-autoscaler:
     enabled: true
 
     image:
-      registry: docker.io
+      registry: gsoci.azurecr.io
       repository: giantswarm/vpa-admission-controller
       tag: 1.0.0
       pullPolicy: IfNotPresent
@@ -72,7 +72,7 @@ vertical-pod-autoscaler:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
-      registry: docker.io
+      registry: gsoci.azurecr.io
       repository: giantswarm/vpa-recommender
       tag: 1.0.0
       pullPolicy: IfNotPresent
@@ -159,7 +159,7 @@ vertical-pod-autoscaler:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
     image:
-      registry: docker.io
+      registry: gsoci.azurecr.io
       repository: giantswarm/vpa-updater
       tag: 1.0.0
       pullPolicy: IfNotPresent
@@ -220,7 +220,7 @@ vertical-pod-autoscaler:
 
   crds:
     image:
-      registry: docker.io
+      registry: gsoci.azurecr.io
       repository: giantswarm/kubectl
       tag: 1.29.0
 

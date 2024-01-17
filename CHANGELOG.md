@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### Changed
+
+- Change ImageRegistry to `gsoci.azurecr.io`.
+- Upgrade dependency chart to 9.6.0
+- Upgrade VPA components to 1.0.0
+
 ## [4.6.0] - 2023-10-31
 
 ### Changed
