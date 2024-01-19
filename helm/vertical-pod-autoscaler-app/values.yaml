@@ -222,7 +222,7 @@ vertical-pod-autoscaler:
     image:
       registry: gsoci.azurecr.io
       repository: giantswarm/kubectl
-      tag: 1.29.0
+      tag: 1.29.1
 
 ciliumNetworkPolicy:
   enabled: true
