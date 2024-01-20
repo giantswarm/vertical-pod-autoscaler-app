@@ -19,7 +19,7 @@ spec:
       serviceAccountName: vpa-annotate-job-sa
       containers:
         - name: kubectl1
-          image: "{{ index .Values "vertical-pod-autoscaler" "crds" "image" "registry" }}/{{ index .Values "vertical-pod-autoscaler" "crds" "image" "repository" }}:{{ index .Values "vertical-pod-autoscaler" "crds" "image" "tag" }}"
+          image: {{ with (index .Values "vertical-pod-autoscaler" "crds" "image")  }}{{ .registry }}/{{ .repository }}:{{ .tag }}{{ end }}
           args:
             - annotate
             - customresourcedefinitions.apiextensions.k8s.io
@@ -30,7 +30,7 @@ spec:
             allowPrivilegeEscalation: false
             runAsNonRoot: true
         - name: kubectl2
-          image: "{{ index .Values "vertical-pod-autoscaler" "crds" "image" "registry" }}/{{ index .Values "vertical-pod-autoscaler" "crds" "image" "repository" }}:{{ index .Values "vertical-pod-autoscaler" "crds" "image" "tag" }}"
+          image: {{ with (index .Values "vertical-pod-autoscaler" "crds" "image")  }}{{ .registry }}/{{ .repository }}:{{ .tag }}{{ end }}
           args:
             - annotate
             - customresourcedefinitions.apiextensions.k8s.io
