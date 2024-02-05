@@ -1,59 +1,42 @@
 version: 2.1
+
 orbs:
   architect: giantswarm/architect@5.0.1
 
 workflows:
-  package-and-push-chart-on-tag:
+  build:
     jobs:
       - architect/push-to-app-catalog:
+          name: push-to-default-catalog
           context: architect
           executor: app-build-suite
-          name: playground-catalog
-          app_catalog: giantswarm-playground-catalog
-          app_catalog_test: giantswarm-playground-test-catalog
           chart: vertical-pod-autoscaler-app
-          ct_config: ".circleci/ct-config.yml"
-          # Trigger job on git tag.
-          filters:
-            tags:
-              only: /^v.*/
-
-      - architect/push-to-app-catalog:
-          context: architect
-          executor: app-build-suite
-          name: control-plane-catalog
-          app_catalog: control-plane-catalog
-          app_catalog_test: control-plane-test-catalog
-          chart: vertical-pod-autoscaler-app
-          ct_config: ".circleci/ct-config.yml"
-          # Trigger job on git tag.
-          filters:
-            tags:
-              only: /^v.*/
-
-      - architect/push-to-app-catalog:
-          context: architect
-          executor: app-build-suite
-          name: default-catalog
           app_catalog: default-catalog
           app_catalog_test: default-test-catalog
+          filters:
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-app-catalog:
+          name: push-to-control-plane-catalog
+          context: architect
+          executor: app-build-suite
           chart: vertical-pod-autoscaler-app
-          ct_config: ".circleci/ct-config.yml"
-          # Trigger job on git tag.
+          app_catalog: control-plane-catalog
+          app_catalog_test: control-plane-test-catalog
           filters:
             tags:
               only: /^v.*/
 
       - architect/push-to-app-collection:
+          name: push-to-aws-app-collection
           context: architect
-          name: aws-app-collection
           app_catalog: control-plane-catalog
           app_name: vertical-pod-autoscaler-app
           app_namespace: giantswarm
           app_collection_repo: aws-app-collection
-          disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
@@ -61,18 +44,16 @@ workflows:
               only: /^v.*/
 
       - architect/push-to-app-collection:
+          name: push-to-azure-app-collection
           context: architect
-          name: azure-app-collection
           app_catalog: control-plane-catalog
           app_name: vertical-pod-autoscaler-app
           app_namespace: giantswarm
           app_collection_repo: azure-app-collection
-          disable_force_upgrade: true
           requires:
-            - control-plane-catalog
+            - push-to-control-plane-catalog
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^v.*/
-
