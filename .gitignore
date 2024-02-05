@@ -1,2 +1,0 @@
-helm/vertical-pod-autoscaler-app/charts/*.tgz
-helm/vertical-pod-autoscaler-app/Chart.lock
