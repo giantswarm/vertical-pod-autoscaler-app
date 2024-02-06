@@ -13,6 +13,7 @@ workflows:
           chart: vertical-pod-autoscaler-app
           app_catalog: default-catalog
           app_catalog_test: default-test-catalog
+          persist_chart_archive: true
           filters:
             tags:
               only: /^v.*/
@@ -27,6 +28,15 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+
+      - architect/run-tests-with-ats:
+          name: run-tests-with-ats
+          requires:
+            - push-to-default-catalog
+          filters:
+            branches:
+              ignore:
+                - main
 
       - architect/push-to-app-collection:
           name: push-to-aws-app-collection

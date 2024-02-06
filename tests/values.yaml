@@ -1,0 +1,16 @@
+vertical-pod-autoscaler:
+  admissionController:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100m
+  recommender:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+  updater:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
