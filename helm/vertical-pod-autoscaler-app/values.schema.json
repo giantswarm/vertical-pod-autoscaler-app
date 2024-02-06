@@ -30,6 +30,12 @@
                         "extraArgs": {
                             "type": "object",
                             "properties": {
+                                "kube-api-burst": {
+                                    "type": "integer"
+                                },
+                                "kube-api-qps": {
+                                    "type": "integer"
+                                },
                                 "v": {
                                     "type": "integer"
                                 },
@@ -106,9 +112,6 @@
                                     "properties": {
                                         "cpu": {
                                             "type": "string"
-                                        },
-                                        "memory": {
-                                            "type": "string"
                                         }
                                     }
                                 },
@@ -162,17 +165,6 @@
                                             "type": "array",
                                             "items": {
                                                 "type": "string"
-                                            }
-                                        },
-                                        "maxAllowed": {
-                                            "type": "object",
-                                            "properties": {
-                                                "cpu": {
-                                                    "type": "string"
-                                                },
-                                                "memory": {
-                                                    "type": "string"
-                                                }
                                             }
                                         },
                                         "minAllowed": {
@@ -229,11 +221,26 @@
                         "extraArgs": {
                             "type": "object",
                             "properties": {
+                                "kube-api-burst": {
+                                    "type": "integer"
+                                },
+                                "kube-api-qps": {
+                                    "type": "integer"
+                                },
+                                "memory-saver": {
+                                    "type": "boolean"
+                                },
+                                "oom-bump-up-ratio": {
+                                    "type": "number"
+                                },
                                 "pod-recommendation-min-cpu-millicores": {
                                     "type": "integer"
                                 },
                                 "pod-recommendation-min-memory-mb": {
                                     "type": "integer"
+                                },
+                                "target-cpu-percentile": {
+                                    "type": "number"
                                 },
                                 "v": {
                                     "type": "integer"
@@ -261,6 +268,9 @@
                             "type": "object",
                             "properties": {
                                 "failureThreshold": {
+                                    "type": "integer"
+                                },
+                                "initialDelaySeconds": {
                                     "type": "integer"
                                 },
                                 "periodSeconds": {
@@ -316,23 +326,26 @@
                                 }
                             }
                         },
+                        "readinessProbe": {
+                            "type": "object",
+                            "properties": {
+                                "failureThreshold": {
+                                    "type": "integer"
+                                },
+                                "initialDelaySeconds": {
+                                    "type": "integer"
+                                },
+                                "periodSeconds": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
                         "resources": {
                             "type": "object",
                             "properties": {
-                                "limits": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": "string"
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
                                 "requests": {
                                     "type": "object",
                                     "properties": {
@@ -385,17 +398,6 @@
                                                 "type": "string"
                                             }
                                         },
-                                        "maxAllowed": {
-                                            "type": "object",
-                                            "properties": {
-                                                "cpu": {
-                                                    "type": "string"
-                                                },
-                                                "memory": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
                                         "minAllowed": {
                                             "type": "object",
                                             "properties": {
@@ -428,6 +430,12 @@
                         "extraArgs": {
                             "type": "object",
                             "properties": {
+                                "kube-api-burst": {
+                                    "type": "integer"
+                                },
+                                "kube-api-qps": {
+                                    "type": "integer"
+                                },
                                 "min-replicas": {
                                     "type": "integer"
                                 },
@@ -450,6 +458,20 @@
                                 },
                                 "tag": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "livenessProbe": {
+                            "type": "object",
+                            "properties": {
+                                "failureThreshold": {
+                                    "type": "integer"
+                                },
+                                "initialDelaySeconds": {
+                                    "type": "integer"
+                                },
+                                "periodSeconds": {
+                                    "type": "integer"
                                 }
                             }
                         },
@@ -501,23 +523,26 @@
                                 }
                             }
                         },
+                        "readinessProbe": {
+                            "type": "object",
+                            "properties": {
+                                "failureThreshold": {
+                                    "type": "integer"
+                                },
+                                "initialDelaySeconds": {
+                                    "type": "integer"
+                                },
+                                "periodSeconds": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
                         "replicaCount": {
                             "type": "integer"
                         },
                         "resources": {
                             "type": "object",
                             "properties": {
-                                "limits": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": "string"
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
                                 "requests": {
                                     "type": "object",
                                     "properties": {
@@ -568,17 +593,6 @@
                                             "type": "array",
                                             "items": {
                                                 "type": "string"
-                                            }
-                                        },
-                                        "maxAllowed": {
-                                            "type": "object",
-                                            "properties": {
-                                                "cpu": {
-                                                    "type": "string"
-                                                },
-                                                "memory": {
-                                                    "type": "string"
-                                                }
                                             }
                                         },
                                         "minAllowed": {

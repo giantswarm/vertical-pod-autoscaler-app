@@ -1,6 +1,5 @@
+chart-dir: helm/vertical-pod-autoscaler-app
 replace-chart-version-with-git: true
+ct-config: .abs/ct.yaml
 generate-metadata: true
-chart-dir: ./helm/vertical-pod-autoscaler-app
-destination: ./build
-ct-config: ./.circleci/ct-config.yaml
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
