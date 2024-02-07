@@ -2,13 +2,24 @@
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
-metadata:
-  name: vpa-annotate-job-np-exceptions
+  name: {{ include "vertical-pod-autoscaler.crdPatch.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "vertical-pod-autoscaler.crdPatch.labels" . | nindent 4 }}
   annotations:
-    helm.sh/hook: "post-install,post-upgrade"
-    helm.sh/hook-weight: "-7"
-    helm.sh/hook-delete-policy: "before-hook-creation,hook-succeeded"
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 spec:
+  match:
+    any:
+    - resources:
+        kinds:
+        - Job
+        - Pod
+        names:
+        - {{ include "vertical-pod-autoscaler.crdPatch.fullname" . }}*
+        namespaces:
+        - {{ .Release.Namespace }}
   exceptions:
   - policyName: disallow-capabilities-strict 
     ruleNames:
@@ -38,14 +49,4 @@ spec:
     ruleNames:
     - host-path
     - autogen-host-path
-  match:
-    any:
-    - resources:
-        kinds:
-        - Job
-        - Pod
-        namespaces:
-        - {{ .Release.Namespace }}
-        names:
-        - vpa-remove-crd-ownership*
 {{- end }}
