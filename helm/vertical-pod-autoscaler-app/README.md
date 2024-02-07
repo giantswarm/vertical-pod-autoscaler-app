@@ -16,7 +16,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| ciliumNetworkPolicy.enabled | bool | `true` |  |
 | global.imageRegistry | string | `"gsoci.azurecr.io"` |  |
 | vertical-pod-autoscaler.admissionController.enabled | bool | `true` |  |
 | vertical-pod-autoscaler.admissionController.extraArgs.kube-api-burst | int | `75` |  |
