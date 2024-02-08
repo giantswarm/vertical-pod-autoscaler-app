@@ -16,9 +16,6 @@
                 "admissionController": {
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
                         "extraArgs": {
                             "type": "object",
                             "properties": {
@@ -26,9 +23,6 @@
                                     "type": "integer"
                                 },
                                 "kube-api-qps": {
-                                    "type": "integer"
-                                },
-                                "v": {
                                     "type": "integer"
                                 },
                                 "webhook-timeout-seconds": {
@@ -39,16 +33,10 @@
                         "image": {
                             "type": "object",
                             "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
                                 "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
                                     "type": "string"
                                 }
                             }
@@ -71,25 +59,6 @@
                             "properties": {
                                 "create": {
                                     "type": "boolean"
-                                }
-                            }
-                        },
-                        "podSecurityContext": {
-                            "type": "object",
-                            "properties": {
-                                "runAsNonRoot": {
-                                    "type": "boolean"
-                                },
-                                "runAsUser": {
-                                    "type": "integer"
-                                },
-                                "seccompProfile": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string"
-                                        }
-                                    }
                                 }
                             }
                         },
@@ -136,6 +105,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
                                 },
                                 "seccompProfile": {
                                     "type": "object",
@@ -198,14 +170,38 @@
                                     "type": "string"
                                 }
                             }
+                        },
+                        "securityContext": {
+                            "type": "object",
+                            "properties": {
+                                "allowPrivilegeEscalation": {
+                                    "type": "boolean"
+                                },
+                                "capabilities": {
+                                    "type": "object",
+                                    "properties": {
+                                        "drop": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
+                                },
+                                "seccompProfile": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
-                },
-                "fullnameOverride": {
-                    "type": "string"
-                },
-                "nameOverride": {
-                    "type": "string"
                 },
                 "recommender": {
                     "type": "object",
@@ -233,25 +229,16 @@
                                 },
                                 "target-cpu-percentile": {
                                     "type": "number"
-                                },
-                                "v": {
-                                    "type": "integer"
                                 }
                             }
                         },
                         "image": {
                             "type": "object",
                             "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
                                 "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
                                     "type": "string"
                                 }
                             }
@@ -283,38 +270,11 @@
                                 }
                             }
                         },
-                        "pdb": {
-                            "type": "object",
-                            "properties": {
-                                "create": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
                         "podAnnotations": {
                             "type": "object",
                             "properties": {
                                 "cluster-autoscaler.kubernetes.io/safe-to-evict": {
                                     "type": "string"
-                                }
-                            }
-                        },
-                        "podSecurityContext": {
-                            "type": "object",
-                            "properties": {
-                                "runAsNonRoot": {
-                                    "type": "boolean"
-                                },
-                                "runAsUser": {
-                                    "type": "integer"
-                                },
-                                "seccompProfile": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string"
-                                        }
-                                    }
                                 }
                             }
                         },
@@ -331,9 +291,6 @@
                                     "type": "integer"
                                 }
                             }
-                        },
-                        "replicaCount": {
-                            "type": "integer"
                         },
                         "resources": {
                             "type": "object",
@@ -367,6 +324,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
                                 },
                                 "seccompProfile": {
                                     "type": "object",
@@ -416,9 +376,6 @@
                 "updater": {
                     "type": "object",
                     "properties": {
-                        "enabled": {
-                            "type": "boolean"
-                        },
                         "extraArgs": {
                             "type": "object",
                             "properties": {
@@ -430,25 +387,16 @@
                                 },
                                 "min-replicas": {
                                     "type": "integer"
-                                },
-                                "v": {
-                                    "type": "integer"
                                 }
                             }
                         },
                         "image": {
                             "type": "object",
                             "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
                                 "registry": {
                                     "type": "string"
                                 },
                                 "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
                                     "type": "string"
                                 }
                             }
@@ -480,38 +428,11 @@
                                 }
                             }
                         },
-                        "pdb": {
-                            "type": "object",
-                            "properties": {
-                                "create": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
                         "podAnnotations": {
                             "type": "object",
                             "properties": {
                                 "cluster-autoscaler.kubernetes.io/safe-to-evict": {
                                     "type": "string"
-                                }
-                            }
-                        },
-                        "podSecurityContext": {
-                            "type": "object",
-                            "properties": {
-                                "runAsNonRoot": {
-                                    "type": "boolean"
-                                },
-                                "runAsUser": {
-                                    "type": "integer"
-                                },
-                                "seccompProfile": {
-                                    "type": "object",
-                                    "properties": {
-                                        "type": {
-                                            "type": "string"
-                                        }
-                                    }
                                 }
                             }
                         },
@@ -528,9 +449,6 @@
                                     "type": "integer"
                                 }
                             }
-                        },
-                        "replicaCount": {
-                            "type": "integer"
                         },
                         "resources": {
                             "type": "object",
@@ -564,6 +482,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "readOnlyRootFilesystem": {
+                                    "type": "boolean"
                                 },
                                 "seccompProfile": {
                                     "type": "object",
