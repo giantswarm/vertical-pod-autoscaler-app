@@ -1,38 +1,43 @@
+# Default values for vertical-pod-autoscaler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## @section Global parameters
+
 global:
+  ## @param global.imageRegistry Global Docker image registry
   imageRegistry: gsoci.azurecr.io
 
 vertical-pod-autoscaler:
-  nameOverride: ""
-  fullnameOverride: ""
+
+  ## @section Admission controller parameters
+
   admissionController:
-    # Enable the component
-    enabled: true
+    ## @param admissionController.replicaCount Number of replicas
+    replicaCount: 2
 
     image:
+      ## @param admissionController.image.registry Image registry
       registry: gsoci.azurecr.io
+
+      ## @param admissionController.image.repository Image repository
       repository: giantswarm/vpa-admission-controller
-      tag: 1.0.0
-      pullPolicy: IfNotPresent
 
     pdb:
+      ## @param admissionController.pdb.create Specifies whether a pod disruption budget should be created
       create: true
 
-    podSecurityContext:
-      runAsNonRoot: true
-      runAsUser: 65534
-      seccompProfile:
-        type: RuntimeDefault
-
+    ## @param admissionController.securityContext Container security context
     securityContext:
       allowPrivilegeEscalation: false
       seccompProfile:
         type: RuntimeDefault
       capabilities:
         drop:
-          - ALL
+        - ALL
+      readOnlyRootFilesystem: true
 
-    replicaCount: 2
-
+    ## @param admissionController.resources CPU/Memory resource requests/limits
     resources:
       limits:
         cpu: 500m
@@ -40,94 +45,97 @@ vertical-pod-autoscaler:
         cpu: 250m
         memory: 250Mi
 
+    ## @param admissionController.verticalPodAutoscaler Vertical pod autoscaling
     verticalPodAutoscaler:
       enabled: false
       containerPolicies:
-        controlledResources:
-        - cpu
-        - memory
-        minAllowed:
-          cpu: 200m
-          memory: 250Mi
         mode: Auto
-
-    extraArgs:
-      kube-api-burst: 75
-      kube-api-qps: 50
-      v: 2
-      webhook-timeout-seconds: 5
-
-    metrics:
-      serviceMonitor:
-        # Specifies whether a service monitor should be created
-        enabled: true
-
-  recommender:
-    replicaCount: 1
-    # Do not create PDB when replica is 1
-    pdb:
-      create: false
-    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
-    podAnnotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-
-    image:
-      registry: gsoci.azurecr.io
-      repository: giantswarm/vpa-recommender
-      tag: 1.0.0
-      pullPolicy: IfNotPresent
-
-    podSecurityContext:
-      runAsNonRoot: true
-      runAsUser: 65534
-      seccompProfile:
-        type: RuntimeDefault
-
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-          - ALL
-
-    # The recommender pod is often evicted by VPA itself
-    # In large clusters it takes some seconds to process all the VPA resources
-    # so delay the initial checks
-    livenessProbe:
-      initialDelaySeconds: 45
-      periodSeconds: 15
-      failureThreshold: 5
-    readinessProbe:
-      initialDelaySeconds: 30
-      periodSeconds: 15
-      failureThreshold: 5
-
-    resources:
-      requests:
-        cpu: 500m
-        memory: 250Mi
-
-    # Disable the recommender VPA
-    # The issue is that the VPA keeps on re-scheduling the pod because the memory
-    # consumption of the recommender varies a lot between when it's idle and when
-    # it calculated the recommendations
-    verticalPodAutoscaler:
-      enabled: false
-      containerPolicies:
         controlledResources:
         - cpu
         - memory
         minAllowed:
           cpu: 250m
           memory: 250Mi
-        mode: Auto
 
+    ## @extra admissionController.extraArgs [object] Additional container arguments
+    ## @param admissionController.extraArgs.v Number for the log level verbosity
     extraArgs:
-      # CPU usage percentile that will be used as a base for CPU target recommendation.
-      # Doesn't affect CPU lower bound, CPU upper bound nor memory recommendations.
-      # Sets however a CPU value which matches the 95% percentile of the workload consumption
-      target-cpu-percentile: 0.95
+      kube-api-burst: 75
+      kube-api-qps: 50
+      webhook-timeout-seconds: 5
+
+    metrics:
+      serviceMonitor:
+        ## @param admissionController.metrics.serviceMonitor.enabled Specifies whether a service monitor should be created
+        enabled: true
+
+  ## @section Recommender parameters
+
+  recommender:
+    image:
+      ## @param recommender.image.registry Image registry
+      registry: gsoci.azurecr.io
+
+      ## @param recommender.image.repository Image repository
+      repository: giantswarm/vpa-recommender
+
+    ## @param recommender.podAnnotations Additional pod annotations
+    podAnnotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+
+    ## @param recommender.securityContext Container security context
+    securityContext:
+      allowPrivilegeEscalation: false
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+
+    livenessProbe:
+      ## @param recommender.livenessProbe.initialDelaySeconds Delay before the liveness probe is initiated
+      initialDelaySeconds: 45
+
+      ## @param recommender.livenessProbe.periodSeconds How often to perform the liveness probe
+      periodSeconds: 15
+
+      ## @param recommender.livenessProbe.failureThreshold Minimum consecutive failures for the liveness probe to be considered failed after having succeeded
+      failureThreshold: 5
+
+    readinessProbe:
+      ## @param recommender.readinessProbe.initialDelaySeconds Delay before the readiness probe is initiated
+      initialDelaySeconds: 30
+
+      ## @param recommender.readinessProbe.periodSeconds How often to perform the readiness probe
+      periodSeconds: 15
+
+      ## @param recommender.readinessProbe.failureThreshold Minimum consecutive failures for the readiness probe to be considered failed after having succeeded
+      failureThreshold: 5
+
+    ## @param recommender.resources CPU/Memory resource requests/limits
+    resources:
+      requests:
+        cpu: 500m
+        memory: 250Mi
+
+    ## @param recommender.verticalPodAutoscaler Vertical pod autoscaling
+    verticalPodAutoscaler:
+      enabled: false
+      containerPolicies:
+        mode: Auto
+        controlledResources:
+        - cpu
+        - memory
+        minAllowed:
+          cpu: 250m
+          memory: 250Mi
+
+    ## @extra recommender.extraArgs [object] Additional container arguments
+    ## @param recommender.extraArgs.v Number for the log level verbosity
+    extraArgs:
+      # If true, only track pods which have an associated VPA
+      memory-saver: true
       # Allow the recommender to execute more requests against the api
       kube-api-burst: 75
       kube-api-qps: 50
@@ -137,89 +145,109 @@ vertical-pod-autoscaler:
       pod-recommendation-min-cpu-millicores: 50
       # This is the recommended default for the memory
       pod-recommendation-min-memory-mb: 250
-      # If true, only track pods which have an associated VPA
-      memory-saver: true
-      v: 2
+      # CPU usage percentile that will be used as a base for CPU target recommendation.
+      # Doesn't affect CPU lower bound, CPU upper bound nor memory recommendations.
+      # Sets however a CPU value which matches the 95% percentile of the workload consumption
+      target-cpu-percentile: 0.95
 
     metrics:
       serviceMonitor:
-        # Specifies whether a service monitor should be created
+        ## @param recommender.metrics.serviceMonitor.enabled Specifies whether a service monitor should be created
         enabled: true
 
-  updater:
-    # Enable the component
-    enabled: true
+  ## @section Updater parameters
 
-    replicaCount: 1
-    # Do not create PDB when replica is 1
-    pdb:
-      create: false
-    # When using single replica we need to annotate the pod for Cluster Autoscaler to allow eviction in kube-system namespace
+  updater:
+    image:
+      ## @param updater.image.registry Image registry
+      registry: gsoci.azurecr.io
+
+      ## @param updater.image.repository Image repository
+      repository: giantswarm/vpa-updater
+
+    ## @param updater.podAnnotations Additional pod annotations
     podAnnotations:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
-    image:
-      registry: gsoci.azurecr.io
-      repository: giantswarm/vpa-updater
-      tag: 1.0.0
-      pullPolicy: IfNotPresent
-
-    podSecurityContext:
-      runAsNonRoot: true
-      runAsUser: 65534
-      seccompProfile:
-        type: RuntimeDefault
-
+    ## @param updater.securityContext Container security context
     securityContext:
       allowPrivilegeEscalation: false
       seccompProfile:
         type: RuntimeDefault
       capabilities:
         drop:
-          - ALL
+        - ALL
+      readOnlyRootFilesystem: true
 
-    # The updater pod is often evicted by VPA itself
-    # In large clusters it takes some seconds to process all the VPA resources
-    # so delay the initial checks
     livenessProbe:
+      ## @param updater.livenessProbe.initialDelaySeconds Delay before the liveness probe is initiated
       initialDelaySeconds: 45
+
+      ## @param updater.livenessProbe.periodSeconds How often to perform the liveness probe
       periodSeconds: 15
-      failureThreshold: 5
-    readinessProbe:
-      initialDelaySeconds: 30
-      periodSeconds: 15
+
+      ## @param updater.livenessProbe.failureThreshold Minimum consecutive failures for the liveness probe to be considered failed after having succeeded
       failureThreshold: 5
 
+    readinessProbe:
+      ## @param updater.readinessProbe.initialDelaySeconds Delay before the readiness probe is initiated
+      initialDelaySeconds: 30
+
+      ## @param updater.readinessProbe.periodSeconds How often to perform the readiness probe
+      periodSeconds: 15
+
+      ## @param updater.readinessProbe.failureThreshold Minimum consecutive failures for the readiness probe to be considered failed after having succeeded
+      failureThreshold: 5
+
+    ## @param updater.resources CPU/Memory resource requests/limits
     resources:
       requests:
         cpu: 500m
         memory: 250Mi
 
+    ## @param updater.verticalPodAutoscaler Vertical pod autoscaling
     verticalPodAutoscaler:
       enabled: false
       containerPolicies:
+        mode: Auto
         controlledResources:
         - cpu
         - memory
         minAllowed:
           cpu: 250m
           memory: 250Mi
-        mode: Auto
 
+    ## @extra updater.extraArgs [object] Additional container arguments
+    ## @param updater.extraArgs.v Number for the log level verbosity
     extraArgs:
       kube-api-burst: 75
       kube-api-qps: 50
-      v: 2
-      # min-replicas set to 1 to prevent the updater from throwing errors concerning prometheus only having 1 replica
       min-replicas: 1
 
     metrics:
       serviceMonitor:
-        # Specifies whether a service monitor should be created
+        ## @param updater.metrics.serviceMonitor.enabled Specifies whether a service monitor should be created
         enabled: true
+
+  ## @section CRDs parameters
 
   crds:
     image:
+      ## @param crds.image.registry Image registry
       registry: gsoci.azurecr.io
+
+      ## @param crds.image.repository Image repository
       repository: giantswarm/kubectl
+
+      ## @param crds.image.tag Image tag
       tag: 1.29.1
+
+    ## @param crds.securityContext Container security context
+    securityContext:
+      allowPrivilegeEscalation: false
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
