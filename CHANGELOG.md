@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+## [5.1.0] - 2024-02-11
+
+### Added
+
+- Repository: Add ATS. ([#267](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/267))
+
+### Changed
+
+- Chart: Improve readability of image tag. ([#263](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/263))
+- Repository: Chores. ([#266](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/266))
+  - Repository: Move `.kube-linter.yaml`.
+  - Repository: Rework ABS.
+  - Repository: Rework CircleCI.
+  - Repository: Rework README.
+  - Chart: Regenerate values schema JSON.
+  - Chart: Rework `Chart.yaml`.
+  - Chart: Rework `README.md.gotmpl`.
+- Chart: Rework chart. ([#269](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/269))
+  - Chart: Rework helpers.
+  - Chart: Rework vertical pod autoscalers.
+  - Chart: Rework policy exceptions.
+  - Chart: Rework network policies.
+  - Chart: Rework CRD patch.
+- Chart: PSS compliance. ([#270](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/270))
+
+### Removed
+
+- Repository: Chores. ([#266](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/266))
+  - Repository: Remove unused script.
+  - Repository: Remove `.nancy-ignore*`.
+  - Repository: Remove images.
+  - Repository: Remove config.
+  - Repository: Remove `.gitignore`.
+  - Chart: Remove `.helmignore`.
+  - Chart: Remove useless CI values.
+- Chart: Rework chart. ([#269](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/269))
+  - Chart: Remove global network policies.
+
 ## [5.0.0] - 2024-01-17
 
 ### Changed
@@ -328,7 +366,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.0.0...v5.1.0
 [5.0.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.6.0...v5.0.0
 [4.6.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v4.4.0...v4.5.0
