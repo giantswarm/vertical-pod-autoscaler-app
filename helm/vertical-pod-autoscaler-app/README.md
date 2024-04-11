@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler-app
 
-![Version: 5.1.0](https://img.shields.io/badge/Version-5.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 5.2.1](https://img.shields.io/badge/Version-5.2.1-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
 A Helm chart for the Vertical Pod Autoscaler.
 
@@ -10,7 +10,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 9.6.0 |
+| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 9.8.0 |
 
 ## Values
 
@@ -40,7 +40,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.enabled | bool | `false` |  |
 | vertical-pod-autoscaler.crds.image.registry | string | `"gsoci.azurecr.io"` |  |
 | vertical-pod-autoscaler.crds.image.repository | string | `"giantswarm/kubectl"` |  |
-| vertical-pod-autoscaler.crds.image.tag | string | `"1.29.1"` |  |
+| vertical-pod-autoscaler.crds.image.tag | string | `"1.29.3"` |  |
 | vertical-pod-autoscaler.crds.securityContext.allowPrivilegeEscalation | bool | `false` |  |
 | vertical-pod-autoscaler.crds.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | vertical-pod-autoscaler.crds.securityContext.readOnlyRootFilesystem | bool | `true` |  |
