@@ -240,7 +240,7 @@ vertical-pod-autoscaler:
       repository: giantswarm/kubectl
 
       ## @param crds.image.tag Image tag
-      tag: 1.29.3
+      tag: 1.29.4
 
     ## @param crds.securityContext Container security context
     securityContext:
