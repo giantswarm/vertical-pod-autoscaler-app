@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### Changed
+
+- Chart: Update `appVersion` and `README.md`, VPA v1.1.2. ([#293](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/293))
+
 ## [5.2.1] - 2024-04-11
 
 ### Changed
