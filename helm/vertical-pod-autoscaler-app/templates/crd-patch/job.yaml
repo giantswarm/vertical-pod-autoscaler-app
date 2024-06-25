@@ -31,4 +31,5 @@ spec:
           {{- toYaml (index .Values "vertical-pod-autoscaler").crds.securityContext | nindent 10 }}
       securityContext:
         {{- toYaml (index .Values "vertical-pod-autoscaler").crds.podSecurityContext | nindent 8 }}
-      restartPolicy: Never
+      restartPolicy: OnFailure
+  backoffLimit: 3
