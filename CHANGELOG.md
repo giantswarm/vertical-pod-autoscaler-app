@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### Changed
+
+- Chart: Add explicit podSecurityContext in values. ([#300](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/300))
+
 ## [5.2.3] - 2024-06-25
 
 ### Changed

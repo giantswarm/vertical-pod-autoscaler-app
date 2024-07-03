@@ -27,6 +27,12 @@ vertical-pod-autoscaler:
       ## @param admissionController.pdb.create Specifies whether a pod disruption budget should be created
       create: true
 
+    ## @param admissionController.podSecurityContext Pod security context
+    podSecurityContext:
+      runAsGroup: 65534
+      runAsNonRoot: true
+      runAsUser: 65534
+
     ## @param admissionController.securityContext Container security context
     securityContext:
       allowPrivilegeEscalation: false
@@ -82,6 +88,12 @@ vertical-pod-autoscaler:
     ## @param recommender.podAnnotations Additional pod annotations
     podAnnotations:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+
+    ## @param recommender.podSecurityContext Pod security context
+    podSecurityContext:
+      runAsGroup: 65534
+      runAsNonRoot: true
+      runAsUser: 65534
 
     ## @param recommender.securityContext Container security context
     securityContext:
@@ -169,6 +181,12 @@ vertical-pod-autoscaler:
     podAnnotations:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
+    ## @param updater.podSecurityContext Pod security context
+    podSecurityContext:
+      runAsGroup: 65534
+      runAsNonRoot: true
+      runAsUser: 65534
+
     ## @param updater.securityContext Container security context
     securityContext:
       allowPrivilegeEscalation: false
@@ -241,6 +259,12 @@ vertical-pod-autoscaler:
 
       ## @param crds.image.tag Image tag
       tag: 1.29.4
+
+    ## @param crds.podSecurityContext Pod security context
+    podSecurityContext:
+      runAsGroup: 65534
+      runAsNonRoot: true
+      runAsUser: 65534
 
     ## @param crds.securityContext Container security context
     securityContext:
