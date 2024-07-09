@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+## [5.2.4] - 2024-07-09
+
+### Changed
+
+- Chart: Update Helm release vertical-pod-autoscaler to v9.8.3. ([#301](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/301))
+
 ## [5.2.3] - 2024-06-25
 
 ### Changed
@@ -390,7 +396,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.3...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.4...HEAD
+[5.2.4]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.3...v5.2.4
 [5.2.3]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.2...v5.2.3
 [5.2.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.1...v5.2.2
 [5.2.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v5.2.0...v5.2.1
