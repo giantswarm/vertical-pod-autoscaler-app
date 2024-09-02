@@ -18,7 +18,7 @@ vertical-pod-autoscaler:
 
     image:
       ## @param admissionController.image.registry Image registry
-      registry: gsoci.azurecr.io
+      registry: ""
 
       ## @param admissionController.image.repository Image repository
       repository: giantswarm/vpa-admission-controller
@@ -74,7 +74,7 @@ vertical-pod-autoscaler:
   recommender:
     image:
       ## @param recommender.image.registry Image registry
-      registry: gsoci.azurecr.io
+      registry: ""
 
       ## @param recommender.image.repository Image repository
       repository: giantswarm/vpa-recommender
@@ -160,7 +160,7 @@ vertical-pod-autoscaler:
   updater:
     image:
       ## @param updater.image.registry Image registry
-      registry: gsoci.azurecr.io
+      registry: ""
 
       ## @param updater.image.repository Image repository
       repository: giantswarm/vpa-updater
@@ -234,7 +234,7 @@ vertical-pod-autoscaler:
   crds:
     image:
       ## @param crds.image.registry Image registry
-      registry: gsoci.azurecr.io
+      registry: ""
 
       ## @param crds.image.repository Image repository
       repository: giantswarm/kubectl

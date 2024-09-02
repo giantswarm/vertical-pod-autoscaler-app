@@ -17,9 +17,7 @@ spec:
       serviceAccountName: {{ include "vertical-pod-autoscaler.crdPatch.fullname" . }}
       containers:
       - name: kubectl
-        {{- with (index .Values "vertical-pod-autoscaler").crds.image }}
-        image: {{ .registry }}/{{ .repository }}:{{ .tag }}
-        {{- end }}
+        image: {{ include "common.images.image" ( dict "imageRoot" (index .Values "vertical-pod-autoscaler").crds.image "global" .Values.global ) }}
         args:
         - annotate
         - customresourcedefinitions.apiextensions.k8s.io
