@@ -40,7 +40,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.enabled | bool | `false` |  |
 | vertical-pod-autoscaler.crds.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.crds.image.repository | string | `"giantswarm/kubectl"` |  |
-| vertical-pod-autoscaler.crds.image.tag | string | `"1.29.4"` |  |
 | vertical-pod-autoscaler.crds.securityContext.allowPrivilegeEscalation | bool | `false` |  |
 | vertical-pod-autoscaler.crds.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | vertical-pod-autoscaler.crds.securityContext.readOnlyRootFilesystem | bool | `true` |  |
