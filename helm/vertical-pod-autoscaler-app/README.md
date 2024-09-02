@@ -20,7 +20,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.extraArgs.kube-api-burst | int | `75` |  |
 | vertical-pod-autoscaler.admissionController.extraArgs.kube-api-qps | int | `50` |  |
 | vertical-pod-autoscaler.admissionController.extraArgs.webhook-timeout-seconds | int | `5` |  |
-| vertical-pod-autoscaler.admissionController.image.registry | string | `"gsoci.azurecr.io"` |  |
+| vertical-pod-autoscaler.admissionController.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.admissionController.image.repository | string | `"giantswarm/vpa-admission-controller"` |  |
 | vertical-pod-autoscaler.admissionController.metrics.serviceMonitor.enabled | bool | `true` |  |
 | vertical-pod-autoscaler.admissionController.pdb.create | bool | `true` |  |
@@ -38,7 +38,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.containerPolicies.minAllowed.memory | string | `"250Mi"` |  |
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.containerPolicies.mode | string | `"Auto"` |  |
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.enabled | bool | `false` |  |
-| vertical-pod-autoscaler.crds.image.registry | string | `"gsoci.azurecr.io"` |  |
+| vertical-pod-autoscaler.crds.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.crds.image.repository | string | `"giantswarm/kubectl"` |  |
 | vertical-pod-autoscaler.crds.image.tag | string | `"1.29.4"` |  |
 | vertical-pod-autoscaler.crds.securityContext.allowPrivilegeEscalation | bool | `false` |  |
@@ -52,7 +52,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.recommender.extraArgs.pod-recommendation-min-cpu-millicores | int | `50` |  |
 | vertical-pod-autoscaler.recommender.extraArgs.pod-recommendation-min-memory-mb | int | `250` |  |
 | vertical-pod-autoscaler.recommender.extraArgs.target-cpu-percentile | float | `0.95` |  |
-| vertical-pod-autoscaler.recommender.image.registry | string | `"gsoci.azurecr.io"` |  |
+| vertical-pod-autoscaler.recommender.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.recommender.image.repository | string | `"giantswarm/vpa-recommender"` |  |
 | vertical-pod-autoscaler.recommender.livenessProbe.failureThreshold | int | `5` |  |
 | vertical-pod-autoscaler.recommender.livenessProbe.initialDelaySeconds | int | `45` |  |
@@ -77,7 +77,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.updater.extraArgs.kube-api-burst | int | `75` |  |
 | vertical-pod-autoscaler.updater.extraArgs.kube-api-qps | int | `50` |  |
 | vertical-pod-autoscaler.updater.extraArgs.min-replicas | int | `1` |  |
-| vertical-pod-autoscaler.updater.image.registry | string | `"gsoci.azurecr.io"` |  |
+| vertical-pod-autoscaler.updater.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.updater.image.repository | string | `"giantswarm/vpa-updater"` |  |
 | vertical-pod-autoscaler.updater.livenessProbe.failureThreshold | int | `5` |  |
 | vertical-pod-autoscaler.updater.livenessProbe.initialDelaySeconds | int | `45` |  |
