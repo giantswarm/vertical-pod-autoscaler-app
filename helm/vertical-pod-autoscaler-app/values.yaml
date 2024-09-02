@@ -239,9 +239,6 @@ vertical-pod-autoscaler:
       ## @param crds.image.repository Image repository
       repository: giantswarm/kubectl
 
-      ## @param crds.image.tag Image tag
-      tag: 1.29.4
-
     ## @param crds.securityContext Container security context
     securityContext:
       allowPrivilegeEscalation: false
