@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Chart: Do not override `crds.image.tag`. ([#316](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/316))
+- Chart: Remove `.kube-linter.yaml`. ([#319](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/319))
 
 ## [5.2.4] - 2024-07-09
 
