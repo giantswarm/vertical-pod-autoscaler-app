@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler-app
 
-![Version: 5.2.4](https://img.shields.io/badge/Version-5.2.4-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
+![Version: 5.3.0](https://img.shields.io/badge/Version-5.3.0-informational?style=flat-square) ![AppVersion: 1.2.1](https://img.shields.io/badge/AppVersion-1.2.1-informational?style=flat-square)
 
 A Helm chart for the Vertical Pod Autoscaler.
 
