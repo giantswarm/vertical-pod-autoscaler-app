@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "vertical-pod-autoscaler.recommender.metrics.fullname" . }}-observability
+  name: {{ include "vertical-pod-autoscaler.recommenderObservability.metrics.fullname" . }}
   labels:
     {{- include "vertical-pod-autoscaler.recommenderObservability.labels" . | nindent 4 }}
     {{- if $values.commonLabels }}

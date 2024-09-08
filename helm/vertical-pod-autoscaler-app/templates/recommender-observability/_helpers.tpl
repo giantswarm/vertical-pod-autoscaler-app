@@ -1,10 +1,24 @@
 {{/* vim: set filetype=mustache: */}}
 
 {{/*
+Create a default fully qualified app name.
+*/}}
+{{- define "vertical-pod-autoscaler.recommenderObservability.fullname" -}}
+{{- printf "%s-%s" (include "vertical-pod-autoscaler.fullname" .) "recommender-observability" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified metrics name.
+*/}}
+{{- define "vertical-pod-autoscaler.recommenderObservability.metrics.fullname" -}}
+{{- printf "%s-%s" (include "vertical-pod-autoscaler.recommenderObservability.fullname" .) "metrics-observability" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 Component labels
 */}}
 {{- define "vertical-pod-autoscaler.recommenderObservability.componentLabels" -}}
-app.kubernetes.io/component: recommender
+app.kubernetes.io/component: recommender-observability
 {{- end -}}
 
 {{/*

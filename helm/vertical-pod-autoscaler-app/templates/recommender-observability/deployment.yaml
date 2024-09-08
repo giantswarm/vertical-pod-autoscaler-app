@@ -2,7 +2,7 @@
 apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
-  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-observability
+  name: {{ include "vertical-pod-autoscaler.recommenderObservability.fullname" . }}
   labels:
     {{- include "vertical-pod-autoscaler.recommenderObservability.labels" . | nindent 4 }}
     {{- if $values.commonLabels }}
