@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### Added
+
+- Add a new recommender for observability purposes with 0.5 margin fraction
+
 ## [5.3.0] - 2024-09-02
 
 ### Changed
