@@ -1,41 +1,42 @@
-{{- if .Values.recommender.metrics.serviceMonitor.enabled }}
+{{- $values := (index .Values "vertical-pod-autoscaler") -}}
+{{- if $values.recommender.metrics.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}
-  namespace: {{ default .Release.Namespace .Values.recommender.metrics.serviceMonitor.namespace | quote }}
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-observability
+  namespace: {{ default .Release.Namespace $values.recommender.metrics.serviceMonitor.namespace | quote }}
   labels:
-    {{- include "vertical-pod-autoscaler.recommender-observability.labels" . | nindent 4 }}
-    {{- if .Values.recommender.metrics.serviceMonitor.labels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.recommender.metrics.serviceMonitor.labels "context" $ ) | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.recommender.labels" . | nindent 4 }}
+    {{- if $values.recommender.metrics.serviceMonitor.labels }}
+    {{- include "common.tplvalues.render" ( dict "value" $values.recommender.metrics.serviceMonitor.labels "context" $ ) | nindent 4 }}
     {{- end }}
-    {{- if .Values.commonLabels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- if $values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" $values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
-  {{- if or .Values.recommender.metrics.serviceMonitor.annotations .Values.commonAnnotations }}
-  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list .Values.recommender.metrics.serviceMonitor.annotations .Values.commonAnnotations ) "context" . ) }}
+  {{- if or $values.recommender.metrics.serviceMonitor.annotations $values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list $values.recommender.metrics.serviceMonitor.annotations $values.commonAnnotations ) "context" . ) }}
   annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.recommender.metrics.serviceMonitor.jobLabel }}
-  jobLabel: {{ .Values.recommender.metrics.serviceMonitor.jobLabel }}
+  {{- if $values.recommender.metrics.serviceMonitor.jobLabel }}
+  jobLabel: {{ $values.recommender.metrics.serviceMonitor.jobLabel }}
   {{- end }}
   endpoints:
     - port: http-metrics
-      {{- if .Values.recommender.metrics.serviceMonitor.interval }}
-      interval: {{ .Values.recommender.metrics.serviceMonitor.interval }}
+      {{- if $values.recommender.metrics.serviceMonitor.interval }}
+      interval: {{ $values.recommender.metrics.serviceMonitor.interval }}
       {{- end}}
-      {{- if .Values.recommender.metrics.serviceMonitor.scrapeTimeout }}
-      scrapeTimeout: {{ .Values.recommender.metrics.serviceMonitor.scrapeTimeout }}
+      {{- if $values.recommender.metrics.serviceMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ $values.recommender.metrics.serviceMonitor.scrapeTimeout }}
       {{- end}}
-      {{- if .Values.recommender.metrics.serviceMonitor.honorLabels }}
-      honorLabels: {{ .Values.recommender.metrics.serviceMonitor.honorLabels }}
+      {{- if $values.recommender.metrics.serviceMonitor.honorLabels }}
+      honorLabels: {{ $values.recommender.metrics.serviceMonitor.honorLabels }}
       {{- end}}
-      {{- if .Values.recommender.metrics.serviceMonitor.metricRelabelings }}
-      metricRelabelings: {{ toYaml .Values.recommender.metrics.serviceMonitor.metricRelabelings | nindent 8 }}
+      {{- if $values.recommender.metrics.serviceMonitor.metricRelabelings }}
+      metricRelabelings: {{ toYaml $values.recommender.metrics.serviceMonitor.metricRelabelings | nindent 8 }}
       {{- end }}
-      {{- if .Values.recommender.metrics.serviceMonitor.relabelings }}
-      relabelings: {{ toYaml .Values.recommender.metrics.serviceMonitor.relabelings | nindent 8 }}
+      {{- if $values.recommender.metrics.serviceMonitor.relabelings }}
+      relabelings: {{ toYaml $values.recommender.metrics.serviceMonitor.relabelings | nindent 8 }}
       {{- end }}
       path: /metrics
   namespaceSelector:
@@ -43,5 +44,5 @@ spec:
       - {{ .Release.Namespace | quote }}
   selector:
     matchLabels:
-      {{- include "vertical-pod-autoscaler.recommender-observability.selectorLabels" . | nindent 6 }}
+      {{- include "vertical-pod-autoscaler.recommender.selectorLabels" . | nindent 6 }}
 {{- end -}}

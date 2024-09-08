@@ -1,24 +1,25 @@
-{{- if .Values.recommender.pdb.create }}
+{{- $values := (index .Values "vertical-pod-autoscaler") -}}
+{{- if $values.recommender.pdb.create }}
 apiVersion: {{ include "common.capabilities.policy.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}
+  name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-observability
   labels:
-    {{- include "vertical-pod-autoscaler.recommender-observability.labels" . | nindent 4 }}
-    {{- if .Values.commonLabels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.recommenderObservability.labels" . | nindent 4 }}
+    {{- if $values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" $values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
-  {{- if .Values.commonAnnotations }}
-  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- if $values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" $values.commonAnnotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.recommender.pdb.minAvailable }}
-  minAvailable: {{ .Values.recommender.pdb.minAvailable }}
+  {{- if $values.recommender.pdb.minAvailable }}
+  minAvailable: {{ $values.recommender.pdb.minAvailable }}
   {{- end }}
-  {{- if .Values.recommender.pdb.maxUnavailable }}
-  maxUnavailable: {{ .Values.recommender.pdb.maxUnavailable }}
+  {{- if $values.recommender.pdb.maxUnavailable }}
+  maxUnavailable: {{ $values.recommender.pdb.maxUnavailable }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "vertical-pod-autoscaler.recommender-observability.selectorLabels" . | nindent 6 }}
+      {{- include "vertical-pod-autoscaler.recommenderObservability.selectorLabels" . | nindent 6 }}
 {{- end }}

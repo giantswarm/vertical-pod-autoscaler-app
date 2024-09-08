@@ -1,25 +1,26 @@
+{{- $values := (index .Values "vertical-pod-autoscaler") -}}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "vertical-pod-autoscaler.recommender.metrics.fullname" . }}-observability
   labels:
-    {{- include "vertical-pod-autoscaler.recommender-observability.labels" . | nindent 4 }}
-    {{- if .Values.commonLabels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.recommenderObservability.labels" . | nindent 4 }}
+    {{- if $values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" $values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
-  {{- if or .Values.recommender.metrics.service.annotations .Values.commonAnnotations }}
-  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list .Values.recommender.metrics.service.annotations .Values.commonAnnotations ) "context" . ) }}
+  {{- if or $values.recommender.metrics.service.annotations $values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list $values.recommender.metrics.service.annotations $values.commonAnnotations ) "context" . ) }}
   annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
-  type: {{ .Values.recommender.metrics.service.type }}
-  {{- if and (eq .Values.recommender.metrics.service.type "ClusterIP") .Values.recommender.metrics.service.clusterIP }}
-  clusterIP: {{ .Values.recommender.metrics.service.clusterIP }}
+  type: {{ $values.recommender.metrics.service.type }}
+  {{- if and (eq $values.recommender.metrics.service.type "ClusterIP") $values.recommender.metrics.service.clusterIP }}
+  clusterIP: {{ $values.recommender.metrics.service.clusterIP }}
   {{- end }}
   ports:
-    - port: {{ .Values.recommender.metrics.service.ports.metrics }}
+    - port: {{ $values.recommender.metrics.service.ports.metrics }}
       targetPort: http-metrics
       protocol: TCP
       name: http-metrics
   selector:
-    {{- include "vertical-pod-autoscaler.recommender-observability.selectorLabels" . | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.recommenderObservability.selectorLabels" . | nindent 4 }}

@@ -157,7 +157,7 @@ vertical-pod-autoscaler:
 
   ## @section Recommender observability parameters
 
-  recommender-observability:
+  recommenderObservability:
     extraArgs:
       # If true, only track pods which have an associated VPA
       memory-saver: true

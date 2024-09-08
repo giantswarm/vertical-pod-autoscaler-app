@@ -1,139 +1,140 @@
+{{- $values := (index .Values "vertical-pod-autoscaler") -}}
 apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
   name: {{ include "vertical-pod-autoscaler.recommender.fullname" . }}-observability
   labels:
-    {{- include "vertical-pod-autoscaler.recommender-observability.labels" . | nindent 4 }}
-    {{- if .Values.commonLabels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- include "vertical-pod-autoscaler.recommenderObservability.labels" . | nindent 4 }}
+    {{- if $values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" $values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
-  {{- if or .Values.recommender.deploymentAnnotations .Values.commonAnnotations }}
-  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list .Values.recommender.deploymentAnnotations .Values.commonAnnotations ) "context" . ) }}
+  {{- if or $values.recommender.deploymentAnnotations $values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list $values.recommender.deploymentAnnotations $values.commonAnnotations ) "context" . ) }}
   annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
-  replicas: {{ .Values.recommender.replicaCount }}
+  replicas: {{ $values.recommender.replicaCount }}
   selector:
     matchLabels:
-      {{- include "vertical-pod-autoscaler.recommender-observability.selectorLabels" . | nindent 6 }}
+      {{- include "vertical-pod-autoscaler.recommenderObservability.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "vertical-pod-autoscaler.recommender-observability.selectorLabels" . | nindent 8 }}
-        {{- if .Values.recommender.podLabels }}
-        {{- include "common.tplvalues.render" ( dict "value" .Values.recommender.podLabels "context" $ ) | nindent 8 }}
+        {{- include "vertical-pod-autoscaler.recommenderObservability.selectorLabels" . | nindent 8 }}
+        {{- if $values.recommender.podLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" $values.recommender.podLabels "context" $ ) | nindent 8 }}
         {{- end }}
-        {{- if .Values.commonLabels }}
-        {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 8 }}
+        {{- if $values.commonLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" $values.commonLabels "context" $ ) | nindent 8 }}
         {{- end }}
-      {{- if or .Values.recommender.podAnnotations .Values.commonAnnotations }}
+      {{- if or $values.recommender.podAnnotations $values.commonAnnotations }}
       annotations:
-        {{- if .Values.recommender.podAnnotations }}
-        {{- include "common.tplvalues.render" ( dict "value" .Values.recommender.podAnnotations "context" $ ) | nindent 8 }}
+        {{- if $values.recommender.podAnnotations }}
+        {{- include "common.tplvalues.render" ( dict "value" $values.recommender.podAnnotations "context" $ ) | nindent 8 }}
         {{- end }}
-        {{- if .Values.commonAnnotations }}
-        {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 8 }}
+        {{- if $values.commonAnnotations }}
+        {{- include "common.tplvalues.render" ( dict "value" $values.commonAnnotations "context" $ ) | nindent 8 }}
         {{- end }}
       {{- end }}
     spec:
-      {{- include "common.images.pullSecrets" ( dict "images" ( list .Values.recommender.image ) "global" .Values.global ) | nindent 6 }}
-      {{- if .Values.recommender.hostAliases }}
-      hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.recommender.hostAliases "context" $) | nindent 8 }}
+      {{- include "common.images.pullSecrets" ( dict "images" ( list $values.recommender.image ) "global" $values.global ) | nindent 6 }}
+      {{- if $values.recommender.hostAliases }}
+      hostAliases: {{- include "common.tplvalues.render" (dict "value" $values.recommender.hostAliases "context" $) | nindent 8 }}
       {{- end }}
-      {{- if .Values.recommender.priorityClassName }}
-      priorityClassName: {{ .Values.recommender.priorityClassName | quote }}
+      {{- if $values.recommender.priorityClassName }}
+      priorityClassName: {{ $values.recommender.priorityClassName | quote }}
       {{- end }}
-      {{- if .Values.recommender.runtimeClassName }}
-      runtimeClassName: {{ .Values.recommender.runtimeClassName | quote }}
+      {{- if $values.recommender.runtimeClassName }}
+      runtimeClassName: {{ $values.recommender.runtimeClassName | quote }}
       {{- end }}
       serviceAccountName: {{ include "vertical-pod-autoscaler.recommender.serviceAccountName" . }}
-      {{- if .Values.recommender.topologySpreadConstraints }}
-      topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" .Values.recommender.topologySpreadConstraints "context" .) | nindent 8 }}
+      {{- if $values.recommender.topologySpreadConstraints }}
+      topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" $values.recommender.topologySpreadConstraints "context" .) | nindent 8 }}
       {{- end }}
       securityContext:
-        {{- toYaml .Values.recommender.podSecurityContext | nindent 8 }}
+        {{- toYaml $values.recommender.podSecurityContext | nindent 8 }}
       containers:
         - name: recommender
           securityContext:
-            {{- toYaml .Values.recommender.securityContext | nindent 12 }}
-          image: {{ include "common.images.image" ( dict "imageRoot" .Values.recommender.image "global" .Values.global ) }}
-          imagePullPolicy: {{ .Values.recommender.image.pullPolicy }}
+            {{- toYaml $values.recommender.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" ( dict "imageRoot" $values.recommender.image "global" $values.global ) }}
+          imagePullPolicy: {{ $values.recommender.image.pullPolicy }}
           args:
-            - --address=:{{ .Values.recommender.containerPorts.metrics }}
-            {{- range $key, $value := .Values.recommender-observability.extraArgs }}
+            - --address=:{{ $values.recommender.containerPorts.metrics }}
+            {{- range $key, $value := $values.recommenderObservability.extraArgs }}
             - --{{ $key }}={{ $value }}
             {{- end }}
-          {{- if .Values.recommender.extraEnvVars }}
+          {{- if $values.recommender.extraEnvVars }}
           env:
-            {{- include "common.tplvalues.render" (dict "value" .Values.recommender.extraEnvVars "context" $) | nindent 12 }}
+            {{- include "common.tplvalues.render" (dict "value" $values.recommender.extraEnvVars "context" $) | nindent 12 }}
           {{- end }}
-          {{- if or .Values.recommender.extraEnvVarsCM .Values.recommender.extraEnvVarsSecret }}
+          {{- if or $values.recommender.extraEnvVarsCM $values.recommender.extraEnvVarsSecret }}
           envFrom:
-            {{- if .Values.recommender.extraEnvVarsCM }}
+            {{- if $values.recommender.extraEnvVarsCM }}
             - configMapRef:
-                name: {{ include "common.tplvalues.render" (dict "value" .Values.recommender.extraEnvVarsCM "context" $) }}
+                name: {{ include "common.tplvalues.render" (dict "value" $values.recommender.extraEnvVarsCM "context" $) }}
             {{- end }}
-            {{- if .Values.recommender.extraEnvVarsSecret }}
+            {{- if $values.recommender.extraEnvVarsSecret }}
             - secretRef:
-                name: {{ include "common.tplvalues.render" (dict "value" .Values.recommender.extraEnvVarsSecret "context" $) }}
+                name: {{ include "common.tplvalues.render" (dict "value" $values.recommender.extraEnvVarsSecret "context" $) }}
             {{- end }}
           {{- end }}
           ports:
             - name: http-metrics
-              containerPort: {{ .Values.recommender.containerPorts.metrics }}
+              containerPort: {{ $values.recommender.containerPorts.metrics }}
               protocol: TCP
-          {{- if .Values.recommender.livenessProbe.enabled }}
+          {{- if $values.recommender.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
               path: /health-check
               port: http-metrics
-            initialDelaySeconds: {{ .Values.recommender.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.recommender.livenessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.recommender.livenessProbe.timeoutSeconds }}
-            failureThreshold: {{ .Values.recommender.livenessProbe.failureThreshold }}
-            successThreshold: {{ .Values.recommender.livenessProbe.successThreshold }}
+            initialDelaySeconds: {{ $values.recommender.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ $values.recommender.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ $values.recommender.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ $values.recommender.livenessProbe.failureThreshold }}
+            successThreshold: {{ $values.recommender.livenessProbe.successThreshold }}
           {{- end }}
-          {{- if .Values.recommender.readinessProbe.enabled }}
+          {{- if $values.recommender.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /health-check
               port: http-metrics
-            initialDelaySeconds: {{ .Values.recommender.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.recommender.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.recommender.readinessProbe.timeoutSeconds }}
-            failureThreshold: {{ .Values.recommender.readinessProbe.failureThreshold }}
-            successThreshold: {{ .Values.recommender.readinessProbe.successThreshold }}
+            initialDelaySeconds: {{ $values.recommender.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ $values.recommender.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ $values.recommender.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ $values.recommender.readinessProbe.failureThreshold }}
+            successThreshold: {{ $values.recommender.readinessProbe.successThreshold }}
           {{- end }}
-          {{- if .Values.recommender.startupProbe.enabled }}
+          {{- if $values.recommender.startupProbe.enabled }}
           startupProbe:
             httpGet:
               path: /health-check
               port: http-metrics
-            initialDelaySeconds: {{ .Values.recommender.startupProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.recommender.startupProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.recommender.startupProbe.timeoutSeconds }}
-            failureThreshold: {{ .Values.recommender.startupProbe.failureThreshold }}
-            successThreshold: {{ .Values.recommender.startupProbe.successThreshold }}
+            initialDelaySeconds: {{ $values.recommender.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ $values.recommender.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ $values.recommender.startupProbe.timeoutSeconds }}
+            failureThreshold: {{ $values.recommender.startupProbe.failureThreshold }}
+            successThreshold: {{ $values.recommender.startupProbe.successThreshold }}
           {{- end }}
           resources:
-            {{- toYaml .Values.recommender.resources | nindent 12 }}
+            {{- toYaml $values.recommender.resources | nindent 12 }}
           volumeMounts:
-            {{- if .Values.recommender.extraVolumeMounts }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.recommender.extraVolumeMounts "context" $) | nindent 12 }}
+            {{- if $values.recommender.extraVolumeMounts }}
+            {{- include "common.tplvalues.render" (dict "value" $values.recommender.extraVolumeMounts "context" $) | nindent 12 }}
             {{- end }}
-      {{- with .Values.recommender.nodeSelector }}
+      {{- with $values.recommender.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.recommender.affinity }}
+    {{- with $values.recommender.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- with .Values.recommender.tolerations }}
+    {{- with $values.recommender.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
-        {{- if .Values.recommender.extraVolumes }}
-        {{- include "common.tplvalues.render" (dict "value" .Values.recommender.extraVolumes "context" $) | nindent 8 }}
+        {{- if $values.recommender.extraVolumes }}
+        {{- include "common.tplvalues.render" (dict "value" $values.recommender.extraVolumes "context" $) | nindent 8 }}
         {{- end }}
