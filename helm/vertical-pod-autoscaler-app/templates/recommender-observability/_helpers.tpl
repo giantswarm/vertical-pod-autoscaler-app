@@ -41,7 +41,7 @@ Selector labels
 Create the name of the service account to use
 */}}
 {{- define "vertical-pod-autoscaler.recommender.serviceAccountName" -}}
-{{- $values := (index .Values "vertical-pod-autoscaler") -}}
+{{- $values := (merge .Values (index .Values "vertical-pod-autoscaler")) -}}
 {{- if $values.recommender.serviceAccount.create -}}
     {{ default (include "vertical-pod-autoscaler.recommender.fullname" .) $values.recommender.serviceAccount.name }}
 {{- else -}}
