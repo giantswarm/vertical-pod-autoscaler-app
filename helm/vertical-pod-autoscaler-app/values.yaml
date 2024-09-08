@@ -155,28 +155,6 @@ vertical-pod-autoscaler:
         ## @param recommender.metrics.serviceMonitor.enabled Specifies whether a service monitor should be created
         enabled: true
 
-  ## @section Recommender observability parameters
-
-  recommenderObservability:
-    extraArgs:
-      # If true, only track pods which have an associated VPA
-      memory-saver: true
-      # Allow the recommender to execute more requests against the api
-      kube-api-burst: 75
-      kube-api-qps: 50
-      # Double the memory during the next Pod resource update, to speed up the recovery from an OOMKilled
-      oom-bump-up-ratio: 2.0
-      # The lowest setting for the CPU
-      pod-recommendation-min-cpu-millicores: 50
-      # This is the recommended default for the memory
-      pod-recommendation-min-memory-mb: 250
-      # CPU usage percentile that will be used as a base for CPU target recommendation.
-      # Doesn't affect CPU lower bound, CPU upper bound nor memory recommendations.
-      # Sets however a CPU value which matches the 95% percentile of the workload consumption
-      target-cpu-percentile: 0.95
-      recommender-name: recommender-observability
-      recommendation-margin-fraction: 0.5
-
   ## @section Updater parameters
 
   updater:
@@ -270,3 +248,25 @@ vertical-pod-autoscaler:
         drop:
         - ALL
       readOnlyRootFilesystem: true
+
+## @section Recommender observability parameters
+
+recommenderObservability:
+  extraArgs:
+    # If true, only track pods which have an associated VPA
+    memory-saver: true
+    # Allow the recommender to execute more requests against the api
+    kube-api-burst: 75
+    kube-api-qps: 50
+    # Double the memory during the next Pod resource update, to speed up the recovery from an OOMKilled
+    oom-bump-up-ratio: 2.0
+    # The lowest setting for the CPU
+    pod-recommendation-min-cpu-millicores: 50
+    # This is the recommended default for the memory
+    pod-recommendation-min-memory-mb: 250
+    # CPU usage percentile that will be used as a base for CPU target recommendation.
+    # Doesn't affect CPU lower bound, CPU upper bound nor memory recommendations.
+    # Sets however a CPU value which matches the 95% percentile of the workload consumption
+    target-cpu-percentile: 0.95
+    recommender-name: recommender-observability
+    recommendation-margin-fraction: 0.5
