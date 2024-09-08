@@ -61,7 +61,7 @@ spec:
           imagePullPolicy: {{ $values.recommender.image.pullPolicy }}
           args:
             - --address=:{{ $values.recommender.containerPorts.metrics }}
-            {{- range $key, $value := $values.recommenderObservability.extraArgs }}
+            {{- range $key, $value := (merge .Values.recommenderObservability.extraArgs $values.recommender.extraArgs) }}
             - --{{ $key }}={{ $value }}
             {{- end }}
           {{- if $values.recommender.extraEnvVars }}
