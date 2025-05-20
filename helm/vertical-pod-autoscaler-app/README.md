@@ -10,7 +10,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 10.0.1 |
+| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 10.1.0 |
 
 ## Values
 
