@@ -2,7 +2,7 @@ apiVersion: v2
 name: vertical-pod-autoscaler-app
 description: A Helm chart for the Vertical Pod Autoscaler.
 version: 5.4.1
-appVersion: 1.3.1
+appVersion: 1.4.0
 home: https://github.com/giantswarm/vertical-pod-autoscaler-app
 icon: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
 annotations:
@@ -11,4 +11,4 @@ annotations:
 dependencies:
   - repository: https://cowboysysop.github.io/charts
     name: vertical-pod-autoscaler
-    version: 10.1.0
+    version: 10.2.0
