@@ -11,4 +11,4 @@ annotations:
 dependencies:
   - repository: https://cowboysysop.github.io/charts
     name: vertical-pod-autoscaler
-    version: 10.2.1
+    version: 11.0.0

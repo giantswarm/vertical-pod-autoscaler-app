@@ -10,7 +10,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 10.2.1 |
+| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 11.0.0 |
 
 ## Values
 
@@ -28,10 +28,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.resources.limits.cpu | string | `"500m"` |  |
 | vertical-pod-autoscaler.admissionController.resources.requests.cpu | string | `"250m"` |  |
 | vertical-pod-autoscaler.admissionController.resources.requests.memory | string | `"250Mi"` |  |
-| vertical-pod-autoscaler.admissionController.securityContext.allowPrivilegeEscalation | bool | `false` |  |
-| vertical-pod-autoscaler.admissionController.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| vertical-pod-autoscaler.admissionController.securityContext.readOnlyRootFilesystem | bool | `true` |  |
-| vertical-pod-autoscaler.admissionController.securityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.containerPolicies.controlledResources[0] | string | `"cpu"` |  |
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.containerPolicies.controlledResources[1] | string | `"memory"` |  |
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.containerPolicies.minAllowed.cpu | string | `"250m"` |  |
@@ -40,10 +36,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.admissionController.verticalPodAutoscaler.enabled | bool | `false` |  |
 | vertical-pod-autoscaler.crds.image.registry | string | `""` |  |
 | vertical-pod-autoscaler.crds.image.repository | string | `"giantswarm/kubectl"` |  |
-| vertical-pod-autoscaler.crds.securityContext.allowPrivilegeEscalation | bool | `false` |  |
-| vertical-pod-autoscaler.crds.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| vertical-pod-autoscaler.crds.securityContext.readOnlyRootFilesystem | bool | `true` |  |
-| vertical-pod-autoscaler.crds.securityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
 | vertical-pod-autoscaler.recommender.extraArgs.kube-api-burst | int | `75` |  |
 | vertical-pod-autoscaler.recommender.extraArgs.kube-api-qps | int | `50` |  |
 | vertical-pod-autoscaler.recommender.extraArgs.memory-saver | bool | `true` |  |
@@ -63,10 +55,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.recommender.readinessProbe.periodSeconds | int | `15` |  |
 | vertical-pod-autoscaler.recommender.resources.requests.cpu | string | `"500m"` |  |
 | vertical-pod-autoscaler.recommender.resources.requests.memory | string | `"250Mi"` |  |
-| vertical-pod-autoscaler.recommender.securityContext.allowPrivilegeEscalation | bool | `false` |  |
-| vertical-pod-autoscaler.recommender.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| vertical-pod-autoscaler.recommender.securityContext.readOnlyRootFilesystem | bool | `true` |  |
-| vertical-pod-autoscaler.recommender.securityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
 | vertical-pod-autoscaler.recommender.verticalPodAutoscaler.containerPolicies.controlledResources[0] | string | `"cpu"` |  |
 | vertical-pod-autoscaler.recommender.verticalPodAutoscaler.containerPolicies.controlledResources[1] | string | `"memory"` |  |
 | vertical-pod-autoscaler.recommender.verticalPodAutoscaler.containerPolicies.minAllowed.cpu | string | `"250m"` |  |
@@ -88,10 +76,6 @@ A Helm chart for the Vertical Pod Autoscaler.
 | vertical-pod-autoscaler.updater.readinessProbe.periodSeconds | int | `15` |  |
 | vertical-pod-autoscaler.updater.resources.requests.cpu | string | `"500m"` |  |
 | vertical-pod-autoscaler.updater.resources.requests.memory | string | `"250Mi"` |  |
-| vertical-pod-autoscaler.updater.securityContext.allowPrivilegeEscalation | bool | `false` |  |
-| vertical-pod-autoscaler.updater.securityContext.capabilities.drop[0] | string | `"ALL"` |  |
-| vertical-pod-autoscaler.updater.securityContext.readOnlyRootFilesystem | bool | `true` |  |
-| vertical-pod-autoscaler.updater.securityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
 | vertical-pod-autoscaler.updater.verticalPodAutoscaler.containerPolicies.controlledResources[0] | string | `"cpu"` |  |
 | vertical-pod-autoscaler.updater.verticalPodAutoscaler.containerPolicies.controlledResources[1] | string | `"memory"` |  |
 | vertical-pod-autoscaler.updater.verticalPodAutoscaler.containerPolicies.minAllowed.cpu | string | `"250m"` |  |
