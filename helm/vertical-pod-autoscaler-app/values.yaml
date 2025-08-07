@@ -27,23 +27,13 @@ vertical-pod-autoscaler:
       ## @param admissionController.pdb.create Specifies whether a pod disruption budget should be created
       create: true
 
-    ## @param admissionController.securityContext Container security context
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true
-
     ## @param admissionController.resources CPU/Memory resource requests/limits
     resources:
-      limits:
-        cpu: 500m
       requests:
         cpu: 250m
         memory: 250Mi
+      limits:
+        cpu: 500m
 
     ## @param admissionController.verticalPodAutoscaler Vertical pod autoscaling
     verticalPodAutoscaler:
@@ -82,16 +72,6 @@ vertical-pod-autoscaler:
     ## @param recommender.podAnnotations Additional pod annotations
     podAnnotations:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
-
-    ## @param recommender.securityContext Container security context
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true
 
     livenessProbe:
       ## @param recommender.livenessProbe.initialDelaySeconds Delay before the liveness probe is initiated
@@ -169,16 +149,6 @@ vertical-pod-autoscaler:
     podAnnotations:
       cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
 
-    ## @param updater.securityContext Container security context
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true
-
     livenessProbe:
       ## @param updater.livenessProbe.initialDelaySeconds Delay before the liveness probe is initiated
       initialDelaySeconds: 45
@@ -238,13 +208,3 @@ vertical-pod-autoscaler:
 
       ## @param crds.image.repository Image repository
       repository: giantswarm/kubectl
-
-    ## @param crds.securityContext Container security context
-    securityContext:
-      allowPrivilegeEscalation: false
-      seccompProfile:
-        type: RuntimeDefault
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true

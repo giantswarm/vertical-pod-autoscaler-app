@@ -17,7 +17,7 @@ app.kubernetes.io/component: crd-patch
 Common labels
 */}}
 {{- define "vertical-pod-autoscaler.crdPatch.labels" -}}
-{{ include "vertical-pod-autoscaler.labels" . }}
+{{ include "vertical-pod-autoscaler.commonLabels" . }}
 {{ include "vertical-pod-autoscaler.crdPatch.componentLabels" . }}
 {{- end -}}
 
@@ -25,6 +25,6 @@ Common labels
 Selector labels
 */}}
 {{- define "vertical-pod-autoscaler.crdPatch.selectorLabels" -}}
-{{ include "vertical-pod-autoscaler.selectorLabels" . }}
+{{ include "vertical-pod-autoscaler.commonSelectorLabels" . }}
 {{ include "vertical-pod-autoscaler.crdPatch.componentLabels" . }}
 {{- end -}}
