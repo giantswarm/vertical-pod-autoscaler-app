@@ -1,5 +1,6 @@
 checks:
   exclude:
+  - job-ttl-seconds-after-finished
   - run-as-non-root
   - no-read-only-root-fs
   - unset-cpu-requirements
