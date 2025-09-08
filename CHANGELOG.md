@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+### Changed
+
+- Chart: Update Helm release vertical-pod-autoscaler to v11.0.1. ([#370](https://github.com/giantswarm/vertical-pod-autoscaler-app/pull/370))
+
 ## [6.0.0] - 2025-08-07
 
 ### Changed
