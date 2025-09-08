@@ -1,7 +1,7 @@
 apiVersion: v2
 name: vertical-pod-autoscaler-app
 description: A Helm chart for the Vertical Pod Autoscaler.
-version: 6.0.0
+version: 6.0.1
 appVersion: 1.4.2
 home: https://github.com/giantswarm/vertical-pod-autoscaler-app
 icon: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
