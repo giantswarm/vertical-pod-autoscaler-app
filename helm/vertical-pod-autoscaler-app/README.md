@@ -1,6 +1,6 @@
 # vertical-pod-autoscaler-app
 
-![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: 1.4.2](https://img.shields.io/badge/AppVersion-1.4.2-informational?style=flat-square)
+![Version: 6.0.1](https://img.shields.io/badge/Version-6.0.1-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
 
 A Helm chart for the Vertical Pod Autoscaler.
 
@@ -10,7 +10,7 @@ A Helm chart for the Vertical Pod Autoscaler.
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 11.0.1 |
+| https://cowboysysop.github.io/charts | vertical-pod-autoscaler | 11.1.0 |
 
 ## Values
 
