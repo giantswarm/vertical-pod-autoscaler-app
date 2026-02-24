@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [Unreleased]
 
+## [6.1.2] - 2026-02-24
+
 ### Fixed
 
 - Pushed helm chart to OCI repository.
@@ -466,7 +468,8 @@ alerts.
 
 - First vertical-pod-autoscaler version 0.8.0
 
-[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.1.1...HEAD
+[Unreleased]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.1.2...HEAD
+[6.1.2]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.1.1...v6.1.2
 [6.1.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.1.0...v6.1.1
 [6.1.0]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.0.1...v6.1.0
 [6.0.1]: https://github.com/giantswarm/vertical-pod-autoscaler-app/compare/v6.0.0...v6.0.1
