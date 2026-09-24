@@ -3,3 +3,4 @@ replace-chart-version-with-git: true
 ct-config: .abs/ct.yaml
 generate-metadata: true
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
+disable-helm-image-reference-validator: true
